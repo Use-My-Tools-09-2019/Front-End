@@ -8,6 +8,8 @@ const Button = styled.button`
     border-radius: 10px;
     height: 5vh;
     margin: 1%
+    font-size: 1.6rem;
+    box-shadow: 4px 4px 4px 0px #000
 `;
 
 const TopBar = styled.div`
@@ -23,7 +25,8 @@ const TopBar = styled.div`
 const Title = styled.h1`
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    font-size: 2.5rem
 `;
 
 const ButtonDiv = styled.div`
