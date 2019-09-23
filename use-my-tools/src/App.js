@@ -12,11 +12,14 @@ import Login from './components/Login'
 import Register from './components/Register'
 import PrivateRoute from './components/PrivateRoute'
 
+import Marketplace from './components/Marketplace';
 import './styles/App.scss';
 
 function App() {
+  
   return (
     <div className="App">
+      <Marketplace />
       <Navigation />
       {/* Routes to Nav items below */}
       {/* <LoggedIn /> */}
