@@ -5,11 +5,13 @@ import * as Yup from 'yup'
 
 //styles
 import { Button } from 'semantic-ui-react'
+
 function Register({ touched, errors, status }) {
     return (
         <>
         <h1>Register</h1>
         <Form className="form">
+						<p>{touched.email && errors.email}</p>
             <div className='ui input'>
                 <Field
                     placeholder="Enter your email"
@@ -17,7 +19,15 @@ function Register({ touched, errors, status }) {
                     type="email"
                 />
             </div>
-            <p>{touched.email && errors.email}</p>
+						<p>{touched.username && errors.username}</p>
+            <div className='ui input'>
+                <Field
+                    placeholder="Enter your username"
+                    name="username"
+                    type="username"
+                />
+            </div>
+						<p>{touched.password && errors.password}</p>
             <div className='ui input'>
                 <Field
                     placeholder="Password"
@@ -58,68 +68,69 @@ function Register({ touched, errors, status }) {
                     name="state"
 										component="select"
 								>
-										<option value="AL">Alabama</option>
-										<option value="AK">Alaska</option>
-										<option value="AZ">Arizona</option>
-										<option value="AR">Arkansas</option>
-										<option value="CA">California</option>
-										<option value="CO">Colorado</option>
-										<option value="CT">Connecticut</option>
-										<option value="DE">Delaware</option>
-										<option value="DC">District Of Columbia</option>
-										<option value="FL">Florida</option>
-										<option value="GA">Georgia</option>
-										<option value="HI">Hawaii</option>
-										<option value="ID">Idaho</option>
-										<option value="IL">Illinois</option>
-										<option value="IN">Indiana</option>
-										<option value="IA">Iowa</option>
-										<option value="KS">Kansas</option>
-										<option value="KY">Kentucky</option>
-										<option value="LA">Louisiana</option>
-										<option value="ME">Maine</option>
-										<option value="MD">Maryland</option>
-										<option value="MA">Massachusetts</option>
-										<option value="MI">Michigan</option>
-										<option value="MN">Minnesota</option>
-										<option value="MS">Mississippi</option>
-										<option value="MO">Missouri</option>
-										<option value="MT">Montana</option>
-										<option value="NE">Nebraska</option>
-										<option value="NV">Nevada</option>
-										<option value="NH">New Hampshire</option>
-										<option value="NJ">New Jersey</option>
-										<option value="NM">New Mexico</option>
-										<option value="NY">New York</option>
-										<option value="NC">North Carolina</option>
-										<option value="ND">North Dakota</option>
-										<option value="OH">Ohio</option>
-										<option value="OK">Oklahoma</option>
-										<option value="OR">Oregon</option>
-										<option value="PA">Pennsylvania</option>
-										<option value="RI">Rhode Island</option>
-										<option value="SC">South Carolina</option>
-										<option value="SD">South Dakota</option>
-										<option value="TN">Tennessee</option>
-										<option value="TX">Texas</option>
-										<option value="UT">Utah</option>
-										<option value="VT">Vermont</option>
-										<option value="VA">Virginia</option>
-										<option value="WA">Washington</option>
-										<option value="WV">West Virginia</option>
-										<option value="WI">Wisconsin</option>
-										<option value="WY">Wyoming</option>
-									</Field>
+									<option value="AL">Alabama</option>
+									<option value="AK">Alaska</option>
+									<option value="AZ">Arizona</option>
+									<option value="AR">Arkansas</option>
+									<option value="CA">California</option>
+									<option value="CO">Colorado</option>
+									<option value="CT">Connecticut</option>
+									<option value="DE">Delaware</option>
+									<option value="DC">District Of Columbia</option>
+									<option value="FL">Florida</option>
+									<option value="GA">Georgia</option>
+									<option value="HI">Hawaii</option>
+									<option value="ID">Idaho</option>
+									<option value="IL">Illinois</option>
+									<option value="IN">Indiana</option>
+									<option value="IA">Iowa</option>
+									<option value="KS">Kansas</option>
+									<option value="KY">Kentucky</option>
+									<option value="LA">Louisiana</option>
+									<option value="ME">Maine</option>
+									<option value="MD">Maryland</option>
+									<option value="MA">Massachusetts</option>
+									<option value="MI">Michigan</option>
+									<option value="MN">Minnesota</option>
+									<option value="MS">Mississippi</option>
+									<option value="MO">Missouri</option>
+									<option value="MT">Montana</option>
+									<option value="NE">Nebraska</option>
+									<option value="NV">Nevada</option>
+									<option value="NH">New Hampshire</option>
+									<option value="NJ">New Jersey</option>
+									<option value="NM">New Mexico</option>
+									<option value="NY">New York</option>
+									<option value="NC">North Carolina</option>
+									<option value="ND">North Dakota</option>
+									<option value="OH">Ohio</option>
+									<option value="OK">Oklahoma</option>
+									<option value="OR">Oregon</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="RI">Rhode Island</option>
+									<option value="SC">South Carolina</option>
+									<option value="SD">South Dakota</option>
+									<option value="TN">Tennessee</option>
+									<option value="TX">Texas</option>
+									<option value="UT">Utah</option>
+									<option value="VT">Vermont</option>
+									<option value="VA">Virginia</option>
+									<option value="WA">Washington</option>
+									<option value="WV">West Virginia</option>
+									<option value="WI">Wisconsin</option>
+									<option value="WY">Wyoming</option>
+								</Field>
            </div>
 					 <p>{touched.zipcode && errors.zipcode}</p>
 					 <div className='ui input'>
-                <Field
-                    placeholder="zipcode"
-                    name="zipcode"
-                    type="text"
-                />
+							<Field
+								placeholder="zipcode"
+								name="zipcode"
+								type="text"
+							/>
            </div>
-           <Button color="blue">Register</Button>
+           <br />
+           <Button color="green">Register</Button>
            <br />
            {status && <h3 style={{color: 'red'}}>Please try again, error during signup</h3>}
       </Form>
@@ -128,9 +139,10 @@ function Register({ touched, errors, status }) {
 }
 
  const FormikRegister = withFormik({
-    mapPropsToValues({ email, password, street, apartment, city, state, zipcode}) {
+    mapPropsToValues({ email,username, password, street, apartment, city, state, zipcode}) {
       return {
-        email: email || "",
+				email: email || "",
+				username: username || "",
 				password: password || "",
 				street: street || "",
 				apartment: apartment || "",
@@ -141,17 +153,19 @@ function Register({ touched, errors, status }) {
       };
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string().required("Username is required"),
-			password: Yup.string().min(8).required("Password is ALSO required"),
-      street: Yup.string().required("Street is required"),
+	 		email: Yup.string().required("Email is a required field"),
+      username: Yup.string().required("Username is a required field"),
+			password: Yup.string().min(6).required("Password is a required field"),
+      street: Yup.string().required("Street is a required field"),
       apartment: Yup.string(),
-			city: Yup.string().required("City is required"),
+			city: Yup.string().required("City is a required field"),
 			state: Yup.string(),
-      zipcode: Yup.string().required("Zipcode is required"),
+      zipcode: Yup.string().required("Zipcode is a required field"),
     }),
 
-    handleSubmit(values, { setStatus }) {
-
+    handleSubmit(values, props ) {
+			console.log(values)
+			console.log(props)
       // axios
       //   .post(url, propsToSubmit)
       //   .then(results => {
