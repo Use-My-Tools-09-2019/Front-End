@@ -34,6 +34,7 @@ const MyTools = ({ values, errors, touched, status }) => {
 
                     {/* Implement date selector? */}
                     <Field type="text" name="rentaldate" placeholder="Length of Rental" />
+
                     <button type="submit">Add Tool</button>
                 </Form>
             </Modal.Description>
@@ -66,13 +67,12 @@ const FormikUserForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-
         // Need to update validation schema to incorporate required fields. Add a checkbox to agree all data is correct before submission?
 
         name: Yup
                 .string(),
         description: Yup
-                .string(),const [modalStatus, setModalStatus] = useState(false);
+                .string(),
         tooltype: Yup
                 .string(),
         cost: Yup
