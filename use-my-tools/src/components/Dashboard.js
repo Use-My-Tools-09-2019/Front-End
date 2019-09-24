@@ -12,6 +12,8 @@ const Button = styled.button`
     box-shadow: 4px 4px 4px 0px #000
 `;
 
+
+// ToolsDiv is the dashboard view
 const ToolsDiv = styled.div`
     display: flex;
     width: 49%;

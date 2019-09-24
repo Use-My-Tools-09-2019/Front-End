@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Modal, Button, Header } from 'semantic-ui-react';
 
 const ToolCards = styled.div`
     display: flex;
@@ -24,6 +25,19 @@ const ToolCards = styled.div`
         margin: auto;
         padding-bottom: 20px;
     }
+
+    .button {
+        margin: auto;
+    }
+
+    form {
+        width: 400px;
+    }
+
+    .request-form {
+        width: 400px;
+    }
+
 `
 
 function ToolCard ({props}) {
@@ -32,10 +46,18 @@ function ToolCard ({props}) {
           <h3>{props.name}</h3>
           <img src={props.picture} />
           <p>{props.about}</p>
-          <p>{props.price}</p>
-          <button>Request Tool</button>
+          <h4>{props.price}</h4>
+          <Modal trigger={<Button className='button'>Request Tool</Button>} closeIcon>
+              <Modal.Header>Request Tool</Modal.Header>
+                <Modal.Description>
+                    <Header>Enter rental period</Header>
+                    <form className='request-form'>
+                        <input type='text' name='rentaldate' placeholder='Length of Rental'/>
+                        <button type='submit'>Request</button>
+                    </form>
+                </Modal.Description>
+          </Modal>
         </ToolCards>
     )
 }
-
 export default ToolCard;

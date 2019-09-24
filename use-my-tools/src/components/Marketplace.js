@@ -8,9 +8,8 @@ import ToolCard from './ToolCard';
 //styles
 import styled from 'styled-components';
 
-//redux
-import { connect } from 'react-redux'
 
+import { connect } from 'react-redux'
 
 const ToolsPage = styled.div`
     width: 90%;
@@ -30,11 +29,7 @@ const ToolsPage = styled.div`
 
 function Marketplace (props) {
 
-const toolsList = [
-
-  ];
-
-    return (
+  return (
         <div>
           <br/>
             <DropdownTools />
