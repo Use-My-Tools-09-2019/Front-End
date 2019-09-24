@@ -3,6 +3,8 @@ import { withFormik, Form, Field } from "formik";
 
 import * as Yup from 'yup'
 
+import axios from 'axios'
+
 //redux
 import { connect } from 'react-redux'
 import { loginAC} from '../store/actions'
@@ -32,9 +34,9 @@ function Login({ touched, errors, status }) {
                 />
            </div>
            <br />
-           <Button color="green">Login</Button>
+           <Button color="black">Login</Button>
            <br />
-           {status && <h3 style={{color: 'red'}}>Please try again, error during signup</h3>}
+           {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
       </Form>
       </>
     )
@@ -54,16 +56,9 @@ function Login({ touched, errors, status }) {
     }),
 
     handleSubmit(values, props ) {
-			console.log(values)
-      // axios
-      //   .post(url, propsToSubmit)
-      //   .then(results => {
-      //     props.props.history.push('/login')
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //     props.setStatus(error.response.data.message)
-      //   })
+      console.log(props)
+      props.props.loginAC(values, props.props.history)
+
     }
 	})(Login);
 	

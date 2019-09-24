@@ -45,8 +45,8 @@ const Navigation = () => {
             <ButtonDiv>
                 <Button><NavLink to="/login">Login</NavLink></Button>
                 <Button><NavLink to="/register">Register</NavLink></Button>
-                <Button><NavLink to="/Marketplace">Marketplace</NavLink></Button>
-                <Button><NavLink to="/My-Tools">My Tools</NavLink></Button>
+                <Button><NavLink to="/marketplace">Marketplace</NavLink></Button>
+                <Button><NavLink to="/my-Tools">My Tools</NavLink></Button>
             </ButtonDiv>
         </TopBar>
     );
