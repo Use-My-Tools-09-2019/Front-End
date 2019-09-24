@@ -12,7 +12,11 @@ export const loginAC = (credentials, history) => dispatch => {
     .then(res => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload })
         localStorage.setItem('token', res.data.payload);
-        history.push('/friendsList');
+        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("user_id", res.data.id);
+        localStorage.setItem("token", res.data.token);
+        history.push(`/dashboard/${res.data.username}`);
+
     })
     .catch(err => { 
         dispatch({ type: LOGIN_FAILURE, payload: err})

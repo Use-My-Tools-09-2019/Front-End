@@ -36,7 +36,7 @@ function Login({ touched, errors, status }) {
            <br />
            <Button color="black">Login</Button>
            <br />
-           {status && <h3 style={{color: 'red'}}>Please try again, error during signup</h3>}
+           {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
       </Form>
       </>
     )
@@ -56,21 +56,9 @@ function Login({ touched, errors, status }) {
     }),
 
     handleSubmit(values, props ) {
-      console.log(values)
-      const url = '/users/user'
-      axios
-        .post(url, values)
-        .then(res => {
-          props.props.history.push('/login')
-          localStorage.setItem("username", res.data.username);
-          localStorage.setItem("user_id", res.data.id);
-          localStorage.setItem("token", res.data.token);
-          props.props.history.push(`/dashboard/${res.data.username}`);
-        })
-        .catch(error => {
-          console.log(error)
-          props.setStatus(error.response.data.message)
-        })
+      console.log(props)
+      props.props.loginAC(values, props.props.history)
+
     }
 	})(Login);
 	
