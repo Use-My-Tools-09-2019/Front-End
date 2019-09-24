@@ -1,6 +1,4 @@
 import React from 'react';
-
-import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 import MyTools from './components/MyTools';
 
@@ -22,14 +20,13 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <Route exact path='/marketplace' component={Marketplace}/>
       {/* Routes to Nav items below */}
       <Route exact path = "/" render={() => localStorage.getItem('token') ? <Redirect to={`/dashboard/${localStorage.getItem('username')}`}/> : <Redirect to={`/login`} />} />
       <Route exact path='/login' component={Login}/>
       <Route exact path='/register' component={Register}/>
-      <PrivateRoute exact path='/dashboard/:id' component={Dashboard}/>
-      <PrivateRoute exact path='/marketplace/:id' component={Marketplace}/>
-      <PrivateRoute path="/my-Tools/:id" component={MyTools} />
+      <Route exact path='/dashboard/:id' component={Dashboard}/>
+      <Route exact path='/marketplace/:id' component={Marketplace}/>
+      <Route path="/my-Tools/:id" component={MyTools} />
     </div>
   );
 }
