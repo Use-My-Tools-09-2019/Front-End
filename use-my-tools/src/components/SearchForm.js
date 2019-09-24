@@ -1,12 +1,22 @@
 import React from 'react';
+import { Dropdown } from 'semantic-ui-react';
 
-function SearchForm () {
+// function SearchForm () {
     
-    return (
-        <div>
+    const toolCategories = [
+        { key: 'Power Tools', text:'Power Tools', value: 'Power Tools' },
+        { key: 'Hand Tools', text:'Hand Tools', value: 'Hand Tools' }
+    ]
 
-        </div>
+    const DropdownTools = () => (
+        <Dropdown 
+            button
+            className ='categories'
+            options={toolCategories}
+            search
+            text='Choose tool category'
+        />
     )
-}
 
-export default SearchForm;
+
+export default DropdownTools;

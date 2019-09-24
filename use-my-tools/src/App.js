@@ -19,13 +19,14 @@ function App() {
   
   return (
     <div className="App">
-      <Marketplace />
+      
       <Navigation />
       {/* Routes to Nav items below */}
       {/* <LoggedIn /> */}
       <Route path="/My-Tools" component={MyTools} />
       <Route exact path='/' component={Login}/>
       <Route exact path='/register' component={Register}/>
+      <Route exact path='/marketplace' component={Marketplace}/>
     </div>
   );
 }
