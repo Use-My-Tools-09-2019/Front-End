@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Header, Modal } from 'semantic-ui-react';
-import { FaWindowClose } from 'react-icons/fa';
+import { Button, Header, Modal, Card } from 'semantic-ui-react';
+import { FaWindowClose, FaTools } from 'react-icons/fa';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -38,10 +38,13 @@ const CustomButton = styled(Button)`
     width: 12rem;
     border-radius: 10px;
     height: 5vh;
-    margin: 1%
     font-size: 1.6rem;
 `;
 
+const UICards = styled(Card)`
+    display: flex;
+    margin: 2%;
+`;
 
 const MyTools = ({ values, errors, touched, status }) => {
     const [tool, setTool] = useState([]);
@@ -66,14 +69,26 @@ const MyTools = ({ values, errors, touched, status }) => {
                     {/* Using Formik for the form functionality */}
                     <Form>
                         <Field type="text" name="name" placeholder="Tool Name" />
+                        {touched.name && errors.name && (<p>{errors.name}</p>)}
 
                         <Field type="text" name="description" placeholder="Tool Description" />
+                        {touched.description && errors.description && (<p>{errors.description}</p>)}
 
                         {/* Change tool type over to a selectable list */}
                         <Field type="text" name="tooltype" placeholder="Tool Type" />
+                        {touched.tooltype && errors.tooltype && (<p>{errors.tooltype}</p>)}
 
                         {/* Change cost via selectable list?  */}
                         <Field type="number" name="cost" placeholder="Rental Cost" />
+                        {touched.cost && errors.cost && (<p>{errors.cost}</p>)}
+
+                        <label className="checkbox">
+                            <p>Please verify all fields are correct before adding a new tool.
+                        <Field type="checkbox" name="correctinfo" checked={values.correctinfo} />
+                            </p>
+                        {touched.correctinfo && errors.correctinfo && (<p>{errors.correctinfo}</p>)}
+                        </label>
+                        
                             <button type="submit" class="ui approve button">Add Tool</button>
                     </Form>
                 </Modal.Description>
@@ -82,17 +97,32 @@ const MyTools = ({ values, errors, touched, status }) => {
                     {/* Mapping over tools for the user, adding new card for each input */}
 
                     {tool.map(tool => (
-                        <div key={tool.id}>
-                            {/* FaWindowClose is the icon to remove tools, functionality needed */}
-                            <button><FaWindowClose /></button>
-                            <p>Tool Name: {tool.name}</p>
-                            <p>Tool Description: {tool.description}</p>
-                            <p>Tool Type: {tool.tooltype}</p>
-                            <p>Rental Cost: ${tool.cost} per day</p>
-                        </div>
+                        <UICards class="ui cards">
+                            <div class="ui card" key={tool.id}>
+                                <div class="content">
+                                    <div class="header">
+                                        <p>Tool Name: {tool.name}</p>
+                                    </div>
+                                    <div class="meta">
+                                        <p>Tool Type: {tool.tooltype}</p>
+                                        <p>Rental Cost: ${tool.cost} per day</p>
+                                    </div>
+                                    <div class="description">
+                                        <p>Tool Description: {tool.description}</p>
+                                    </div>
+                                    
+
+                                    {/* FaWindowClose is the icon to remove tools, functionality needed.
+                                    FaTools is the icon to edit/update tools, functionality needed. */}
+                                    <button><FaWindowClose /></button>
+                                    <button><FaTools /></button>
+                                </div>
+                            </div>
+                        </UICards>
                     ))}
             </ToolUpdates>
             <CurrentRentals>
+                {/* List of all user rentals */}
                 <h2>Current Tools you're Renting</h2>
             </CurrentRentals>
         </ContainerDiv>
@@ -101,26 +131,33 @@ const MyTools = ({ values, errors, touched, status }) => {
 };
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({ name, description, tooltype, cost, rentaldate }) {
+    mapPropsToValues({ name, description, tooltype, cost, correctinfo }) {
         return{
             name: name || "",
             description: description || "",
             tooltype: tooltype || "",
             cost: cost || "",
+            correctinfo: correctinfo || false,
         };
     },
 
     validationSchema: Yup.object().shape({
-        // Need to update validation schema to incorporate required fields. Add a checkbox to agree all data is correct before submission?
-
+        
         name: Yup
-                .string(),
+                .string()
+                .required("The tool name is required."),
         description: Yup
-                .string(),
+                .string()
+                .required("The item description is required."),
         tooltype: Yup
-                .string(),
+                .string()
+                .required("The tool type is required."),
         cost: Yup
-                .string(),
+                .number()
+                .required("The cost of the tool rental is required."),
+        correctinfo: Yup
+                .boolean()
+                .oneOf([true], "You must confirm all fields are correct before submission."),
         
     }),
 
