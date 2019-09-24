@@ -9,14 +9,14 @@ const ToolsPage = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    padding: 70px 0;
-    justify-content: space-between;
+    padding: 70px 0 0 35px;
   .tool{
-    width: 320px;
+    width: 300px;
     padding: 40px 20px;
     background-color: #76d275;
     border-radius: 50px;
     margin-bottom: 30px;
+    margin-right: 30px;
   }   
 `
 
@@ -58,6 +58,18 @@ const toolsList = [
         "picture": "http://placehold.it/32x32",
         "about": "Hand-held jackhammer powered by electric motor",
         "price": "$18/day"
+      },
+      {
+        "name": "Power-wrench",
+        "picture": "http://placehold.it/32x32",
+        "about": "Hand-held power-wrench that uses compressed air",
+        "price": "$8/day"
+      },
+      {
+        "name": "Chainsaw",
+        "picture": "http://placehold.it/32x32",
+        "about": "Electric motor powered chainsaw",
+        "price": "$15/day"
       },
       {
         "name": "Power-wrench",
