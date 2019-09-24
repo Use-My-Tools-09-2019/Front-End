@@ -61,7 +61,7 @@ const MyTools = ({ values, errors, touched, status }) => {
         <ContainerDiv>
             <ToolUpdates>
                 <h2>Add, Update, or Delete your Tools</h2>
-            <Modal trigger={<CustomButton>Add New Tool</CustomButton>} closeIcon>
+            <Modal trigger={<CustomButton style={{ background: "green" }}>Add New Tool</CustomButton>} closeIcon>
                 <Modal.Header>Add a New Tool</Modal.Header>
                 <Modal.Description>
                     <Header>Please fill out the following information:</Header>
