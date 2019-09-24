@@ -12,6 +12,7 @@ const Button = styled.button`
     box-shadow: 4px 4px 4px 0px #000
 `;
 
+// ToolsDiv is the dashboard view
 const ToolsDiv = styled.div`
     display: flex;
     width: 49%;
@@ -36,7 +37,7 @@ const ContainerDiv = styled.div`
 
 
 
-const LoggedIn = () => {
+const Dashboard = () => {
     return (
         <>
         {/* Link to user tools and then to the marketplace. Each will be in their separate div containers */}
@@ -58,4 +59,4 @@ const LoggedIn = () => {
     )
 };
 
-export default LoggedIn;
+export default Dashboard;
