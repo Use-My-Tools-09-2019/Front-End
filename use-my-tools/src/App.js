@@ -22,7 +22,7 @@ function App() {
       <Navigation />
       <Route exact path='/marketplace' component={Marketplace}/>
       {/* Routes to Nav items below */}
-      <Route exact path = "/" render={() => localStorage.getItem('token') ? <Redirect to={`/dashboard/${localStorage.getItem('user_id')}`}/> : <Redirect to={`/login`} />} />
+      <Route exact path = "/" render={() => localStorage.getItem('token') ? <Redirect to={`/dashboard/${localStorage.getItem('username')}`}/> : <Redirect to={`/login`} />} />
       <Route exact path='/login' component={Login}/>
       <Route exact path='/register' component={Register}/>
       <PrivateRoute exact path='/dashboard/:id' component={Dashboard}/>
