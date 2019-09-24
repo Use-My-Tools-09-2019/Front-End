@@ -168,7 +168,8 @@ const FormikRegister = withFormik({
 	handleSubmit(values, props) {
 		console.log(values)
 		console.log(props)
-		const user
+		const user = { }
+		const userAddress = {}
 		const url = "/users/user"
 		axios
 		  .post(url, values)
