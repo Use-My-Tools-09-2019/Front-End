@@ -1,7 +1,15 @@
 import React from 'react';
+
+
+//components
 import  DropdownTools  from './SearchForm';
 import ToolCard from './ToolCard';
+
+//styles
 import styled from 'styled-components';
+
+//redux
+import { connect } from 'react-redux'
 
 
 const ToolsPage = styled.div`
@@ -20,81 +28,10 @@ const ToolsPage = styled.div`
   }   
 `
 
-function Marketplace () {
+function Marketplace (props) {
 
 const toolsList = [
-    {
-      "name": "Angle-grinder",
-      "picture": "http://placehold.it/32x32",
-      "about": "Hand-held angle-grinder powered by electric motor",
-      "price": "$7/day"
-    },
-    {
-      "name": "Jackhammer",
-      "picture": "http://placehold.it/32x32",
-      "about": "Hand-held jackhammer powered by electric motor",
-      "price": "$18/day"
-    },
-    {
-      "name": "Power-wrench",
-      "picture": "http://placehold.it/32x32",
-      "about": "Hand-held power-wrench that uses compressed air",
-      "price": "$8/day"
-    },
-    {
-      "name": "Chainsaw",
-      "picture": "http://placehold.it/32x32",
-      "about": "Electric motor powered chainsaw",
-      "price": "$15/day"
-    },
-    {
-        "name": "Angle-grinder",
-        "picture": "http://placehold.it/32x32",
-        "about": "Hand-held angle-grinder powered by electric motor",
-        "price": "$7/day"
-      },
-      {
-        "name": "Jackhammer",
-        "picture": "http://placehold.it/32x32",
-        "about": "Hand-held jackhammer powered by electric motor",
-        "price": "$18/day"
-      },
-      {
-        "name": "Power-wrench",
-        "picture": "http://placehold.it/32x32",
-        "about": "Hand-held power-wrench that uses compressed air",
-        "price": "$8/day"
-      },
-      {
-        "name": "Chainsaw",
-        "picture": "http://placehold.it/32x32",
-        "about": "Electric motor powered chainsaw",
-        "price": "$15/day"
-      },
-      {
-        "name": "Power-wrench",
-        "picture": "http://placehold.it/32x32",
-        "about": "Hand-held power-wrench that uses compressed air",
-        "price": "$8/day"
-      },
-      {
-        "name": "Chainsaw",
-        "picture": "http://placehold.it/32x32",
-        "about": "Electric motor powered chainsaw",
-        "price": "$15/day"
-      },
-      {
-        "name": "Power-wrench",
-        "picture": "http://placehold.it/32x32",
-        "about": "Hand-held power-wrench that uses compressed air",
-        "price": "$8/day"
-      },
-      {
-        "name": "Chainsaw",
-        "picture": "http://placehold.it/32x32",
-        "about": "Electric motor powered chainsaw",
-        "price": "$15/day"
-      }
+
   ];
 
     return (
@@ -102,10 +39,13 @@ const toolsList = [
           <br/>
             <DropdownTools />
             <ToolsPage className="tool">
-              {toolsList.map(tool => <ToolCard props={tool} key={toolsList.name}/>)}
+              {props.tools.map(tool => <ToolCard props={tool} key={toolsList.name}/>)}
             </ToolsPage>
         </div>
     )
 }
 
-export default Marketplace;
+const mapStateToProps = state => ({
+  tools: state.tools.allTools
+})
+export default connect(mapStateToProps, null)(Marketplace);
