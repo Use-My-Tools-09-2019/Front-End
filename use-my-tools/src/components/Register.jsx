@@ -127,12 +127,12 @@ function Register({ touched, errors, status }) {
 				<div className='ui input'>
 					<Field
 						placeholder="zipcode"
-						name="zipcode"
+						name="zip"
 						type="text"
 					/>
 				</div>
 				<br />
-				<Button color="green">Register</Button>
+				<Button color="black">Register</Button>
 				<br />
 				{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 			</Form>
@@ -162,23 +162,22 @@ const FormikRegister = withFormik({
 		apartment: Yup.string(),
 		city: Yup.string().required("City is a required field"),
 		state: Yup.string(),
-		zip: Yup.string().required("Zipcode is a required field"),
+		zip: Yup.string().required("Zip is a required field"),
 	}),
 
 	handleSubmit(values, props) {
 		console.log(values)
 		console.log(props)
-		const user = { }
-		const userAddress = {}
-		const url = "/users/user"
+		const url = "/createnewuser"
 		axios
 		  .post(url, values)
-		  .then(results => {
+		  .then(res => {
+				console.log(res)
 		    props.props.history.push('/login')
 		  })
 		  .catch(error => {
 		    console.log(error)
-		    props.setStatus(error.response.data.message)
+		    props.setStatus(error.res.data.message)
 			})
 			props.props.history.push('/login')
 	}
