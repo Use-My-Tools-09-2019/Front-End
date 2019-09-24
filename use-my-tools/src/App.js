@@ -1,5 +1,5 @@
 import React from 'react';
-import LoggedIn from './components/LoggedIn';
+import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 import MyTools from './components/MyTools';
 
