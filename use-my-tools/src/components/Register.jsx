@@ -3,6 +3,8 @@ import { withFormik, Form, Field } from "formik";
 
 import * as Yup from 'yup'
 
+import axios from 'axios'
+
 //styles
 import { Button } from 'semantic-ui-react'
 
@@ -121,7 +123,7 @@ function Register({ touched, errors, status }) {
 						<option value="WY">Wyoming</option>
 					</Field>
 				</div>
-				<p>{touched.zipcode && errors.zipcode}</p>
+				<p>{touched.zip && errors.zip}</p>
 				<div className='ui input'>
 					<Field
 						placeholder="zipcode"
@@ -139,7 +141,7 @@ function Register({ touched, errors, status }) {
 }
 
 const FormikRegister = withFormik({
-	mapPropsToValues({ email, username, password, street, apartment, city, state, zipcode }) {
+	mapPropsToValues({ email, username, password, street, apartment, city, state, zip }) {
 		return {
 			email: email || "",
 			username: username || "",
@@ -148,7 +150,7 @@ const FormikRegister = withFormik({
 			apartment: apartment || "",
 			city: city || "",
 			state: state || "",
-			zipcode: zipcode || ""
+			zip: zip || ""
 
 		};
 	},
@@ -160,21 +162,24 @@ const FormikRegister = withFormik({
 		apartment: Yup.string(),
 		city: Yup.string().required("City is a required field"),
 		state: Yup.string(),
-		zipcode: Yup.string().required("Zipcode is a required field"),
+		zip: Yup.string().required("Zipcode is a required field"),
 	}),
 
 	handleSubmit(values, props) {
 		console.log(values)
 		console.log(props)
-		// axios
-		//   .post(url, propsToSubmit)
-		//   .then(results => {
-		//     props.props.history.push('/login')
-		//   })
-		//   .catch(error => {
-		//     console.log(error)
-		//     props.setStatus(error.response.data.message)
-		//   })
+		const user
+		const url = "/users/user"
+		axios
+		  .post(url, values)
+		  .then(results => {
+		    props.props.history.push('/login')
+		  })
+		  .catch(error => {
+		    console.log(error)
+		    props.setStatus(error.response.data.message)
+			})
+			props.props.history.push('/login')
 	}
 })(Register);
 
