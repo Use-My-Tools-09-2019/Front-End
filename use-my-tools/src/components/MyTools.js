@@ -5,27 +5,19 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styled from 'styled-components';
+import images from '../images/welding.jpg';
 
-const ToolUpdates = styled.div`
+const ToolBox = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 49%;
     height: auto;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
     margin: 2%;
-    border: 2px solid purple;
-`;
-
-const CurrentRentals = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 49%;
-    height: auto;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 2%;
-    border: 2px solid red;
+    background: #ecfffd;
+    border: 2px solid #76d275;
+    border-radius 15px;
 `;
 
 const ContainerDiv = styled.div`
@@ -37,13 +29,30 @@ const ContainerDiv = styled.div`
 const CustomButton = styled(Button)`
     width: 12rem;
     border-radius: 10px;
-    height: 5vh;
+    height: 4.23rem;
     font-size: 1.6rem;
 `;
 
-const UICards = styled(Card)`
-    display: flex;
+const ItemContainer = styled.div`
     margin: 2%;
+    border-radius: 15px;
+`;
+
+const ToolTitle = styled.div`
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 100%;
+`;
+
+const Background = styled.div`
+    background-image: url(${images});
+    height: 89.5vh;
+`;
+
+const Welcome = styled.h1`
+    color: white;
+    margin-top: 2%;
 `;
 
 const MyTools = ({ values, errors, touched, status }) => {
@@ -54,50 +63,52 @@ const MyTools = ({ values, errors, touched, status }) => {
     }, [status]);
 
     return (
-        <>
+        <Background>
         {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
-        <h1>Welcome to your tools.</h1>
-        <h3>Please add, update, or delete on the left or view your rentals on the right.</h3>
-        <ContainerDiv>
-            <ToolUpdates>
-                <h2>Add, Update, or Delete your Tools</h2>
-            <Modal trigger={<CustomButton style={{ background: "green" }}>Add New Tool</CustomButton>} closeIcon>
-                <Modal.Header>Add a New Tool</Modal.Header>
-                <Modal.Description>
-                    <Header>Please fill out the following information:</Header>
+        <Modal trigger={
+                <div>
+                    <Welcome>Welcome to your tools.</Welcome>
+                    <CustomButton style={{ background: "#b9f6ca", margin: "2%",  }}>Add New Tool</CustomButton>
+                </div>} closeIcon>              
+            <Modal.Header>Add a New Tool</Modal.Header>
+            <Modal.Description>
+                <Header>Please fill out the following information:</Header>
                     
-                    {/* Using Formik for the form functionality */}
-                    <Form>
-                        <Field type="text" name="name" placeholder="Tool Name" />
-                        {touched.name && errors.name && (<p>{errors.name}</p>)}
+                {/* Using Formik for the form functionality */}
+                <Form>
+                    <Field type="text" name="name" placeholder="Tool Name" />
+                    {touched.name && errors.name && (<p>{errors.name}</p>)}
 
-                        <Field type="text" name="description" placeholder="Tool Description" />
-                        {touched.description && errors.description && (<p>{errors.description}</p>)}
+                    <Field type="text" name="description" placeholder="Tool Description" />
+                    {touched.description && errors.description && (<p>{errors.description}</p>)}
 
-                        {/* Change tool type over to a selectable list */}
-                        <Field type="text" name="tooltype" placeholder="Tool Type" />
-                        {touched.tooltype && errors.tooltype && (<p>{errors.tooltype}</p>)}
+                    {/* Change tool type over to a selectable list? */}
+                    <Field type="text" name="tooltype" placeholder="Tool Type" />
+                    {touched.tooltype && errors.tooltype && (<p>{errors.tooltype}</p>)}
 
-                        {/* Change cost via selectable list?  */}
-                        <Field type="number" name="cost" placeholder="Rental Cost" />
-                        {touched.cost && errors.cost && (<p>{errors.cost}</p>)}
+                    {/* Change cost via selectable list?  */}
+                    <Field type="number" name="cost" placeholder="Rental Cost" />
+                    {touched.cost && errors.cost && (<p>{errors.cost}</p>)}
 
-                        <label className="checkbox">
-                            <p>Please verify all fields are correct before adding a new tool.
-                        <Field type="checkbox" name="correctinfo" checked={values.correctinfo} />
-                            </p>
-                        {touched.correctinfo && errors.correctinfo && (<p>{errors.correctinfo}</p>)}
-                        </label>
+                    <label className="checkbox">
+                        <p>Please verify all fields are correct before adding a new tool.
+                    <Field type="checkbox" name="correctinfo" checked={values.correctinfo} />
+                        </p>
+                    {touched.correctinfo && errors.correctinfo && (<p>{errors.correctinfo}</p>)}
+                    </label>
                         
-                            <button type="submit" class="ui approve button">Add Tool</button>
-                    </Form>
-                </Modal.Description>
-            </Modal>
-
-                    {/* Mapping over tools for the user, adding new card for each input */}
-
-                    {tool.map(tool => (
-                        <UICards class="ui cards">
+                        <button type="submit">Add Tool</button>
+                </Form>
+            </Modal.Description>
+        </Modal>
+        <ContainerDiv>    
+            <ToolBox>
+                <ToolTitle>
+                    <h2>Current Tools you Own</h2>
+                </ToolTitle>
+                {/* Mapping over tools for the user, adding new card for each input */}
+                {tool.map(tool => (
+                        <ItemContainer class="ui cards">
                             <div class="ui card" key={tool.id}>
                                 <div class="content">
                                     <div class="header">
@@ -110,23 +121,27 @@ const MyTools = ({ values, errors, touched, status }) => {
                                     <div class="description">
                                         <p>Tool Description: {tool.description}</p>
                                     </div>
-                                    
-
                                     {/* FaWindowClose is the icon to remove tools, functionality needed.
                                     FaTools is the icon to edit/update tools, functionality needed. */}
                                     <button><FaWindowClose /></button>
                                     <button><FaTools /></button>
                                 </div>
                             </div>
-                        </UICards>
-                    ))}
-            </ToolUpdates>
-            <CurrentRentals>
+                        </ItemContainer>
+                ))}
+            </ToolBox>
+
+            <ToolBox>
                 {/* List of all user rentals */}
-                <h2>Current Tools you're Renting</h2>
-            </CurrentRentals>
+                <ToolTitle>
+                    <h2>Current Tools you're Renting</h2>
+                </ToolTitle>
+                <ItemContainer>
+                    {/* <h3>Items will go here.</h3> */}
+                </ItemContainer>
+            </ToolBox>
         </ContainerDiv>
-        </>
+        </Background>
     );
 };
 
