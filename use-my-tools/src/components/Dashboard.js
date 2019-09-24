@@ -36,7 +36,7 @@ const ContainerDiv = styled.div`
 
 
 
-const LoggedIn = () => {
+const Dashboard = () => {
     return (
         <>
         {/* Link to user tools and then to the marketplace. Each will be in their separate div containers */}
@@ -58,4 +58,4 @@ const LoggedIn = () => {
     )
 };
 
-export default LoggedIn;
+export default Dashboard;
