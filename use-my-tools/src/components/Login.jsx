@@ -64,6 +64,9 @@ function Login({ touched, errors, status }) {
       //     console.log(error)
       //     props.setStatus(error.response.data.message)
       //   })
+      localStorage.setItem("user_id", results.data.id);
+      localStorage.setItem("token", results.data.token);
+      props.props.history.push(`/dashboard/${results.data.id}`);
     }
 	})(Login);
 	
