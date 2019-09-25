@@ -30,15 +30,19 @@ const ToolCards = styled.div`
         margin: auto;
     }
 
-    form {
-        width: 400px;
+    form .formButton{
+        color: red;
     }
-
-    .request-form {
-        width: 400px;
-    }
-
 `
+const FormStyle = styled.form`
+    button {
+        margin-left: 15px;
+        border-radius: 30px;
+    }
+`
+
+
+
 
 function ToolCard ({props}) {
     return (
@@ -47,16 +51,16 @@ function ToolCard ({props}) {
           <img src={props.picture} />
           <p>{props.about}</p>
           <h4>{props.price}</h4>
-          <Modal trigger={<Button className='button'>Request Tool</Button>} closeIcon>
-              <Modal.Header>Request Tool</Modal.Header>
+          <Modal style={{width: '400px',textAlign: 'center', padding: '30px'}} trigger={<Button className='button'>Request Tool</Button>} closeIcon>
+            <Modal.Header>Request Tool</Modal.Header>
                 <Modal.Description>
-                    <Header>Enter rental period</Header>
-                    <form className='request-form'>
+                    <Header>Please enter rental period</Header>
+                    <FormStyle className='request-form'>
                         <input type='text' name='rentaldate' placeholder='Length of Rental'/>
                         <button type='submit'>Request</button>
-                    </form>
+                    </FormStyle>
                 </Modal.Description>
-          </Modal>
+            </Modal>
         </ToolCards>
     )
 }
