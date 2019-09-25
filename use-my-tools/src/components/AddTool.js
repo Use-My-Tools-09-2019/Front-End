@@ -10,7 +10,7 @@ import { withFormik, Form, Field } from 'formik';
 
 //redux
 import { connect } from 'react-redux'
-import { addTool, updateTool, deleteTool } from '../store/actions'
+import { addTool } from '../store/actions'
 
 const CustomButton = styled(Button)`
     width: 12rem;
@@ -18,15 +18,6 @@ const CustomButton = styled(Button)`
     height: 5vh;
     font-size: 1.6rem;
 `;
-
-const UICards = styled(Card)`
-    display: flex;
-    margin: 2%;
-`;
-
-
-
-
 
 const AddTool = ({ values, errors, touched, status }) => {
     const [tool, setTool] = useState([]);
@@ -41,7 +32,7 @@ const AddTool = ({ values, errors, touched, status }) => {
     }
     return (
         <Modal
-            trigger={<Button onClick={() => { setModal(true) }} style={{ background: "green" }}
+            trigger={<Button onClick={() => { setModal(true) }} style={{ background: "#b9f6ca", margin: "2%" }}
                 open={modal}
                 onClose={handleModalClose}
             >Add New Tool</Button>} closeIcon>
@@ -58,8 +49,16 @@ const AddTool = ({ values, errors, touched, status }) => {
                     {touched.tooldescription && errors.tooldescription && (<p>{errors.tooldescription}</p>)}
 
                     {/* Change tool type over to a selectable list */}
-                    <Field type="text" name="tooltype" placeholder="Tool Type" />
-                    {touched.tooltype && errors.tooltype && (<p>{errors.tooltype}</p>)}
+                    <label htmlFor="tooltype">
+                        <p>Tool Type: 
+                    <Field component="select" name="tooltype" placeholder="Tool Type" style={{ margin: "1%" }} >
+                        <option value="Select">Please select Tool Type </option>
+                        <option value="Hand Tool">Hand Tools</option>
+                        <option value="Power Tool">Power Tools</option>
+                        <option value="Gardening Tool">Gardening Tools</option>
+                    </Field>
+                        </p>
+                    </label>
 
                     {/* Change cost via selectable list?  */}
                     <Field type="number" name="rentalcost" placeholder="Rental Cost" />
@@ -136,8 +135,6 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-addTool, 
-updateTool, 
-deleteTool
+addTool
 }
 export default connect(mapStateToProps, mapActionsToProps )(FormikUserForm);
