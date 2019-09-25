@@ -75,24 +75,42 @@ const MyTools = ({ values, errors, touched, status }) => {
                 <Header>Please fill out the following information:</Header>
                     
                 {/* Using Formik for the form functionality */}
-                <Form>
-                    <Field type="text" name="name" placeholder="Tool Name" />
+                <Form style={{ background: "#b9f6ca" }}>
+                    <label htmlFor="name">
+                        <p>Tool Name: 
+                    <Field type="text" name="name" placeholder="Tool Name" style={{ margin: "1%" }} />
+                        </p>
+                    </label>
                     {touched.name && errors.name && (<p>{errors.name}</p>)}
 
-                    <Field type="text" name="description" placeholder="Tool Description" />
+                    <label htmlFor="description">
+                        <p>Tool Description: 
+                    <Field type="text" name="description" placeholder="Tool Description" style={{ margin: "1%" }} />
+                        </p>
+                    </label>
                     {touched.description && errors.description && (<p>{errors.description}</p>)}
 
-                    {/* Change tool type over to a selectable list? */}
-                    <Field type="text" name="tooltype" placeholder="Tool Type" />
+                    <label htmlFor="tooltype">
+                        <p>Tool Type: 
+                    <Field component="select" name="tooltype" placeholder="Tool Type" style={{ margin: "1%" }} >
+                        <option value="Hand Tool">Hand Tools</option>
+                        <option value="Power Tool">Power Tools</option>
+                        <option value="Gardening Tool">Gardening Tools</option>
+                    </Field>
+                        </p>
+                    </label>
                     {touched.tooltype && errors.tooltype && (<p>{errors.tooltype}</p>)}
 
-                    {/* Change cost via selectable list?  */}
-                    <Field type="number" name="cost" placeholder="Rental Cost" />
+                    <label htmlFor="cost">
+                        <p>Rental Cost: 
+                    <Field type="number" name="cost" placeholder="Rental Cost" style={{ margin: "1%" }} />
+                        </p>
+                    </label>
                     {touched.cost && errors.cost && (<p>{errors.cost}</p>)}
 
-                    <label className="checkbox">
+                    <label htmlFor="correctinfo" className="checkbox">
                         <p>Please verify all fields are correct before adding a new tool.
-                    <Field type="checkbox" name="correctinfo" checked={values.correctinfo} />
+                    <Field type="checkbox" name="correctinfo" checked={values.correctinfo} style={{ margin: "1%" }} />
                         </p>
                     {touched.correctinfo && errors.correctinfo && (<p>{errors.correctinfo}</p>)}
                     </label>
