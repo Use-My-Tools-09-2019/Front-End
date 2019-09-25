@@ -1,17 +1,16 @@
 import React from 'react';
-import Navigation from './components/Navigation';
-import MyTools from './components/MyTools';
-
 
 //router
 import { Route, Redirect } from 'react-router-dom'
 
 //components
 import Dashboard from './components/Dashboard';
-import Login from './components/Login'
-import Register from './components/Register'
+import Login from './components/Login';
+import Register from './components/Register';
 import Marketplace from './components/Marketplace';
-import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute from './components/PrivateRoute';
+import Navigation from './components/Navigation';
+import MyTools from './components/MyTools';
 
 //styles
 import './styles/App.scss';

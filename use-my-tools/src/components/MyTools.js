@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styled from 'styled-components';
+import images from '../images/welding.jpg';
+
 
 //styles
 import { Button, Header, Modal, Card, Icon } from 'semantic-ui-react';
@@ -15,28 +17,17 @@ import { addTool, updateTool, deleteTool } from '../store/actions'
 // components
 import AddTool from './AddTool'
 
-
-
-const ToolUpdates = styled.div`
+const ToolBox = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 49%;
     height: auto;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
     margin: 2%;
-    border: 2px solid purple;
-`;
-
-const CurrentRentals = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 49%;
-    height: auto;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 2%;
-    border: 2px solid red;
+    background: #ecfffd;
+    border: 2px solid #76d275;
+    border-radius 15px;
 `;
 
 const ContainerDiv = styled.div`
@@ -45,16 +36,41 @@ const ContainerDiv = styled.div`
     margin: 1%;
 `;
 
-const UICards = styled(Card)`
-    display: flex;
+const CustomButton = styled(Button)`
+    width: 12rem;
+    border-radius: 10px;
+    height: 4.23rem;
+    font-size: 1.6rem;
+`;
+
+const ItemContainer = styled.div`
     margin: 2%;
+    border-radius: 15px;
+`;
+
+const ToolTitle = styled.div`
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 100%;
+`;
+
+const Background = styled.div`
+    background-image: url(${images});
+    height: 89.5vh;
+`;
+
+const Welcome = styled.h1`
+    color: white;
+    margin-top: 2%;
 `;
 
 const MyTools = (props) => {
     const [tool, setTool] = useState([]);
     console.log("from mytools", props)
     return (
-        <>
+
+        <Background>
             {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
             <h1>Welcome to your tools.</h1>
             <h3>Please add, update, or delete on the left or view your rentals on the right.</h3>
@@ -62,9 +78,13 @@ const MyTools = (props) => {
                 <ToolUpdates>
                     <h2>Add, Update, or Delete your Tools</h2>
                     <AddTool />
-                    {/* Mapping over tools for the user, adding new card for each input */}
-                    {props.userTools.map(tool => (
-                        <UICards class="ui cards">
+            <ToolBox>
+                <ToolTitle>
+                    <h2>Current Tools you Own</h2>
+                </ToolTitle>
+                {/* Mapping over tools for the user, adding new card for each input */}
+                {props.userTools.map(tool => (
+                        <ItemContainer class="ui cards">
                             <div class="ui card" key={tool.toolid}>
                                 <div class="content">
                                     <div class="header">
@@ -77,7 +97,7 @@ const MyTools = (props) => {
                                     <div class="description">
                                         <p>Tool Description: {tool.tooldescription}</p>
                                     </div>
-                                    
+
                                     {/* FaWindowClose is the icon to remove tools, functionality needed.
                                     FaTools is the icon to edit/update tools, functionality needed. */}
                                     {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
@@ -97,15 +117,20 @@ const MyTools = (props) => {
                                     <button><FaTools /></button>
                                 </div>
                             </div>
-                        </UICards>
-                    ))}
-                </ToolUpdates>
-                <CurrentRentals>
-                    {/* List of all user rentals */}
+
+                ))}
+            </ToolBox>
+            <ToolBox>
+                {/* List of all user rentals */}
+                <ToolTitle>
                     <h2>Current Tools you're Renting</h2>
-                </CurrentRentals>
-            </ContainerDiv>
-        </>
+                </ToolTitle>
+                <ItemContainer>
+                    {/* <h3>Items will go here.</h3> */}
+                </ItemContainer>
+            </ToolBox>
+          </ContainerDiv>
+        </Background>
     );
 };
 
