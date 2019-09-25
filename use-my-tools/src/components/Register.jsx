@@ -168,7 +168,7 @@ const FormikRegister = withFormik({
 	handleSubmit(values, props) {
 		console.log(values)
 		console.log(props)
-		const url = "/createnewuser"
+		const url = "https://jcrn-use-my-tools.herokuapp.com/createnewuser"
 		axios
 		  .post(url, values)
 		  .then(res => {

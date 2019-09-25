@@ -30,12 +30,8 @@ const ToolCards = styled.div`
         margin: auto;
     }
 
-    form {
-        width: 400px;
-    }
-
-    .request-form {
-        width: 400px;
+    form button {
+        padding: 20px;
     }
 
 `
