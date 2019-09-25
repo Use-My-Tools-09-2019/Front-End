@@ -45,10 +45,6 @@ const ContainerDiv = styled.div`
     margin: 1%;
 `;
 
-const UICards = styled(Card)`
-    display: flex;
-    margin: 2%;
-`;
 
 const MyTools = (props) => {
     const [tool, setTool] = useState([]);
@@ -64,7 +60,6 @@ const MyTools = (props) => {
                     <AddTool />
                     {/* Mapping over tools for the user, adding new card for each input */}
                     {props.userTools.map(tool => (
-                        <UICards class="ui cards">
                             <div class="ui card" key={tool.toolid}>
                                 <div class="content">
                                     <div class="header">
@@ -97,7 +92,6 @@ const MyTools = (props) => {
                                     <button><FaTools /></button>
                                 </div>
                             </div>
-                        </UICards>
                     ))}
                 </ToolUpdates>
                 <CurrentRentals>
