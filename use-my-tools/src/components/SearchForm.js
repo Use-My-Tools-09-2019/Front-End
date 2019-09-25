@@ -5,7 +5,9 @@ import { Dropdown } from 'semantic-ui-react';
     
     const toolCategories = [
         { key: 'Power Tools', text:'Power Tools', value: 'Power Tools' },
-        { key: 'Hand Tools', text:'Hand Tools', value: 'Hand Tools' }
+        { key: 'Hand Tools', text:'Hand Tools', value: 'Hand Tools' },
+        { key: 'Garden Tools', text:'Garden Tools', value: 'Garden Tools' }
+
     ]
 
     const DropdownTools = () => (
