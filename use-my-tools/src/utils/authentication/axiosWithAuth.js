@@ -5,9 +5,9 @@ const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
-    baseURL: '',
+    baseURL: 'https://jcrn-use-my-tools.herokuapp.com/',
     headers: {
-      Authorization: token
+      Authorization: `Bearer ${token}`
     }
   });
 };
