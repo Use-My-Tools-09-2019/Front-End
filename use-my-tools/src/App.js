@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 //router
 import { Route, Redirect } from 'react-router-dom'
 
@@ -24,10 +23,9 @@ function App() {
       <Route exact path = "/" render={() => localStorage.getItem('token') ? <Redirect to={`/dashboard/${localStorage.getItem('username')}`}/> : <Redirect to={`/login`} />} />
       <Route exact path='/login' component={Login}/>
       <Route exact path='/register' component={Register}/>
-      <PrivateRoute exact path='/dashboard/:id' component={Dashboard}/>
-      <PrivateRoute exact path='/marketplace/:id' component={Marketplace}/>
-      {/* Add back in Private Route and :id after styling MyTools */}
-      <Route path="/my-Tools/" component={MyTools} />
+      <Route exact path='/dashboard/:id' component={Dashboard}/>
+      <Route exact path='/marketplace/:id' component={Marketplace}/>
+      <Route path="/my-Tools/:id" component={MyTools} />
     </div>
   );
 }
