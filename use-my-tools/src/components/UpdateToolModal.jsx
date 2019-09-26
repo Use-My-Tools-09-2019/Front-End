@@ -1,7 +1,6 @@
+
 import React from 'react'
-
 import { Button, Modal , Form } from "semantic-ui-react";
-
 import { FaTools } from "react-icons/fa";
 
 //hooks

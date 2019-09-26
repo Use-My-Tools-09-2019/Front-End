@@ -49,6 +49,7 @@ export const addTool = (tool) => dispatch => {
         }
 
     
+
     dispatch({type: ADD_TOOL_START})
     console.log('from ADD_TOOL_START action',newTool )
     axiosWithAuth()
@@ -80,6 +81,7 @@ export const updateTool = (updatedTool ,toolid) => dispatch => {
 export const deleteTool = (toolid) => dispatch => {
     console.log(toolid)
     dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
+
     axiosWithAuth()
     .get('/tools/tool/delete', toolid)
     .then(res => {

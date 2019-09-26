@@ -1,9 +1,13 @@
+
 import React, { useState } from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
 
 //styles
-import { Button, Header, Modal } from "semantic-ui-react";
+import { Button, Header, Modal, Card } from "semantic-ui-react";
+import { FaWindowClose, FaTools } from "react-icons/fa";
+
+
 import { withFormik, Form, Field } from "formik";
 
 //redux
@@ -148,6 +152,7 @@ const AddTool = ({ values, errors, touched }) => {
               class="ui approve button"
               onClick={() => {handleModalClose()}}
 
+
               style={{ margin: "1%" }}
             >
               Add Tool
@@ -196,7 +201,7 @@ const FormikUserForm = withFormik({
       tooldescription: values.tooldescription,
       tooltype: values.tooltype,
       rentalcost: values.rentalcost
-  
+
     };
     console.log(newTool);
     props.props.addTool(newTool);
