@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
-import axios from "axios";
 import styled from "styled-components";
 
 //styles
-import { Button, Header, Modal, Card } from "semantic-ui-react";
-import { FaWindowClose, FaTools } from "react-icons/fa";
+import { Button, Header, Modal } from "semantic-ui-react";
 import { withFormik, Form, Field } from "formik";
 
 //redux
@@ -19,8 +17,7 @@ const CustomButton = styled(Button)`
   font-size: 1.6rem;
 `;
 
-const AddTool = ({ values, errors, touched, status }) => {
-  const [tool, setTool] = useState([]);
+const AddTool = ({ values, errors, touched }) => {
   const [modal, setModal] = useState(false);
 
   const handleModalOpen = () => {
@@ -147,8 +144,10 @@ const AddTool = ({ values, errors, touched, status }) => {
           <Modal.Actions>
             <CustomButton
               type="submit"
+
               class="ui approve button"
               onClick={() => {handleModalClose()}}
+
               style={{ margin: "1%" }}
             >
               Add Tool

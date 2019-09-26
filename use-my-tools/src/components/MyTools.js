@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import axiosWithAuth from '../utils/authentication/axiosWithAuth'
 
 import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
 //styles
-import { Button, Header, Modal, Card, Icon } from "semantic-ui-react";
-import { FaWindowClose, FaTools } from "react-icons/fa";
+import { Button, Header, Modal, Icon } from "semantic-ui-react";
+import { FaWindowClose } from "react-icons/fa";
+import Flip from 'react-reveal/Flip';
 
 //redux
 import { connect } from "react-redux";
@@ -56,8 +58,29 @@ const Welcome = styled.h1`
   margin-top: 2%;
 `;
 
+
+
 const MyTools = props => {
-  const [tool, setTool] = useState([]);
+
+  const [requestedTool, setRequestedTool] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get('/tools/available')
+      .then(response => {
+        setRequestedTool(response.data)
+        console.log("Data being pulled", response.data);
+      })
+      .catch(error => {
+        console.log("Data was not pulled", error);
+      })
+
+  }, []);
+
+  console.log("from mytools", props);
+
+
+
   return (
     <Background>
       {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
@@ -71,20 +94,21 @@ const MyTools = props => {
           </ToolTitle>
           {/* Mapping over tools for the user, adding new card for each input */}
           {props.userTools.map(tool => (
-            <ItemContainer class="ui cards">
-              <div class="ui card" key={tool.toolid}>
-                <div class="content">
-                  <div class="header">
+            <Flip top key={tool.toolid}>
+            <ItemContainer className="ui cards" >
+              <div className="ui card" >
+                <div className="content">
+                  <div className="header">
                     <p>Tool Name: {tool.toolname}</p>
                   </div>
-                  <div class="meta">
+                  <div className="meta">
                     <p>Tool Type: {tool.tooltype}</p>
                     <p>Rental Cost: ${tool.rentalcost} per day</p>
                   </div>
-                  <div class="description">
+                  <div className="description">
                     <p>Tool Description: {tool.tooldescription}</p>
                   </div>
-
+              
                   {/* FaWindowClose is the icon to remove tools, functionality needed.
                   {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
                   <Modal
@@ -112,14 +136,32 @@ const MyTools = props => {
                 </div>
               </div>
             </ItemContainer>
+            </Flip>
           ))}
         </ToolBox>
         <ToolBox>
           {/* List of all user rentals */}
           <ToolTitle>
-            <h2>Current Tools you're Renting</h2>
+            <h2>Current Tools Requested for Rent</h2>
           </ToolTitle>
-          <ItemContainer>{/* <h3>Items will go here.</h3> */}</ItemContainer>
+          
+          {requestedTool.map(tool => (
+            <div className="ui card" key={tool.toolid} style={{ height: "15rem"}}>
+              <div className="content" >
+                <div className="header">
+                  <p>Tool Name: {tool.toolname}</p>
+                  <p>The tool was requested by: User Name.</p>
+                  {/* When backend has user attached to tool, will update user name with correct naming. */}
+                </div>
+                <div className="meta">
+                  <p>Tool Type: {tool.tooltype}</p>
+                  <p>Rental Cost: ${tool.rentalcost} per day</p>
+                </div>
+                <div className="description">
+                      <p>Tool Description: {tool.tooldescription}</p>
+                </div>
+              </div>
+            </div>))}
         </ToolBox>
       </ContainerDiv>
     </Background>
