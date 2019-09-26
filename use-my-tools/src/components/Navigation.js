@@ -35,6 +35,7 @@ const ButtonDiv = styled.div`
 `;
 
 const Navigation = (props) => {
+
     return (
         // Navigation Links
         // Navigation Links will be styled as buttons

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import axiosWithAuth from '../utils/authentication/axiosWithAuth'
+
 
 import styled from "styled-components";
 import welding from "../images/welding.jpg";
@@ -8,6 +10,7 @@ import welding from "../images/welding.jpg";
 import { Button, Header, Modal, Icon } from "semantic-ui-react";
 import { FaWindowClose } from "react-icons/fa";
 import Flip from 'react-reveal/Flip';
+
 
 //redux
 import { connect } from "react-redux";
@@ -27,7 +30,7 @@ const ToolBox = styled.div`
     margin: 2%;
     background: #ecfffd;
     border: 2px solid #76d275;
-    border-radius 15px;
+    border-radius: 15px;
 `;
 
 const ContainerDiv = styled.div`
