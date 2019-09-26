@@ -17,6 +17,7 @@ const ToolsPage = styled.div`
     flex-wrap: wrap;
     margin: auto;
     padding: 70px 0 0 35px;
+    height: 100%;
   .tool{
     width: 300px;
     padding: 40px 20px;
