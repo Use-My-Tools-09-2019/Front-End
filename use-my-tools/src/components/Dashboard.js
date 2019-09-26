@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import marketplace from "../images/marketplace.jpg";
+import mytools from "../images/mytools.jpg";
+import welding from "../images/welding.jpg";
 
 const Button = styled.button`
     width: 12rem;
@@ -17,23 +20,38 @@ const Button = styled.button`
 const ToolsDiv = styled.div`
     display: flex;
     width: 49%;
-    height: 90vh;
+    height: 75rem;
+    margin: 1%;
     justify-content: center;
     align-items: center;
+    background-image: url(${mytools});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 5% 25% 5%;
+    position: static;
+    border: 5px solid #ecfffd;
 `;
 
 const MarketplaceDiv = styled.div`
     display: flex;
     width: 49%;
-    height: 90vh;
+    height: 75rem;
+    margin: 1%;
     justify-content: center;
     align-items: center;
+    background-image: url(${marketplace});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 5% 25% 5%;
+    position: static;
+    border: 5px solid #ecfffd;
 `;
 
 const ContainerDiv = styled.div`
     display: flex;
     justify-content: center;
-    margin: 1%;
+    background-image: url(${welding});
+    height: 89.5vh;
 `;
 
 
@@ -46,13 +64,14 @@ const Dashboard = () => {
             <ContainerDiv>
                 <ToolsDiv>
                 <Button>
-                    <Link to="/My-Tools">My Tools</Link>
+                    <Link to={`/my-tools/${localStorage.getItem('username')}`}>My Tools</Link>
                 </Button>
                 </ToolsDiv>
 
                 <MarketplaceDiv>
                     <Button>
-                        <Link to="/Marketplace">Marketplace</Link>
+
+                        <Link to={`/marketplace/${localStorage.getItem('username')}`}>Marketplace</Link>
                     </Button>
                 </MarketplaceDiv>
             </ContainerDiv>

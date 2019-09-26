@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 //components
@@ -7,6 +7,9 @@ import ToolCard from './ToolCard';
 
 //styles
 import styled from 'styled-components';
+
+//redux
+import { getTools } from '../store/actions'
 
 
 import { connect } from 'react-redux'
@@ -29,6 +32,9 @@ const ToolsPage = styled.div`
 `
 
 function Marketplace (props) {
+  useEffect(() => {
+    props.getTools()
+  }, [])
 
   return (
         <div>
@@ -44,4 +50,5 @@ function Marketplace (props) {
 const mapStateToProps = state => ({
   tools: state.tools.allTools
 })
-export default connect(mapStateToProps, null)(Marketplace);
+
+export default connect(mapStateToProps, { getTools })(Marketplace);
