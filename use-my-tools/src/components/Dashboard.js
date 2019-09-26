@@ -46,13 +46,13 @@ const Dashboard = () => {
             <ContainerDiv>
                 <ToolsDiv>
                 <Button>
-                    <Link to="/My-Tools">My Tools</Link>
+                    <Link to={`/my-tools/${localStorage.getItem('username')}`}>My Tools</Link>
                 </Button>
                 </ToolsDiv>
 
                 <MarketplaceDiv>
                     <Button>
-                        <Link to="/Marketplace">Marketplace</Link>
+                        <Link to={`/marketplace/${localStorage.getItem('username')}`}>Marketplace</Link>
                     </Button>
                 </MarketplaceDiv>
             </ContainerDiv>
