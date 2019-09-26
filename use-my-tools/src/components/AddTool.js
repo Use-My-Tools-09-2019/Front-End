@@ -33,7 +33,7 @@ const AddTool = ({ values, errors, touched }) => {
       trigger={
         <Button
           onClick={() => {
-            setModal(true);
+            handleModalOpen();
           }}
           style={{ background: "#b9f6ca", margin: "2%" }}
           open={modal}
@@ -144,8 +144,10 @@ const AddTool = ({ values, errors, touched }) => {
           <Modal.Actions>
             <CustomButton
               type="submit"
-              className="ui approve button"
-              onClick={handleModalClose}
+
+              class="ui approve button"
+              onClick={() => {handleModalClose()}}
+
               style={{ margin: "1%" }}
             >
               Add Tool
@@ -194,6 +196,7 @@ const FormikUserForm = withFormik({
       tooldescription: values.tooldescription,
       tooltype: values.tooltype,
       rentalcost: values.rentalcost
+  
     };
     console.log(newTool);
     props.props.addTool(newTool);
