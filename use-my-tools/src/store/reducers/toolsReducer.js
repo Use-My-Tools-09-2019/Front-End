@@ -20,44 +20,14 @@ import {
 
 
 const initialState = {
-    allTools: [
+    allTools: [],
+    userTools: [
         {
-            "name": "Angle-grinder",
-            "picture": "http://placehold.it/32x32",
-            "about": "Hand-held angle-grinder powered by electric motor",
-            "price": "$7/day"
-        },
-        {
-            "name": "Jackhammer",
-            "picture": "http://placehold.it/32x32",
-            "about": "Hand-held jackhammer powered by electric motor",
-            "price": "$18/day"
-        },
-        {
-            "name": "Power-wrench",
-            "picture": "http://placehold.it/32x32",
-            "about": "Hand-held power-wrench that uses compressed air",
-            "price": "$8/day"
-        },
-        {
-            "name": "Chainsaw",
-            "picture": "http://placehold.it/32x32",
-            "about": "Electric motor powered chainsaw",
-            "price": "$15/day"
-        },
-        {
-            "name": "Angle-grinder",
-            "picture": "http://placehold.it/32x32",
-            "about": "Hand-held angle-grinder powered by electric motor",
-            "price": "$7/day"
-        },
-    ],
-    userTools: [{
-                rentalcost: 2,
-                tooldescription: "awesome",
-                toolid: 0,
-                toolname: "hammer",
-                tooltype: "hand"},
+        rentalcost: 2,
+        tooldescription: "awesome",
+        toolid: 0,
+        toolname: "hammer",
+        tooltype: "Hand Tool"},
             ],
     userRentals: [],
     errMessage: null,
@@ -86,12 +56,13 @@ export default function toolsReducer(state = initialState, action) {
         case ADD_TOOL_START:
                 return {
                     ...state,
-                    userTools: [...state.userTools, action.payload]
+                    
                     // status: true
                 }
         case ADD_TOOL_SUCCESS:
             return {
                 ...state,
+                userTools: [...state.userTools, action.payload],
                 status: false
             }
             
@@ -110,7 +81,15 @@ export default function toolsReducer(state = initialState, action) {
         case UPDATE_TOOL_SUCCESS:
             return {
                 ...state,
-                allTools: action.payload
+                status: false,
+
+                userTools: state.userTools.map(tool => {
+                        if(tool.id === action.toolid){
+                          return action.payload
+                        } 
+                        return tool
+                      })
+
             }
         case UPDATE_TOOL_FAIL:
             return {

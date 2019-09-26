@@ -21,7 +21,7 @@ export const loginAC = (credentials, history) => dispatch => {
         console.log(res)
         localStorage.setItem('token', res.data.access_token);
         localStorage.setItem("username", credentials.username);
-        history.push(`/dashboard/${res.data.username}`);
+        history.push(`/dashboard/${ credentials.username}`);
 
     })
     .catch(err => { 
