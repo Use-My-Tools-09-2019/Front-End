@@ -16,6 +16,10 @@ import {
     DELETE_TOOL_START,
     DELETE_TOOL_SUCCESS,
     DELETE_TOOL_FAIL,
+
+    SEARCH_TOOLS_START,
+    SEARCH_TOOLS_SUCCESS,
+    SEARCH_TOOLS_FAIL,
 } from '../actions'
 
 
@@ -25,7 +29,7 @@ const initialState = {
         {
         rentalcost: 2,
         tooldescription: "awesome",
-        toolid: 3,
+        toolid: 0,
         toolname: "hammer",
         tooltype: "Hand Tool"},
             ],
@@ -112,6 +116,22 @@ export default function toolsReducer(state = initialState, action) {
                 ...state,
                 errMessage: action.payload
             }
+            case SEARCH_TOOLS_START:
+                return {
+                    ...state,
+                    status: true
+                }
+            case SEARCH_TOOLS_SUCCESS:
+                return {
+                    ...state,
+                    status: false,
+                    allTools: action.payload
+                }
+            case SEARCH_TOOLS_FAIL:
+                return {
+                    ...state,
+                    errMessage: action.payload
+                }
 
         default: return state
     }
