@@ -43,10 +43,13 @@ const ToolCards = styled.div`
 function ToolCard ({props}) {
     return (
         <ToolCards className='tool'>
-          <h3>{props.name}</h3>
+          <h3>{props.toolname}</h3>
           <img src={props.picture} />
-          <p>{props.about}</p>
-          <h4>{props.price}</h4>
+          <h4>Tool Description</h4>
+          <p>{props.tooldescription}</p>
+
+          <h4>Rental Cost</h4>
+          <p>${props.rentalcost}</p>
           <Modal trigger={<Button className='button'>Request Tool</Button>} closeIcon>
               <Modal.Header>Request Tool</Modal.Header>
                 <Modal.Description>
