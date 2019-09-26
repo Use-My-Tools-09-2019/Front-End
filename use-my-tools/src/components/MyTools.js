@@ -75,7 +75,7 @@ const MyTools = props => {
         console.log("Data was not pulled", error);
       })
 
-  }, []);
+  }, [props.userTools]);
 
   console.log("from mytools", props);
 
