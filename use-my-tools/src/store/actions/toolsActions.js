@@ -17,6 +17,10 @@ export const DELETE_TOOL_START = 'DELETE_TOOL_START'
 export const DELETE_TOOL_SUCCESS = 'DELETE_TOOL_SUCCESS'
 export const DELETE_TOOL_FAIL = 'DELETE_TOOL_FAIL'
 
+export const SEARCH_TOOLS_START = 'SEARCH_TOOLS_START'
+export const SEARCH_TOOLS_SUCCESS = 'SEARCH_TOOLS_SUCCESS'
+export const SEARCH_TOOLS_FAIL = 'SEARCH_TOOLS_FAIL'
+
 export const  getTools = () => dispatch => {
     dispatch({type: GET_TOOLS_START})
     axiosWithAuth()
@@ -33,6 +37,7 @@ export const  getTools = () => dispatch => {
 
 export const addTool = (tool) => dispatch => {
     const newTool = {
+            'user': localStorage.getItem('username'),
             "available": true,
             "rental": false,
             "rentalcost": tool.rentalcost,
@@ -44,18 +49,18 @@ export const addTool = (tool) => dispatch => {
         }
 
     
-    // dispatch({type: ADD_TOOL_START})
-    // console.log('from ADD_TOOL_START action',newTool )
-    // axiosWithAuth()
-    // .post('/tools/tool/add', newTool)
-    // .then(res => {
-    //     console.log('from ADD_TOOL_SUCCESS action',res)
+    dispatch({type: ADD_TOOL_START})
+    console.log('from ADD_TOOL_START action',newTool )
+    axiosWithAuth()
+    .post('/tools/tool/add', newTool)
+    .then(res => {
+        console.log('from ADD_TOOL_SUCCESS action',res)
         dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
-    // })
-    // .catch(err => {
-    //     console.log(err)
-    //     dispatch({type: ADD_TOOL_FAIL, payload: err})
-    // })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: ADD_TOOL_FAIL, payload: err})
+    })
 }
 
 export const updateTool = (updatedTool ,toolid) => dispatch => {
@@ -75,14 +80,29 @@ export const updateTool = (updatedTool ,toolid) => dispatch => {
 export const deleteTool = (toolid) => dispatch => {
     console.log(toolid)
     dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
-    // axiosWithAuth()
-    // .get('/tools/tool/delete', toolid)
-    // .then(res => {
-    //     console.log(res)
-    //     dispatch({type: DELETE_TOOL_SUCCESS, payload: tool})
-    // })
-    // .catch(err => {
-    //     console.log(err)
-    //     dispatch({type: DELETE_TOOL_FAIL, payload: err})
-    // })
+    axiosWithAuth()
+    .get('/tools/tool/delete', toolid)
+    .then(res => {
+        console.log(res)
+        dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: DELETE_TOOL_FAIL, payload: err})
+    })
+}
+
+export const  searchTools = (searchParam) => dispatch => {
+    dispatch({type: SEARCH_TOOLS_START})
+    console.log(searchParam.searchParam)
+    axiosWithAuth()
+    .get(`/tools/typelike/${searchParam.searchParam}`)
+    .then(res => {
+        console.log('From searchTools action',res)
+        dispatch({type: SEARCH_TOOLS_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log('From searchTools action',err)
+        dispatch({type: SEARCH_TOOLS_FAIL, payload: err})
+    })
 }

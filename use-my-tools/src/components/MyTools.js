@@ -58,7 +58,6 @@ const Welcome = styled.h1`
 
 const MyTools = props => {
   const [tool, setTool] = useState([]);
-  console.log("from mytools", props);
   return (
     <Background>
       {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
@@ -87,7 +86,6 @@ const MyTools = props => {
                   </div>
 
                   {/* FaWindowClose is the icon to remove tools, functionality needed.
-                                    FaTools is the icon to edit/update tools, functionality needed. */}
                   {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
                   <Modal
                     trigger={<Button>{<FaWindowClose />}</Button>}
