@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
-import images from "../images/welding.jpg";
+import welding from "../images/welding.jpg";
 
 //styles
 import { Button, Header, Modal, Card, Icon } from "semantic-ui-react";
@@ -35,13 +35,6 @@ const ContainerDiv = styled.div`
   margin: 1%;
 `;
 
-const CustomButton = styled(Button)`
-  width: 12rem;
-  border-radius: 10px;
-  height: 4.23rem;
-  font-size: 1.6rem;
-`;
-
 const ItemContainer = styled.div`
   margin: 2%;
   border-radius: 15px;
@@ -55,7 +48,7 @@ const ToolTitle = styled.div`
 `;
 
 const Background = styled.div`
-  background-image: url(${images});
+  background-image: url(${welding});
   height: 89.5vh;
 `;
 
@@ -70,7 +63,7 @@ const MyTools = props => {
   return (
     <Background>
       {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
-      <h1>Welcome to your tools.</h1>
+      <Welcome>Welcome to your tools.</Welcome>
       <AddTool />
       <ContainerDiv>
         <ToolBox>
@@ -103,7 +96,7 @@ const MyTools = props => {
                     size="small"
                   >
                     <Header icon="delete" content="Delete Tool" />
-                    <Modal.Content>
+                    <Modal.Content>>
                       <p>Are you sure you want to delete this tool?</p>
                     </Modal.Content>
                     <Modal.Actions>
