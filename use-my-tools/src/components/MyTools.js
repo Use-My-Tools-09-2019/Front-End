@@ -22,7 +22,7 @@ const ToolBox = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     width: 49%;
-    height: auto;commits
+    height: auto;
     justify-content: center;
     margin: 2%;
     background: #ecfffd;
