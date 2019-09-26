@@ -34,7 +34,8 @@ const ButtonDiv = styled.div`
     display: flex;
 `;
 
-const Navigation = () => {
+const Navigation = (props) => {
+    console.log(props)
     return (
         // Navigation Links
         // Navigation Links will be styled as buttons
@@ -43,13 +44,24 @@ const Navigation = () => {
         <TopBar className="top-bar">
             <Title>Use My Tools</Title>
             <ButtonDiv>
-                <Button><NavLink to="/login">Login</NavLink></Button>
-                <Button><NavLink to="/register">Register</NavLink></Button>
-                <Button><NavLink to="/marketplace/:id">Marketplace</NavLink></Button>
-                <Button><NavLink to="/my-Tools/:id">My Tools</NavLink></Button>
+                
+                {!localStorage.getItem('token') ? <Button><NavLink to="/login">Login</NavLink></Button> : null}
+                {!localStorage.getItem('token') ? <Button><NavLink to="/register">Register</NavLink></Button> : null}
+                {localStorage.getItem('token') ? <Button><NavLink to={`/marketplace/${localStorage.getItem('username')}`}>Marketplace</NavLink></Button> : null}
+                {localStorage.getItem('token') ? <Button><NavLink to={`/my-tools/${localStorage.getItem('username')}`}>My Tools</NavLink></Button> : null}
+                {(!localStorage.getItem('token'))
+                ? <span></span>
+                : <span>
+                    <Button
+                    onClick ={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem('username');
+                    }}
+                    ><NavLink to="/login">Logout</NavLink></Button>}
+                  </span>
+        }
             </ButtonDiv>
         </TopBar>
     );
 }
-
 export default Navigation;
