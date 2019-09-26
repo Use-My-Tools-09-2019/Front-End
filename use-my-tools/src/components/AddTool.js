@@ -32,6 +32,7 @@ const AddTool = ({ values, errors, touched, status }) => {
     }
     return (
         <Modal
+
             trigger={<Button onClick={() => { setModal(true) }} style={{ background: "#b9f6ca", margin: "2%" }}
                 open={modal}
                 onClose={handleModalClose}
@@ -116,7 +117,7 @@ const FormikUserForm = withFormik({
 
     handleSubmit(values, props) {
         const newTool = {
-            toolid: props.props.userTools.length,
+            toolid: Date.now(),
             toolname: values.toolname,
             tooldescription: values.tooldescription,
             tooltype: values.tooltype,
