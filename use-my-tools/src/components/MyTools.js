@@ -22,7 +22,7 @@ const ToolBox = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     width: 49%;
-    height: auto;
+    height: auto;commits
     justify-content: center;
     margin: 2%;
     background: #ecfffd;
@@ -121,7 +121,7 @@ const MyTools = props => {
                       <p>Are you sure you want to delete this tool?</p>
                     </Modal.Content>
                     <Modal.Actions>
-                      <Button3
+                      <Button
                         onClick={() => {
                           props.deleteTool(tool.toolid);
                         }}
