@@ -36,12 +36,12 @@ const AddTool = ({ values, errors, touched, status }) => {
       trigger={
         <Button
           onClick={() => {
-            setModal(true);
+            handleModalOpen();
           }}
           style={{ background: "#b9f6ca", margin: "2%" }}
           open={modal}
           onClose={handleModalClose}
-        >password789
+        >
           Add New Tool
         </Button>
       }
@@ -86,7 +86,7 @@ const AddTool = ({ values, errors, touched, status }) => {
           {touched.tooldescription && errors.tooldescription && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
               {errors.tooldescription}
-            </p>password789
+            </p>
           )}
 
           <label htmlFor="tooltype">
@@ -148,7 +148,7 @@ const AddTool = ({ values, errors, touched, status }) => {
             <CustomButton
               type="submit"
               class="ui approve button"
-              onClick={handleModalClose}
+              onClick={() => {handleModalClose()}}
               style={{ margin: "1%" }}
             >
               Add Tool
@@ -197,6 +197,7 @@ const FormikUserForm = withFormik({
       tooldescription: values.tooldescription,
       tooltype: values.tooltype,
       rentalcost: values.rentalcost
+  
     };
     console.log(newTool);
     props.props.addTool(newTool);
@@ -210,8 +211,6 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   addTool,
-  updateTool,
-  deleteTool
 };
 export default connect(
   mapStateToProps,
