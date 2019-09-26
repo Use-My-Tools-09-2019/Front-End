@@ -41,7 +41,7 @@ const AddTool = ({ values, errors, touched, status }) => {
           style={{ background: "#b9f6ca", margin: "2%" }}
           open={modal}
           onClose={handleModalClose}
-        >password789
+        >
           Add New Tool
         </Button>
       }
@@ -86,7 +86,7 @@ const AddTool = ({ values, errors, touched, status }) => {
           {touched.tooldescription && errors.tooldescription && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
               {errors.tooldescription}
-            </p>password789
+            </p>
           )}
 
           <label htmlFor="tooltype">
@@ -210,8 +210,6 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   addTool,
-  updateTool,
-  deleteTool
 };
 export default connect(
   mapStateToProps,

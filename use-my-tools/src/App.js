@@ -28,10 +28,6 @@ function App() {
       <PrivateRoute exact path='/marketplace/:id' component={Marketplace}/>
       <PrivateRoute path="/my-Tools/:id" component={MyTools} />
       <Footer />
-
-      <Route exact path='/dashboard/:id' component={Dashboard}/>
-      <Route exact path='/marketplace/:id' component={Marketplace}/>
-      <Route path="/my-Tools/:id" component={MyTools} />
     </div>
   );
 }
