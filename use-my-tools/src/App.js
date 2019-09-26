@@ -11,6 +11,7 @@ import Marketplace from './components/Marketplace';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import MyTools from './components/MyTools';
+import Footer from './components/Footer';
 
 //styles
 import './styles/App.scss';
@@ -26,6 +27,11 @@ function App() {
       <PrivateRoute exact path='/dashboard/:id' component={Dashboard}/>
       <PrivateRoute exact path='/marketplace/:id' component={Marketplace}/>
       <PrivateRoute path="/my-Tools/:id" component={MyTools} />
+      <Footer />
+
+      <Route exact path='/dashboard/:id' component={Dashboard}/>
+      <Route exact path='/marketplace/:id' component={Marketplace}/>
+      <Route path="/my-Tools/:id" component={MyTools} />
     </div>
   );
 }

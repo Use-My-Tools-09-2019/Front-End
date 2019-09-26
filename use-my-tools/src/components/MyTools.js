@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
-import images from "../images/welding.jpg";
+import welding from "../images/welding.jpg";
 
 //styles
 import { Button, Header, Modal, Card, Icon } from "semantic-ui-react";
@@ -47,7 +47,7 @@ const ToolTitle = styled.div`
 `;
 
 const Background = styled.div`
-  background-image: url(${images});
+  background-image: url(${welding});
   height: 89.5vh;
 `;
 
@@ -95,7 +95,7 @@ const MyTools = props => {
                     size="small"
                   >
                     <Header icon="delete" content="Delete Tool" />
-                    <Modal.Content>
+                    <Modal.Content>>
                       <p>Are you sure you want to delete this tool?</p>
                     </Modal.Content>
                     <Modal.Actions>
