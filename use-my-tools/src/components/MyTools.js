@@ -75,7 +75,7 @@ const MyTools = props => {
         console.log("Data was not pulled", error);
       })
 
-  }, []);
+  }, [props.userTools]);
 
   console.log("from mytools", props);
 
@@ -169,14 +169,12 @@ const MyTools = props => {
 };
 
 const mapStateToProps = state => ({
-  userTools: state.tools.userTools
+  userTools: state.tools.userTools,
+
 });
 
 const mapActionsToProps = {
   updateTool,
   deleteTool
 };
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(MyTools);
+export default connect(mapStateToProps,mapActionsToProps)(MyTools);
