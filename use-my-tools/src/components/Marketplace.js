@@ -32,9 +32,9 @@ const ToolsPage = styled.div`
 `
 
 function Marketplace (props) {
-  useEffect(() => {
-    props.getTools()
-  }, [])
+  // useEffect(() => {
+  //   props.getTools()
+  // }, [])
 
   return (
         <div>

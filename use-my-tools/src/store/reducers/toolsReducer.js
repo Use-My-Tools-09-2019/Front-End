@@ -25,7 +25,7 @@ const initialState = {
         {
         rentalcost: 2,
         tooldescription: "awesome",
-        toolid: 0,
+        toolid: 3,
         toolname: "hammer",
         tooltype: "Hand Tool"},
             ],

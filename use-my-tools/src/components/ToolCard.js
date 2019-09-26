@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Modal, Button, Header } from 'semantic-ui-react';
+import powertools from '../assets/powertools.jpg';
+import handtools from '../assets/handtools.jpg';
+import gardeningtools from '../assets/gardentools.jpg';
+
 
 const ToolCards = styled.div`
     display: flex;
@@ -41,15 +45,20 @@ const FormStyle = styled.form`
     }
 `
 
-
-
-
 function ToolCard ({props}) {
+    const imageTool = () => {if(props.tooltype === 'Hand Tool'){
+         return (handtools);
+        }else if(props.tooltype === 'Power Tool'){
+            return (powertools);
+        }else{
+            return(gardeningtools);
+        }}
+
     return (
         <ToolCards className='tool'>
           <h3>{props.toolname}</h3>
-          <img src={props.picture} />
-
+          <img src={imageTool()}/>
+          <h4>{props.tooltype}</h4>
           <h4>Tool Description</h4>
           <p>{props.tooldescription}</p>
 

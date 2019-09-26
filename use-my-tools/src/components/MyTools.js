@@ -25,7 +25,7 @@ const ToolBox = styled.div`
     margin: 2%;
     background: #ecfffd;
     border: 2px solid #76d275;
-    border-radius 15px;
+    border-radius: 15px;
 `;
 
 const ContainerDiv = styled.div`
