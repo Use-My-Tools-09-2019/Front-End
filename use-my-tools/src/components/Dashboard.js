@@ -64,13 +64,14 @@ const Dashboard = () => {
             <ContainerDiv>
                 <ToolsDiv>
                 <Button>
-                    <Link to="/My-Tools/:id">My Tools</Link>
+                    <Link to={`/my-tools/${localStorage.getItem('username')}`}>My Tools</Link>
                 </Button>
                 </ToolsDiv>
 
                 <MarketplaceDiv>
                     <Button>
-                        <Link to="/Marketplace/:id">Marketplace</Link>
+
+                        <Link to={`/marketplace/${localStorage.getItem('username')}`}>Marketplace</Link>
                     </Button>
                 </MarketplaceDiv>
             </ContainerDiv>

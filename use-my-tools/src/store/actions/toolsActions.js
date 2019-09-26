@@ -9,9 +9,9 @@ export const ADD_TOOL_START = 'ADD_TOOL_START'
 export const ADD_TOOL_SUCCESS = 'ADD_TOOL_SUCCESS'
 export const ADD_TOOL_FAIL = 'ADD_TOOL_FAIL'
 
-export const UPDATE_TOOL_START = 'ADD_TOOL_START'
-export const UPDATE_TOOL_SUCCESS = 'ADD_TOOL_SUCCESS'
-export const UPDATE_TOOL_FAIL = 'ADD_TOOL_FAIL'
+export const UPDATE_TOOL_START = 'UPDATE_TOOL_START'
+export const UPDATE_TOOL_SUCCESS = 'UPDATE_TOOL_SUCCESS'
+export const UPDATE_TOOL_FAIL = 'UPDATE_TOOL_FAIL'
 
 export const DELETE_TOOL_START = 'DELETE_TOOL_START'
 export const DELETE_TOOL_SUCCESS = 'DELETE_TOOL_SUCCESS'
@@ -20,7 +20,7 @@ export const DELETE_TOOL_FAIL = 'DELETE_TOOL_FAIL'
 export const  getTools = () => dispatch => {
     dispatch({type: GET_TOOLS_START})
     axiosWithAuth()
-    .get('/tools/tools')
+    .get('/tools/available')
     .then(res => {
         console.log(res)
         dispatch({type: GET_TOOLS_SUCCESS, payload: res.data})
@@ -32,13 +32,25 @@ export const  getTools = () => dispatch => {
 }
 
 export const addTool = (tool) => dispatch => {
-    dispatch({type: ADD_TOOL_START, payload: tool})
+    const newTool = {
+            "available": true,
+            "rental": false,
+            "rentalcost": tool.rentalcost,
+            "rentalduration": null,
+            "tooldescription": tool.tooldescription,
+            "toolimageurl": null,
+            "toolname": tool.toolname,
+            "tooltype": tool.tooltype,
+        }
 
+    
+    // dispatch({type: ADD_TOOL_START})
+    // console.log('from ADD_TOOL_START action',newTool )
     // axiosWithAuth()
-    // .get('/tools/tool/add', tool)
+    // .post('/tools/tool/add', newTool)
     // .then(res => {
-    //     console.log(res)
-    //     dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
+    //     console.log('from ADD_TOOL_SUCCESS action',res)
+        dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
     // })
     // .catch(err => {
     //     console.log(err)
@@ -46,13 +58,13 @@ export const addTool = (tool) => dispatch => {
     // })
 }
 
-export const updateTool = (toolID, updatedTool) => dispatch => {
+export const updateTool = (updatedTool ,toolid) => dispatch => {
     // dispatch({type: UPDATE_TOOL_START})
     // axiosWithAuth()
     // .get('/tools/tool/add', tool)
     // .then(res => {
     //     console.log(res)
-    //     dispatch({type: UPDATE_TOOL_SUCCESS, payload: tool})
+        dispatch({type: UPDATE_TOOL_SUCCESS, payload: updatedTool, toolid: toolid})
     // })
     // .catch(err => {
     //     console.log(err)
@@ -64,7 +76,7 @@ export const deleteTool = (toolid) => dispatch => {
     console.log(toolid)
     dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
     // axiosWithAuth()
-    // .get('/tools/tool/add', tool)
+    // .get('/tools/tool/delete', toolid)
     // .then(res => {
     //     console.log(res)
     //     dispatch({type: DELETE_TOOL_SUCCESS, payload: tool})

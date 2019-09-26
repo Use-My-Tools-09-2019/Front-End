@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import * as Yup from "yup";
-import axios from "axios";
+
 import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
 //styles
 import { Button, Header, Modal, Card, Icon } from "semantic-ui-react";
 import { FaWindowClose, FaTools } from "react-icons/fa";
-import { withFormik, Form, Field } from "formik";
 
 //redux
 import { connect } from "react-redux";
-import { addTool, updateTool, deleteTool } from "../store/actions";
+import {updateTool, deleteTool } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
+import UpdateToolModal from "./UpdateToolModal"
 
 const ToolBox = styled.div`
     display: flex;
@@ -111,9 +110,7 @@ const MyTools = props => {
                       </Button>
                     </Modal.Actions>
                   </Modal>
-                  <button>
-                    <FaTools />
-                  </button>
+                  <UpdateToolModal tool={tool}/>
                 </div>
               </div>
             </ItemContainer>

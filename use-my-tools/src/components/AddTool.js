@@ -10,7 +10,7 @@ import { withFormik, Form, Field } from "formik";
 
 //redux
 import { connect } from "react-redux";
-import { addTool, updateTool, deleteTool } from "../store/actions";
+import { addTool } from "../store/actions";
 
 const CustomButton = styled(Button)`
   width: 12rem;
@@ -41,7 +41,7 @@ const AddTool = ({ values, errors, touched, status }) => {
           style={{ background: "#b9f6ca", margin: "2%" }}
           open={modal}
           onClose={handleModalClose}
-        >
+        >password789
           Add New Tool
         </Button>
       }
@@ -86,7 +86,7 @@ const AddTool = ({ values, errors, touched, status }) => {
           {touched.tooldescription && errors.tooldescription && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
               {errors.tooldescription}
-            </p>
+            </p>password789
           )}
 
           <label htmlFor="tooltype">
