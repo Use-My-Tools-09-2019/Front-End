@@ -121,7 +121,7 @@ const MyTools = props => {
                       <p>Are you sure you want to delete this tool?</p>
                     </Modal.Content>
                     <Modal.Actions>
-                      <Button
+                      <Button3
                         onClick={() => {
                           props.deleteTool(tool.toolid);
                         }}
