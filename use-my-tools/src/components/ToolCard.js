@@ -104,4 +104,4 @@ function ToolCard ({props}) {
         </ToolCards>
     )
 }
-export default connect(null, requestTool)(ToolCard);
+export default connect(null, {requestTool})(ToolCard);
