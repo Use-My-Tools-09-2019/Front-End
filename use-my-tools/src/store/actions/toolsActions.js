@@ -138,14 +138,14 @@ export const  requestTool = (requestedTool) => dispatch => {
     dispatch({type: REQUEST_TOOL_START})
     console.log(rentalRequest)
 
-    // axiosWithAuth()
-    // .post(`/rentals/rental/add`, rentalRequest)
-    // .then(res => {
-    //     console.log('From searchTools action',res)
-    //     dispatch({type: REQUEST_TOOL_SUCCESS, payload: res.data})
-    // })
-    // .catch(err => {
-    //     console.log('From searchTools action',err)
-    //     dispatch({type: REQUEST_TOOL_FAIL, payload: err})
-    // })
+    axiosWithAuth()
+    .post(`rentals/rental/add`, rentalRequest)
+    .then(res => {
+        console.log('From requestTool action',res)
+        dispatch({type: REQUEST_TOOL_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log('From requestTool action',err)
+        dispatch({type: REQUEST_TOOL_FAIL, payload: err})
+    })
 }

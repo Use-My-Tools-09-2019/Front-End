@@ -150,6 +150,18 @@ export default function toolsReducer(state = initialState, action) {
                     ...state,
                     errMessage: action.payload
                 }
+            case REQUEST_TOOL_START:
+                return {
+                    ...state
+                }
+            case REQUEST_TOOL_SUCCESS:
+                return {
+                    ...state
+                }
+            case REQUEST_TOOL_FAIL:
+                return {
+                    ...state
+                }
 
         default: return state
     }

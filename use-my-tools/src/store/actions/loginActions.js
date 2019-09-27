@@ -36,16 +36,4 @@ export const loginAC = (credentials, history) => dispatch => {
         console.error(err)
     });
     
-    // dispatch({ type: LOGIN_GET_USER_START})
-    // axiosWithAuth()
-    //     .get(`users/getusername`)
-    //     .then(res => {
-    //         dispatch({ type: LOGIN_GET_USER_SUCCESS, payload: res.data})
-    //         console.log('from LOGIN_GET_USER', res)
-    //         localStorage.setItem("userid", res.data.userid);
-    //     })
-    //     .catch(err => {
-    //         dispatch({ type: LOGIN_GET_USER_FAIL, payload: err})
-    //         console.log('from LOGIN_GET_USER', err)
-    //     })
 }

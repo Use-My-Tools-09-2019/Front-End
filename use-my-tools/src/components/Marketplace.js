@@ -41,7 +41,7 @@ function Marketplace (props) {
           <br/>
             <DropdownTools />
             <ToolsPage className="tool">
-              {props.tools.map(tool => <ToolCard props={tool} key={tool.id}/>)}
+              {props.tools.map(tool => <ToolCard tool={tool} key={tool.id}/>)}
             </ToolsPage>
         </div>
     )
