@@ -79,6 +79,7 @@ const MyTools = props => {
       })
 
   }, []);
+  
     const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
 
   return (
