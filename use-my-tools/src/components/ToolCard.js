@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Modal, Button, Header } from 'semantic-ui-react';
+import powertools from '../assets/powertools.jpg';
+import handtools from '../assets/handtools.jpg';
+import gardeningtools from '../assets/gardentools.jpg';
+
+//redux
+import { connect } from 'react-redux'
+import { requestTool } from '../store/actions'
+
 
 const ToolCards = styled.div`
     display: flex;
@@ -41,32 +49,51 @@ const FormStyle = styled.form`
     }
 `
 
+function ToolCard(props) {
+    const imageTool = () => {if(props.tool.tooltype === 'Hand Tool'){
+        return (handtools);
+       }else if(props.tool.tooltype === 'Power Tool'){
+           return (powertools);
+       }else{
+           return(gardeningtools);
+       }}  
+        
+    // request tool
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const toolRequest = {
+            "rentaldate": new Date,
+            "toolid": props.tool.toolid,
+        }
+        props.requestTool(toolRequest)
+    }
 
-
-
-function ToolCard ({props}) {
     return (
         <ToolCards className='tool'>
-          <h3>{props.toolname}</h3>
-          <img src={props.picture} />
-
+          <h3>{props.tool.user.username}'s {props.tool.toolname}</h3>
+          <img src={imageTool()}/>
+          <h4>{props.tool.tooltype}</h4>
           <h4>Tool Description</h4>
-          <p>{props.tooldescription}</p>
-
+          <p>{props.tool.tooldescription}</p>
           <h4>Rental Cost</h4>
-          <p>${props.rentalcost}</p>
+          <p>${props.tool.rentalcost}</p>
           <Modal style={{width: '400px',textAlign: 'center', padding: '30px'}} trigger={<Button className='button'>Request Tool</Button>} closeIcon>
               <Modal.Header>Request Tool</Modal.Header>
       
                 <Modal.Description>
-                    <Header>Please enter rental period</Header>
+                    <Header>Are you sure you want to request this item.</Header>
                     <FormStyle className='request-form'>
-                        <input type='text' name='rentaldate' placeholder='Length of Rental'/>
-                        <button type='submit'>Request</button>
+                        <button 
+                        type='submit'
+                        onClick={handleSubmit}
+                        >Request</button>
                     </FormStyle>
                 </Modal.Description>
             </Modal>
         </ToolCards>
     )
 }
-export default ToolCard;
+
+
+export default connect(null, { requestTool })(ToolCard);
+

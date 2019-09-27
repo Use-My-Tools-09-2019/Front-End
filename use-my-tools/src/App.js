@@ -27,7 +27,7 @@ function App() {
       <PrivateRoute exact path='/dashboard/:id' component={Dashboard}/>
       <PrivateRoute exact path='/marketplace/:id' component={Marketplace}/>
       <PrivateRoute path="/my-Tools/:id" component={MyTools} />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -11,7 +11,6 @@ import styled from 'styled-components';
 //redux
 import { getTools } from '../store/actions'
 
-
 import { connect } from 'react-redux'
 
 const ToolsPage = styled.div`
@@ -32,6 +31,7 @@ const ToolsPage = styled.div`
 `
 
 function Marketplace (props) {
+
   useEffect(() => {
     props.getTools()
   }, [])
@@ -41,7 +41,7 @@ function Marketplace (props) {
           <br/>
             <DropdownTools />
             <ToolsPage className="tool">
-              {props.tools.map(tool => <ToolCard props={tool} key={tool.id}/>)}
+              {props.tools.map(tool => <ToolCard tool={tool} key={tool.toolid}/>)}
             </ToolsPage>
         </div>
     )

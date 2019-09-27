@@ -1,13 +1,17 @@
 import {
     LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE
+    LOGIN_FAILURE,
+    LOGIN_GET_USER_START,
+    LOGIN_GET_USER_SUCCESS,
+    LOGIN_GET_USER_FAIL
 } from '../actions'
 
  
 const initalState = { 
     fetching: false,
     authToken: null,
+    userid: ""
 }
 
 export default function loginReducer(state = initalState, action) {
