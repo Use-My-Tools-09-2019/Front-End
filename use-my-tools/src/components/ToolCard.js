@@ -9,8 +9,6 @@ import gardeningtools from '../assets/gardentools.jpg';
 import { connect } from 'react-redux'
 import { requestTool } from '../store/actions'
 
-//hooks
-import { useInput } from '../utils/hooks/useInput'
 
 const ToolCards = styled.div`
     display: flex;
@@ -51,26 +49,24 @@ const FormStyle = styled.form`
     }
 `
 
-function ToolCard (props) {
-    const imageTool = () => {if(props.tooltype === 'Hand Tool'){
-         return (handtools);
-        }else if(props.tooltype === 'Power Tool'){
-            return (powertools);
-        }else{
-            return(gardeningtools);
-        }}  
+function ToolCard(props) {
+    const imageTool = () => {if(props.tool.tooltype === 'Hand Tool'){
+        return (handtools);
+       }else if(props.tool.tooltype === 'Power Tool'){
+           return (powertools);
+       }else{
+           return(gardeningtools);
+       }}  
         
     // request tool
-    const [rentalDate, setRentalDate, handleChanges] = useInput("")
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         const toolRequest = {
-            "rentaldate": Date.now(),
-            "toolid": props.toolid,
+            "rentaldate": new Date,
+            "toolid": props.tool.toolid,
         }
         props.requestTool(toolRequest)
-        setRentalDate({})
     }
-
 
     return (
         <ToolCards className='tool'>
@@ -85,15 +81,8 @@ function ToolCard (props) {
               <Modal.Header>Request Tool</Modal.Header>
       
                 <Modal.Description>
-                    <Header>Please enter rental period</Header>
+                    <Header>Are you sure you want to request this item.</Header>
                     <FormStyle className='request-form'>
-                        <input 
-                        type='date' 
-                        name='rentaldate' 
-                        placeholder='Length of Rental'
-                        value={rentalDate}
-                        onChange={handleChanges}
-                        />
                         <button 
                         type='submit'
                         onClick={handleSubmit}
@@ -104,4 +93,5 @@ function ToolCard (props) {
         </ToolCards>
     )
 }
-export default connect(null, requestTool)(ToolCard);
+
+export default connect(null, { requestTool })(ToolCard);
