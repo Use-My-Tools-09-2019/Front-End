@@ -70,7 +70,7 @@ const MyTools = props => {
   useEffect(() => {
     getUserTools()
     axiosWithAuth()
-      .get('/tools/available')
+      .get('/tools/rentals')
       .then(response => {
         setRequestedTool(response.data)
         console.log("Data being pulled", response.data);
@@ -154,7 +154,8 @@ const MyTools = props => {
               <div className="content" >
                 <div className="header">
                   <p>Tool Name: {tool.toolname}</p>
-                  <p>The tool was requested by: User Name.</p>
+                  <p>The tool was posted by: {tool.user.username}</p>
+                  
                   {/* When backend has user attached to tool, will update user name with correct naming. */}
                 </div>
                 <div className="meta">
