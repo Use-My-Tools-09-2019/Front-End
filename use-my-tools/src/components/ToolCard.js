@@ -74,12 +74,11 @@ function ToolCard ({props}) {
 
     return (
         <ToolCards className='tool'>
-          <h3>{props.toolname}</h3>
+          <h3>{props.user.username}'s {props.toolname}</h3>
           <img src={imageTool()}/>
           <h4>{props.tooltype}</h4>
           <h4>Tool Description</h4>
           <p>{props.tooldescription}</p>
-
           <h4>Rental Cost</h4>
           <p>${props.rentalcost}</p>
           <Modal style={{width: '400px',textAlign: 'center', padding: '30px'}} trigger={<Button className='button'>Request Tool</Button>} closeIcon>
