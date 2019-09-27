@@ -17,14 +17,14 @@ function UpdateToolModal(props) {
         tooldescription: props.tool.tooldescription,
         toolname: props.tool.toolname,
         tooltype: props.tool.tooltype,
+        toolid: props.tool.toolid
     }
-    
     const [tool, setTool, handleChanges] = useInput(initialState)
+
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.updateTool(tool, tool.id)
-        setTool(initialState)
+        props.updateTool(tool)
     }
     return (
         <Modal trigger={<Button>{<FaTools/>}</Button>}>

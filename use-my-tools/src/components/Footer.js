@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FooterDiv = styled.div`
+const FooterDiv = styled.footer`
     background-color: #76d275;
     padding: 25px;
-    position: absolute; 
-    bottom: 100; 
     width: 100%;
     margin-top: 320px;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    width: 100%;
     span {
         font-weight: bold;
     }
