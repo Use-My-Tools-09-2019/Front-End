@@ -155,8 +155,6 @@ const MyTools = props => {
                 <div className="header">
                   <p>Tool Name: {tool.toolname}</p>
                   <p>The tool was posted by: {tool.user.username}</p>
-                  
-                  {/* When backend has user attached to tool, will update user name with correct naming. */}
                 </div>
                 <div className="meta">
                   <p>Tool Type: {tool.tooltype}</p>
