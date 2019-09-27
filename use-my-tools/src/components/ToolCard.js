@@ -5,6 +5,12 @@ import powertools from '../assets/powertools.jpg';
 import handtools from '../assets/handtools.jpg';
 import gardeningtools from '../assets/gardentools.jpg';
 
+//redux
+import { connect } from 'react-redux'
+import { requestTool } from '../store/actions'
+
+//hooks
+import { useInput } from '../utils/hooks/useInput'
 
 const ToolCards = styled.div`
     display: flex;
@@ -52,7 +58,19 @@ function ToolCard ({props}) {
             return (powertools);
         }else{
             return(gardeningtools);
-        }}
+        }}  
+        
+    // request tool
+    const [rentalDate, setRentalDate, handleChanges] = useInput("")
+    const handleSubmit = () => {
+        const toolRequest = {
+            "rentaldate": Date.now(),
+            "toolid": props.toolid,
+        }
+        props.requestTool(toolRequest)
+        setRentalDate({})
+    }
+
 
     return (
         <ToolCards className='tool'>
@@ -70,12 +88,21 @@ function ToolCard ({props}) {
                 <Modal.Description>
                     <Header>Please enter rental period</Header>
                     <FormStyle className='request-form'>
-                        <input type='text' name='rentaldate' placeholder='Length of Rental'/>
-                        <button type='submit'>Request</button>
+                        <input 
+                        type='date' 
+                        name='rentaldate' 
+                        placeholder='Length of Rental'
+                        value={rentalDate}
+                        onChange={handleChanges}
+                        />
+                        <button 
+                        type='submit'
+                        onClick={handleSubmit}
+                        >Request</button>
                     </FormStyle>
                 </Modal.Description>
             </Modal>
         </ToolCards>
     )
 }
-export default ToolCard;
+export default connect(null, requestTool)(ToolCard);
