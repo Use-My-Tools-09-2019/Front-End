@@ -66,24 +66,20 @@ const Welcome = styled.h1`
 const MyTools = props => {
 
   const [requestedTool, setRequestedTool] = useState([]);
-
+  
   useEffect(() => {
-    getUserTools()
+    props.getUserTools()
     axiosWithAuth()
       .get('/tools/available')
       .then(response => {
         setRequestedTool(response.data)
-        console.log("Data being pulled", response.data);
-      })
+      },)
       .catch(error => {
         console.log("Data was not pulled", error);
       })
 
-  }, [props.userTools]);
-
-  console.log("from mytools", props);
-
-
+  }, []);
+    const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
 
   return (
     <Background>
@@ -121,7 +117,7 @@ const MyTools = props => {
                     size="small"
                   >
                     <Header icon="delete" content="Delete Tool" />
-                    <Modal.Content>>
+                    <Modal.Content>
                       <p>Are you sure you want to delete this tool?</p>
                     </Modal.Content>
                     <Modal.Actions>
@@ -149,7 +145,7 @@ const MyTools = props => {
             <h2>Current Tools Requested for Rent</h2>
           </ToolTitle>
           
-          {requestedTool.map(tool => (
+          {filteredTool.map(tool => (
             <div className="ui card" key={tool.toolid} style={{ height: "15rem"}}>
               <div className="content" >
                 <div className="header">

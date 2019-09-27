@@ -9,8 +9,6 @@ import gardeningtools from '../assets/gardentools.jpg';
 import { connect } from 'react-redux'
 import { requestTool } from '../store/actions'
 
-//hooks
-import { useInput } from '../utils/hooks/useInput'
 
 const ToolCards = styled.div`
     display: flex;
@@ -52,33 +50,31 @@ const FormStyle = styled.form`
 `
 
 function ToolCard(props) {
-    const imageTool = () => {if(props.tooltype === 'Hand Tool'){
-         return (handtools);
-        }else if(props.tooltype === 'Power Tool'){
-            return (powertools);
-        }else{
-            return(gardeningtools);
-        }}  
+    const imageTool = () => {if(props.tool.tooltype === 'Hand Tool'){
+        return (handtools);
+       }else if(props.tool.tooltype === 'Power Tool'){
+           return (powertools);
+       }else{
+           return(gardeningtools);
+       }}  
         
     // request tool
     const handleSubmit = (e) => {
         e.preventDefault()
         const toolRequest = {
-            "rentaldate": "09-24-2019",
+            "rentaldate": new Date,
             "toolid": props.tool.toolid,
         }
         props.requestTool(toolRequest)
     }
-    console.log('from tool card', props)
 
     return (
         <ToolCards className='tool'>
-          <h3>{props.tool.toolname}</h3>
+          <h3>{props.tool.user.username}'s {props.tool.toolname}</h3>
           <img src={imageTool()}/>
           <h4>{props.tool.tooltype}</h4>
           <h4>Tool Description</h4>
           <p>{props.tool.tooldescription}</p>
-
           <h4>Rental Cost</h4>
           <p>${props.tool.rentalcost}</p>
           <Modal style={{width: '400px',textAlign: 'center', padding: '30px'}} trigger={<Button className='button'>Request Tool</Button>} closeIcon>
