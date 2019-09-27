@@ -14,7 +14,7 @@ import Flip from 'react-reveal/Flip';
 
 //redux
 import { connect } from "react-redux";
-import {updateTool, deleteTool } from "../store/actions";
+import {updateTool, deleteTool, getUserTools } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
@@ -68,6 +68,7 @@ const MyTools = props => {
   const [requestedTool, setRequestedTool] = useState([]);
 
   useEffect(() => {
+    getUserTools()
     axiosWithAuth()
       .get('/tools/available')
       .then(response => {
@@ -172,14 +173,13 @@ const MyTools = props => {
 };
 
 const mapStateToProps = state => ({
-  userTools: state.tools.userTools
+  userTools: state.tools.userTools,
+
 });
 
 const mapActionsToProps = {
   updateTool,
-  deleteTool
+  deleteTool,
+  getUserTools
 };
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(MyTools);
+export default connect(mapStateToProps,mapActionsToProps)(MyTools);

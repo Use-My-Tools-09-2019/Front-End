@@ -11,7 +11,6 @@ import styled from 'styled-components';
 //redux
 import { getTools } from '../store/actions'
 
-
 import { connect } from 'react-redux'
 
 const ToolsPage = styled.div`
