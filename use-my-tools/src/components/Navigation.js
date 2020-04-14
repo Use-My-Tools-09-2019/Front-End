@@ -58,7 +58,7 @@ const Navigation = (props) => {
                         localStorage.removeItem('username');
                     }}
                     ><NavLink to="/login">Logout</NavLink></Button>}
-                  </span>
+                </span>
         }
             </ButtonDiv>
         </TopBar>

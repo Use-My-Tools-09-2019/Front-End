@@ -78,7 +78,7 @@ export default function toolsReducer(state = initialState, action) {
                 return {
                     ...state,
                     
-                    // status: true
+                    status: true
                 }
         case ADD_TOOL_SUCCESS:
             return {
