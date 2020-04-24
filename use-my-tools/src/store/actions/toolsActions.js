@@ -32,7 +32,7 @@ export const REQUEST_TOOL_FAIL = 'REQUEST_TOOL_FAIL'
 export const  getTools = () => dispatch => {
     dispatch({type: GET_TOOLS_START})
     axiosWithAuth()
-    .get('/tools/rentals')
+    .get('/api/tools')
     .then(res => {
         dispatch({type: GET_TOOLS_SUCCESS, payload: res.data})
     })
@@ -45,7 +45,7 @@ export const  getTools = () => dispatch => {
 export const  getUserTools = () => dispatch => {
     dispatch({type: GET_USERTOOLS_START})
     axiosWithAuth()
-    .get('/tools/available')
+    .get('/api/user-tools')
     .then(res => {
         dispatch({type: GET_USERTOOLS_SUCCESS, payload: res.data})
     })
@@ -58,13 +58,10 @@ export const  getUserTools = () => dispatch => {
 export const addTool = (tool) => dispatch => {
     const newTool = {
             "available": true,
-            "rental": true,
-            "rentalcost": tool.rentalcost,
-            "rentalduration": null,
-            "tooldescription": tool.tooldescription,
-            "toolimageurl": null,
-            "toolname": tool.toolname,
-            "tooltype": tool.tooltype,
+            "rental_cost": tool.rental_cost,
+            "tool_description": tool.tool_description,
+            "tool_name": tool.tool_name,
+            "tool_type": tool.tool_type,
         }
 
     console.log(newTool)
@@ -72,7 +69,7 @@ export const addTool = (tool) => dispatch => {
     dispatch({type: ADD_TOOL_START})
     console.log('from ADD_TOOL_START action',newTool )
     axiosWithAuth()
-    .post('/tools/tool/add', newTool)
+    .post('/api/tools', newTool)
     .then(res => {
         dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
     })

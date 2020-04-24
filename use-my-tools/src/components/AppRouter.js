@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, NavLink } from 'react
 //components
 import Dashboard from './Dashboard';
 import Login from './Login';
-import Register from './Register';
+import Register from './register/Register';
 import Marketplace from './Marketplace';
 import PrivateRoute from './PrivateRoute';
 import MyTools from './MyTools';
@@ -36,23 +36,22 @@ export default function AppRouter() {
                             onClick ={() => {
                                 localStorage.removeItem("token");
                                 localStorage.removeItem('username');
+                                window.location.reload()
                             }}
-                            ><NavLink to="/login">Logout</NavLink></styled.Button>}
+                            ><NavLink to="/login" >Logout</NavLink></styled.Button>
                         </span>
                     </>
                     }
-            }
+            
                 </styled.ButtonDiv>
             </styled.TopBar>
             <Switch>
-                {/* Routes to Nav items below */}
                 <Route exact path = "/" render={() => localStorage.getItem('token') ? <Redirect to={`/dashboard/${localStorage.getItem('username')}`}/> : <Redirect to={`/login`} />} />
                 <Route exact path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
                 <Route exact path='/dashboard/:id' component={Dashboard}/>
                 <Route exact path='/marketplace/:id' component={Marketplace}/>
                 <Route path="/my-Tools/:id" component={MyTools} />
-                {/* <Footer /> */}
             </Switch>
         </Router>
     )

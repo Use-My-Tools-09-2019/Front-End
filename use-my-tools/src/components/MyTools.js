@@ -69,14 +69,14 @@ const MyTools = props => {
   
   useEffect(() => {
     props.getUserTools()
-    axiosWithAuth()
-      .get('/tools/rentals')
-      .then(response => {
-        setRequestedTool(response.data)
-      },)
-      .catch(error => {
-        console.log("Data was not pulled", error);
-      })
+    // axiosWithAuth()
+    //   .get('/tools/rentals')
+    //   .then(response => {
+    //     setRequestedTool(response.data)
+    //   },)
+    //   .catch(error => {
+    //     console.log("Data was not pulled", error);
+    //   })
 
   }, []);
     const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
