@@ -56,46 +56,46 @@ const AddTool = ({ values, errors, touched }) => {
 
         {/* Using Formik for the form functionality */}
         <Form>
-          <label htmlFor="toolname">
+          <label htmlFor="tool_name">
             <p style={{ fontSize: "1.2rem" }}>
               Tool Name:
               <Field
                 type="text"
-                name="toolname"
+                name="tool_name"
                 placeholder="Tool Name"
                 style={{ margin: "1%" }}
               />
             </p>
           </label>
-          {touched.toolname && errors.toolname && (
+          {touched.tool_name && errors.tool_name && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-              {errors.toolname}
+              {errors.tool_name}
             </p>
           )}
 
-          <label htmlFor="tooldescription">
+          <label htmlFor="tool_description">
             <p style={{ fontSize: "1.2rem" }}>
               Tool Description:
               <Field
                 type="text"
-                name="tooldescription"
+                name="tool_description"
                 placeholder="Tool Description"
                 style={{ margin: "1%" }}
               />
             </p>
           </label>
-          {touched.tooldescription && errors.tooldescription && (
+          {touched.tool_description && errors.tool_description && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-              {errors.tooldescription}
+              {errors.tool_description}
             </p>
           )}
 
-          <label htmlFor="tooltype">
+          <label htmlFor="tool_type">
             <p style={{ fontSize: "1.2rem" }}>
               Tool Type:
               <Field
                 component="select"
-                name="tooltype"
+                name="tool_type"
                 placeholder="Tool Type"
                 style={{ margin: "1%" }}
               >
@@ -106,26 +106,26 @@ const AddTool = ({ values, errors, touched }) => {
               </Field>
             </p>
           </label>
-          {touched.tooltype && errors.tooltype && (
+          {touched.tool_type && errors.tool_type && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-              {errors.tooltype}
+              {errors.tool_type}
             </p>
           )}
 
-          <label htmlFor="rentalcost">
+          <label htmlFor="rental_cost">
             <p style={{ fontSize: "1.2rem" }}>
               Rental Cost:
               <Field
                 type="number"
-                name="rentalcost"
+                name="rental_cost"
                 placeholder="Rental Cost"
                 style={{ margin: "1%" }}
               />
             </p>
           </label>
-          {touched.rentalcost && errors.rentalcost && (
+          {touched.rental_cost && errors.rental_cost && (
             <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-              {errors.rentalcost}
+              {errors.rental_cost}
             </p>
           )}
 
@@ -166,26 +166,26 @@ const AddTool = ({ values, errors, touched }) => {
 
 const FormikUserForm = withFormik({
   mapPropsToValues({
-    toolname,
-    tooldescription,
-    tooltype,
-    rentalcost,
+    tool_name,
+    tool_description,
+    tool_type,
+    rental_cost,
     correctinfo
   }) {
     return {
-      toolname: toolname || "",
-      tooldescription: tooldescription || "",
-      tooltype: tooltype || "",
-      rentalcost: rentalcost || "",
+      tool_name: tool_name || "",
+      tool_description: tool_description || "",
+      tool_type: tool_type || "",
+      rental_cost: rental_cost || "",
       correctinfo: correctinfo || false
     };
   },
 
   validationSchema: Yup.object().shape({
-    toolname: Yup.string().required("The tool name is required."),
-    tooldescription: Yup.string().required("The item description is required."),
-    tooltype: Yup.string().required("The tool type is required."),
-    rentalcost: Yup.number().required(
+    tool_name: Yup.string().required("The tool name is required."),
+    tool_description: Yup.string().required("The item description is required."),
+    tool_type: Yup.string().required("The tool type is required."),
+    rental_cost: Yup.number().required(
       "The cost of the tool rental is required."
     ),
     correctinfo: Yup.boolean().oneOf(
@@ -196,11 +196,10 @@ const FormikUserForm = withFormik({
 
   handleSubmit(values, props) {
     const newTool = {
-      toolid: props.props.userTools.length,
-      toolname: values.toolname,
-      tooldescription: values.tooldescription,
-      tooltype: values.tooltype,
-      rentalcost: values.rentalcost
+      tool_name: values.tool_name,
+      tool_description: values.tool_description,
+      tool_type: values.tool_type,
+      rental_cost: values.rental_cost
 
     };
     console.log(newTool);

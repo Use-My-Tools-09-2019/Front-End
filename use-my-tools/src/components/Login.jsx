@@ -17,12 +17,12 @@ function Login({ touched, errors, status }) {
         <>
         <h1>Login</h1>
         <Form className="form">
-						<p>{touched.username && errors.username}</p>
+						<p>{touched.user_name && errors.user_name}</p>
             <div className='ui input'>
                 <Field
                     placeholder="Enter your username"
-                    name="username"
-                    type="username"
+                    name="user_name"
+                    type="user_name"
                 />
             </div>
 						<p>{touched.password && errors.password}</p>
@@ -34,7 +34,7 @@ function Login({ touched, errors, status }) {
                 />
            </div>
            <br />
-           <Button color="black">Login</Button>
+           <Button color="black" type="sumbmit">Login</Button>
            <br />
            {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
       </Form>
@@ -43,22 +43,20 @@ function Login({ touched, errors, status }) {
 }
 
  const FormikRegister = withFormik({
-    mapPropsToValues({ username, password }) {
+    mapPropsToValues({ user_name, password }) {
       return {
-				username: username || "",
+				user_name: user_name || "",
 				password: password || "",
       };
     },
     validationSchema: Yup.object().shape({
-      username: Yup.string().required("Username is a required field"),
-			password: Yup.string().min(6).required("Password is a required field"),
+      user_name: Yup.string().required("Username is a required field"),
+			password: Yup.string().required("Password is a required field"),
      
     }),
 
     handleSubmit(values, props ) {
-      console.log(props)
       props.props.loginAC(values, props.props.history)
-
     }
 	})(Login);
 	

@@ -41,6 +41,7 @@ const initialState = {
 
 export default function toolsReducer(state = initialState, action) {
     switch (action.type) {
+        //get tools
         case GET_TOOLS_START:
             return {
                 ...state,
@@ -56,6 +57,8 @@ export default function toolsReducer(state = initialState, action) {
                 ...state,
                 errMessage: action.payload
             }
+
+        //get users tools
         case GET_USERTOOLS_START:
                 return {
                     ...state,
@@ -74,11 +77,12 @@ export default function toolsReducer(state = initialState, action) {
                 status: false
             }
 
+        //add a tool    
         case ADD_TOOL_START:
                 return {
                     ...state,
                     
-                    // status: true
+                    status: true
                 }
         case ADD_TOOL_SUCCESS:
             return {
@@ -93,6 +97,7 @@ export default function toolsReducer(state = initialState, action) {
                     status: true
                 }
 
+        //update tool        
         case UPDATE_TOOL_START:
             return {
                 ...state,
@@ -115,7 +120,9 @@ export default function toolsReducer(state = initialState, action) {
                 ...state,
                 errMessage: action.payload
             }
+        
 
+        //delete tool
         case DELETE_TOOL_START:
             return {
                 ...state,

@@ -50,9 +50,9 @@ const FormStyle = styled.form`
 `
 
 function ToolCard(props) {
-    const imageTool = () => {if(props.tool.tooltype === 'Hand Tool'){
+    const imageTool = () => {if(props.tool.tool_type === 'Hand Tool'){
         return (handtools);
-       }else if(props.tool.tooltype === 'Power Tool'){
+       }else if(props.tool.tool_type === 'Power Tool'){
            return (powertools);
        }else{
            return(gardeningtools);
@@ -70,13 +70,13 @@ function ToolCard(props) {
 
     return (
         <ToolCards className='tool'>
-          <h3>{props.tool.user.username}'s {props.tool.toolname}</h3>
+          <h3>{props.tool.user_name}'s {props.tool.tool_name}</h3>
           <img src={imageTool()}/>
-          <h4>{props.tool.tooltype}</h4>
+          <h4>{props.tool.tool_type}</h4>
           <h4>Tool Description</h4>
-          <p>{props.tool.tooldescription}</p>
+          <p>{props.tool.tool_description}</p>
           <h4>Rental Cost</h4>
-          <p>${props.tool.rentalcost}</p>
+          <p>${props.tool.rental_cost}</p>
           <Modal style={{width: '400px',textAlign: 'center', padding: '30px'}} trigger={<Button className='button'>Request Tool</Button>} closeIcon>
               <Modal.Header>Request Tool</Modal.Header>
       

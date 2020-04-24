@@ -1,5 +1,4 @@
 import axios from 'axios'
-import axiosWithAuth from '../../utils/authentication/axiosWithAuth'
 
 export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -14,22 +13,15 @@ export const LOGIN_GET_USER_FAIL = 'LOGIN_GET_USER_START'
 
 export const loginAC = (credentials, history) => dispatch => {
     dispatch({ type: LOGIN_START })
-
     axios
-    .post('https://jcrn-use-my-tools.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
-
-        headers: {
-            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
+    .post('http://localhost:8888/api/user/login', credentials)
     .then(res => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload })
         console.log(res)
-        localStorage.setItem('token', res.data.access_token);
-        localStorage.setItem("username", credentials.username);
-        history.push(`/dashboard/${ credentials.username}`);
-
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem("username", credentials.user_name);
+        history.push(`/marketplace/${ credentials.user_name}`);
+        window.location.reload()
     })
     .catch(err => { 
         dispatch({ type: LOGIN_FAILURE, payload: err})
