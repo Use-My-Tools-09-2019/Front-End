@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 import axios from 'axios'
 
 //styles
-import { Button } from 'semantic-ui-react'
 
 import states from './states'
 
@@ -86,7 +85,7 @@ function Register({ touched, errors, status }) {
 					/>
 				</div>
 				<br />
-				<Button color="black" type='submit'>Register</Button>
+				<button color="black" type='submit'>Register</button>
 				<br />
 				{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 			</Form>

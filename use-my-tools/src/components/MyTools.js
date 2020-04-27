@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import axiosWithAuth from '../utils/authentication/axiosWithAuth'
-
-
 import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
@@ -69,15 +66,6 @@ const MyTools = props => {
   
   useEffect(() => {
     props.getUserTools()
-    // axiosWithAuth()
-    //   .get('/tools/rentals')
-    //   .then(response => {
-    //     setRequestedTool(response.data)
-    //   },)
-    //   .catch(error => {
-    //     console.log("Data was not pulled", error);
-    //   })
-
   }, []);
     const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
 
@@ -99,14 +87,14 @@ const MyTools = props => {
               <div className="ui card" >
                 <div className="content">
                   <div className="header">
-                    <p>Tool Name: {tool.toolname}</p>
+                    <p>Tool Name: {tool.tool_name}</p>
                   </div>
                   <div className="meta">
-                    <p>Tool Type: {tool.tooltype}</p>
-                    <p>Rental Cost: ${tool.rentalcost} per day</p>
+                    <p>Tool Type: {tool.tool_type}</p>
+                    <p>Rental Cost: ${tool.rental_cost} per day</p>
                   </div>
                   <div className="description">
-                    <p>Tool Description: {tool.tooldescription}</p>
+                    <p>Tool Description: {tool.tool_description}</p>
                   </div>
               
                   {/* FaWindowClose is the icon to remove tools, functionality needed.
@@ -149,15 +137,15 @@ const MyTools = props => {
             <div className="ui card" key={tool.toolid} style={{ height: "15rem"}}>
               <div className="content" >
                 <div className="header">
-                  <p>Tool Name: {tool.toolname}</p>
+                  <p>Tool Name: {tool.tool_name}</p>
                   <p>The tool was posted by: {tool.user.username}</p>
                 </div>
                 <div className="meta">
-                  <p>Tool Type: {tool.tooltype}</p>
-                  <p>Rental Cost: ${tool.rentalcost} per day</p>
+                  <p>Tool Type: {tool.tool_type}</p>
+                  <p>Rental Cost: ${tool.rental_cost} per day</p>
                 </div>
                 <div className="description">
-                      <p>Tool Description: {tool.tooldescription}</p>
+                      <p>Tool Description: {tool.tool_description}</p>
                 </div>
               </div>
             </div>))}

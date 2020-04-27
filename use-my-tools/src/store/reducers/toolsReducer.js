@@ -67,7 +67,7 @@ export default function toolsReducer(state = initialState, action) {
         case GET_USERTOOLS_SUCCESS:
             return {
                 ...state,
-                userTools:  action.payload.filter(tool => tool.user.username === localStorage.username),
+                userTools:  action.payload,
                 status: false
             }
         case GET_USERTOOLS_FAIL:

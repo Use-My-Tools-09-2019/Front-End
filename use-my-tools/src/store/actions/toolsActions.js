@@ -57,11 +57,11 @@ export const  getUserTools = () => dispatch => {
 
 export const addTool = (tool) => dispatch => {
     const newTool = {
-            "available": true,
             "rental_cost": tool.rental_cost,
             "tool_description": tool.tool_description,
             "tool_name": tool.tool_name,
             "tool_type": tool.tool_type,
+            "available": tool.available
         }
 
     console.log(newTool)
@@ -71,7 +71,7 @@ export const addTool = (tool) => dispatch => {
     axiosWithAuth()
     .post('/api/tools', newTool)
     .then(res => {
-        dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
+        dispatch({type: ADD_TOOL_SUCCESS, payload: res.data})
     })
     .catch(err => {
         console.log(err)
