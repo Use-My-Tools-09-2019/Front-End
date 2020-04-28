@@ -63,14 +63,12 @@ export const addTool = (tool) => dispatch => {
             "tool_type": tool.tool_type,
             "available": tool.available
         }
-
-    console.log(newTool)
-
     dispatch({type: ADD_TOOL_START})
     console.log('from ADD_TOOL_START action',newTool )
     axiosWithAuth()
     .post('/api/tools', newTool)
     .then(res => {
+        console.log(res)
         dispatch({type: ADD_TOOL_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -94,11 +92,10 @@ export const updateTool = (tool) => dispatch => {
 }
 
 export const deleteTool = (toolid) => dispatch => {
-    console.log(toolid)
     dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
 
     axiosWithAuth()
-    .delete(`/tools/tool/delete/${toolid}`)
+    .delete(`api/tools/${toolid}`)
     .then(res => {
         dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
     })

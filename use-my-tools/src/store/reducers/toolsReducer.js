@@ -131,7 +131,7 @@ export default function toolsReducer(state = initialState, action) {
         case DELETE_TOOL_SUCCESS:
             return {
                 ...state,
-                userTools:  state.userTools.filter(tool => tool.toolid !== action.payload)
+                userTools:  state.userTools.filter(tool => tool.id !== action.payload)
             }
         case DELETE_TOOL_FAIL:
             return {

@@ -198,9 +198,8 @@ const FormikUserForm = withFormik({
       tool_type: values.tool_type,
       rental_cost: values.rental_cost,
       available: values.available
-
+      
     };
-    console.log(newTool);
     props.props.addTool(newTool);
     props.resetForm("");
   }

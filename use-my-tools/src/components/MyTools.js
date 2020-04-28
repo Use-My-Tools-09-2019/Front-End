@@ -82,7 +82,7 @@ const MyTools = props => {
           </ToolTitle>
           {/* Mapping over tools for the user, adding new card for each input */}
           {props.userTools.map(tool => (
-            <Flip top key={tool.toolid}>
+            <Flip top key={tool.id}>
             <ItemContainer className="ui cards" >
               <div className="ui card" >
                 <div className="content">
@@ -111,7 +111,7 @@ const MyTools = props => {
                     <Modal.Actions>
                       <Button
                         onClick={() => {
-                          props.deleteTool(tool.toolid);
+                          props.deleteTool(tool.id);
                         }}
                         color="green"
                         inverted

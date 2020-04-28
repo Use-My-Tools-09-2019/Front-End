@@ -18,7 +18,7 @@ import * as styled from './styled-components/navStyles'
 export default function AppRouter() {
     return (
         <Router>
-            <styled.TopBar className="top-bar">
+            <styled.TopBar class="top-bar">
                 <styled.Title>Use My Tools</styled.Title>
                 <styled.ButtonDiv>
                     {!localStorage.getItem('token') 
