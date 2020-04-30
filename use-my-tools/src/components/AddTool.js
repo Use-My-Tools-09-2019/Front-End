@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 
 //styles
-import { Button, Header, Modal, Card } from "semantic-ui-react";
+import { Button, Header, Modal } from "semantic-ui-react";
 import { FaWindowClose, FaTools } from "react-icons/fa";
 
 
@@ -35,7 +35,7 @@ const AddTool = ({ values, errors, touched }) => {
     <Modal
       style={{ background: "#ecfffd", width: "34rem", textAlign: "center" }}
       trigger={
-        <Button
+        <button
           onClick={() => {
             handleModalOpen();
           }}
@@ -44,7 +44,7 @@ const AddTool = ({ values, errors, touched }) => {
           onClose={handleModalClose}
         >
           Add New Tool
-        </Button>
+        </button>
       }
       closeIcon
     >
@@ -131,17 +131,17 @@ const AddTool = ({ values, errors, touched }) => {
 
           <label className="checkbox">
             <p style={{ fontSize: "1.3rem" }}>
-              Please verify all fields are correct before adding a new tool.
+              Do you want this tool available for rental immediately.
               <Field
                 type="checkbox"
-                name="correctinfo"
-                checked={values.correctinfo}
+                name="available"
+                checked={values.available}
                 style={{ margin: "1%", height: "1.3rem", width: "1.3rem" }}
               />
             </p>
-            {touched.correctinfo && errors.correctinfo && (
+            {touched.available && errors.available && (
               <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                {errors.correctinfo}
+                {errors.available}
               </p>
             )}
           </label>
@@ -170,14 +170,14 @@ const FormikUserForm = withFormik({
     tool_description,
     tool_type,
     rental_cost,
-    correctinfo
+    available
   }) {
     return {
       tool_name: tool_name || "",
       tool_description: tool_description || "",
       tool_type: tool_type || "",
       rental_cost: rental_cost || "",
-      correctinfo: correctinfo || false
+      available: available || false
     };
   },
 
@@ -188,10 +188,7 @@ const FormikUserForm = withFormik({
     rental_cost: Yup.number().required(
       "The cost of the tool rental is required."
     ),
-    correctinfo: Yup.boolean().oneOf(
-      [true],
-      "You must confirm all fields are correct before submission."
-    )
+    available: Yup.boolean()
   }),
 
   handleSubmit(values, props) {
@@ -199,10 +196,10 @@ const FormikUserForm = withFormik({
       tool_name: values.tool_name,
       tool_description: values.tool_description,
       tool_type: values.tool_type,
-      rental_cost: values.rental_cost
-
+      rental_cost: values.rental_cost,
+      available: values.available
+      
     };
-    console.log(newTool);
     props.props.addTool(newTool);
     props.resetForm("");
   }

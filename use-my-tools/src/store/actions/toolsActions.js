@@ -1,6 +1,5 @@
 import axiosWithAuth from '../../utils/authentication/axiosWithAuth'
 
-
 export const GET_TOOLS_START = 'GET_TOOLS_START'
 export const GET_TOOLS_SUCCESS = 'GET_TOOLS_SUCCESS'
 export const GET_TOOLS_FAIL = 'GET_TOOLS_FAIL'
@@ -57,21 +56,19 @@ export const  getUserTools = () => dispatch => {
 
 export const addTool = (tool) => dispatch => {
     const newTool = {
-            "available": true,
             "rental_cost": tool.rental_cost,
             "tool_description": tool.tool_description,
             "tool_name": tool.tool_name,
             "tool_type": tool.tool_type,
+            "available": tool.available
         }
-
-    console.log(newTool)
-
     dispatch({type: ADD_TOOL_START})
     console.log('from ADD_TOOL_START action',newTool )
     axiosWithAuth()
     .post('/api/tools', newTool)
     .then(res => {
-        dispatch({type: ADD_TOOL_SUCCESS, payload: tool})
+        console.log(res)
+        dispatch({type: ADD_TOOL_SUCCESS, payload: res.data})
     })
     .catch(err => {
         console.log(err)
@@ -83,9 +80,9 @@ export const updateTool = (tool) => dispatch => {
     dispatch({type: UPDATE_TOOL_START})
     console.log('from updateTool',tool)
     axiosWithAuth()
-    .put(`tools/tool/update/${tool.toolid}`, tool)
+    .put(`/api/tools/${tool.id}`, tool)
     .then(res => {
-        dispatch({type: UPDATE_TOOL_SUCCESS, payload: tool })
+        dispatch({type: UPDATE_TOOL_SUCCESS, payload: res.data })
     })
     .catch(err => {
         console.log(err)
@@ -94,11 +91,10 @@ export const updateTool = (tool) => dispatch => {
 }
 
 export const deleteTool = (toolid) => dispatch => {
-    console.log(toolid)
     dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
 
     axiosWithAuth()
-    .delete(`/tools/tool/delete/${toolid}`)
+    .delete(`api/tools/${toolid}`)
     .then(res => {
         dispatch({type: DELETE_TOOL_SUCCESS, payload: toolid})
     })

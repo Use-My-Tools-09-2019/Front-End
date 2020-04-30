@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export {
     //nav
     Button,
@@ -24,8 +25,14 @@ const TopBar = styled.div`
     align-items: center;  
     width: 100%;
     height: 10rem;
-    background-color: #76d275;
-    border: 2px solid #88c399
+    background-color:#269;
+    background-image: linear-gradient(white 2px, transparent 2px),
+    linear-gradient(90deg, white 2px, transparent 2px),
+    linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+
 `;
 
 const Title = styled.h1`
