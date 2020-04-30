@@ -1,6 +1,5 @@
 import axiosWithAuth from '../../utils/authentication/axiosWithAuth'
 
-
 export const GET_TOOLS_START = 'GET_TOOLS_START'
 export const GET_TOOLS_SUCCESS = 'GET_TOOLS_SUCCESS'
 export const GET_TOOLS_FAIL = 'GET_TOOLS_FAIL'
@@ -81,9 +80,9 @@ export const updateTool = (tool) => dispatch => {
     dispatch({type: UPDATE_TOOL_START})
     console.log('from updateTool',tool)
     axiosWithAuth()
-    .put(`tools/tool/update/${tool.toolid}`, tool)
+    .put(`/api/tools/${tool.id}`, tool)
     .then(res => {
-        dispatch({type: UPDATE_TOOL_SUCCESS, payload: tool })
+        dispatch({type: UPDATE_TOOL_SUCCESS, payload: res.data })
     })
     .catch(err => {
         console.log(err)

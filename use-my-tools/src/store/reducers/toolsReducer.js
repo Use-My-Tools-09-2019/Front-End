@@ -109,8 +109,9 @@ export default function toolsReducer(state = initialState, action) {
                 ...state,
                 status: false,
                 userTools: state.userTools.map(tool => {
-                        if(tool.toolid === action.payload.toolid){
+                        if(tool.id === action.payload.id){
                             return action.payload
+                            
                         } 
                         return tool
                         })
