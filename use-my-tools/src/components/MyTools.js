@@ -48,10 +48,7 @@ const ToolTitle = styled.div`
   width: 100%;
 `;
 
-const Background = styled.div`
-  background-image: url(${welding});
-  height: 89.5vh;
-`;
+
 
 const Welcome = styled.h1`
   color: white;
@@ -70,7 +67,7 @@ const MyTools = props => {
     const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
 
   return (
-    <Background>
+    <>
       {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
       <Welcome>Welcome to your tools.</Welcome>
       <AddTool />
@@ -151,7 +148,7 @@ const MyTools = props => {
             </div>))}
         </ToolBox>
       </ContainerDiv>
-    </Background>
+    </>
   );
 };
 
