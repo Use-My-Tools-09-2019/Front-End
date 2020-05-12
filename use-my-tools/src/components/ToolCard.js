@@ -62,8 +62,8 @@ function ToolCard(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         const toolRequest = {
+            "id": props.tool.id,
             "rentaldate": new Date,
-            "toolid": props.tool.toolid,
         }
         props.requestTool(toolRequest)
     }

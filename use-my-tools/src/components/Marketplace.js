@@ -10,8 +10,7 @@ import styled from 'styled-components';
 
 //redux
 import { getTools } from '../store/actions'
-
-import { connect } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 const ToolsPage = styled.div`
     width: 90%;
@@ -30,10 +29,12 @@ const ToolsPage = styled.div`
   }   
 `
 
-function Marketplace (props) {
+function Marketplace () {
+  const tools = useSelector(state => state.tools.allTools)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    props.getTools()
+    dispatch(getTools())
   }, [])
 
   return (
@@ -41,14 +42,10 @@ function Marketplace (props) {
           <br/>
             <DropdownTools />
             <ToolsPage className="tool">
-              {props.tools.map(tool => <ToolCard tool={tool} key={tool.toolid}/>)}
+              {tools.map(tool => <ToolCard tool={tool} key={tool.toolid}/>)}
             </ToolsPage>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-  tools: state.tools.allTools
-})
-
-export default connect(mapStateToProps, { getTools })(Marketplace);
+export default Marketplace;
