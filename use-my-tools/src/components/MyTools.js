@@ -4,7 +4,6 @@ import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
 //styles
-import { Button, Header, Modal, Icon } from "semantic-ui-react";
 import { FaWindowClose } from "react-icons/fa";
 import Flip from 'react-reveal/Flip';
 

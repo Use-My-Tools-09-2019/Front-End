@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import styled from "styled-components";
 
 //styles
-import { Button, Header, Modal } from "semantic-ui-react";
 import { FaWindowClose, FaTools } from "react-icons/fa";
 
 
@@ -14,12 +13,6 @@ import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { addTool } from "../store/actions";
 
-const CustomButton = styled(Button)`
-  width: 12rem;
-  border-radius: 10px;
-  height: 3.23rem;
-  font-size: 1.6rem;
-`;
 
 const AddTool = ({ values, errors, touched }) => {
   const [modal, setModal] = useState(false);

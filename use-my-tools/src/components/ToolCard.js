@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Modal, Button, Header } from 'semantic-ui-react';
 import powertools from '../assets/powertools.jpg';
 import handtools from '../assets/handtools.jpg';
 import gardeningtools from '../assets/gardentools.jpg';
