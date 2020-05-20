@@ -21,22 +21,19 @@ const DropdownTools = (props) => {
         
     }
     return (
-    <Form onSubmit={handleSubmit}>
-        <Form.Input 
-        label='Search By Tool Type' 
-        control='select' 
-        onChange={handleChanges} name="tooltype" 
-        value={type.searchParam}
-        width={4}
-        name="searchParam"
+    <form onSubmit={handleSubmit}>
+        <select 
+        onChange={handleChanges} 
+        // name="tooltype" 
+        // value={type.searchParam}
         >
             <option value='All'>All</option>
             <option value="Hand Tool">Hand Tool</option>
             <option value="Power Tool">Power Tool</option>
             <option value="Gardening Tool">Gardening Tool</option>
-        </Form.Input>
-        <Button type='submit' color='black' className='search-btn'>Search</Button>
-    </Form>
+        </select>
+        <button type='submit' color='black' className='search-btn'>Search</button>
+    </form>
     )
 }
 

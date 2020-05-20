@@ -9,17 +9,14 @@ export {
     Logo
 }
 
-
-
 const TopBar = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center; 
-padding: 0 20px
+padding: auto 50px;
 width: 100%;
 height: 100px;
-background: black
-
+background: #202020;
 `;
 
 const Title = styled.h1`
@@ -35,19 +32,23 @@ object-fit: contain;
 const ButtonDiv = styled.div`
 display: flex;
 color: yellow;
+align-items: center;
 
 `;
 
-const Button = styled.button`
-width: 10rem;
-height: 3rem;
-margin: 1%;
-color: yellow;
-background: black;
-border: none;
-padding: 1rem 2rem;
-margin: 0;
-text-decoration: none;
-font-size: 1rem;
-cursor: pointer;
+const Button = styled.div`
+
+a {
+    width: 10rem;
+    height: 3rem;
+    margin: 1%;
+    color: yellow;
+    background: #202020;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
 `;

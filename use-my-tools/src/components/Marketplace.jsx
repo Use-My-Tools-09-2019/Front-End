@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 
 //components
-import  DropdownTools  from './SearchForm';
+import  SearchParams  from './SearchParams';
 import ToolCard from './ToolCard';
 
 //styles
@@ -16,17 +16,10 @@ const ToolsPage = styled.div`
     width: 90%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: start;
     margin: auto;
-    padding: 70px 0 0 35px;
+    padding: 70px 0px 0px;
     height: 100%;
-  .tool{
-    width: 300px;
-    padding: 40px 20px;
-    background-color: #76d275;
-    border-radius: 50px;
-    margin-bottom: 30px;
-    margin-right: 30px;
-  }   
 `
 
 function Marketplace () {
@@ -40,7 +33,7 @@ function Marketplace () {
   return (
         <div>
           <br/>
-            <DropdownTools />
+            <SearchParams />
             <ToolsPage className="tool">
               {tools.map(tool => <ToolCard tool={tool} key={tool.toolid}/>)}
             </ToolsPage>

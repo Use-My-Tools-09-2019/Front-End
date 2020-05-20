@@ -76,7 +76,7 @@ export default function AppRouter() {
           path="/"
           render={() =>
             localStorage.getItem("token") ? (
-              <Redirect to={`/dashboard/${localStorage.getItem("username")}`} />
+              <Redirect to={`/marketplace/${localStorage.getItem("username")}`} />
             ) : (
               <Redirect to={`/login`} />
             )

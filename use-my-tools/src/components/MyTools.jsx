@@ -6,6 +6,8 @@ import welding from "../images/welding.jpg";
 //styles
 import { FaWindowClose } from "react-icons/fa";
 import Flip from 'react-reveal/Flip';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
 
 
 //redux
@@ -14,7 +16,7 @@ import {deleteTool, getUserTools } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
-import UpdateToolModal from "./UpdateToolModal"
+// import UpdateToolModal from "./UpdateToolModal"
 
 const ToolBox = styled.div`
     display: flex;
@@ -96,28 +98,21 @@ const MyTools = () => {
               
                   {/* FaWindowClose is the icon to remove tools, functionality needed.
                   {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
-                  <Modal
-                    trigger={<Button>{<FaWindowClose />}</Button>}
-                    basic
-                    size="small"
-                  >
-                    <Header icon="delete" content="Delete Tool" />
-                    <Modal.Content>
+
+                    <header icon="delete" content="Delete Tool" />
+                    <Modal>
                       <p>Are you sure you want to delete this tool?</p>
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Button
+                      <button
                         onClick={() => {
                           dispatch(deleteTool(tool.id));
                         }}
                         color="green"
                         inverted
                       >
-                        <Icon name="checkmark" /> Yes
-                      </Button>
-                    </Modal.Actions>
-                  </Modal>
-                  <UpdateToolModal tool={tool}/>
+                      Yes
+                      </button>
+                    </Modal>
+                  {/* <UpdateToolModal tool={tool}/> */}
                 </div>
               </div>
             </ItemContainer>
