@@ -47,9 +47,10 @@ justify-content: center;
 max-width: 350px;
 align-items: center;
 width: 300px;
-border-radius: 25px;
-background: black;
+border: 1px solid yellow
+border-radius: 10px;
 margin: 25px;
+background: #252525;
 color: yellow;
 `
 
@@ -57,14 +58,20 @@ const PriceTag = styled.div`
   width: 100%;
   display: flex;
   align-items: start;
-  padding: 5px 0px 0px 30px;
+  padding-left: 30px;
   margin-bottom: 30px;
-  color: white
+  p {
+    min-width: 75px;
+    padding: 10px;
+    background: yellow;
+    color: black;
+    font-weight: 600;
+  }
 `
 const ToolContent = styled.div`
 
 button {
-  padding: 10px;
+    padding: 10px;
     border-radius: 20px;
     width: 150px;
     margin: auto;
@@ -76,8 +83,8 @@ button {
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin: auto;
     padding-bottom: 20px;
   }
@@ -90,6 +97,10 @@ button {
     color: red;
   }
 `;
+
+const ToolTitle = styled.h1`
+  font-size: 2rem;
+`
 const FormStyle = styled.form`
   button {
     margin-left: 15px;
@@ -136,13 +147,14 @@ function ToolCard(props) {
         </PriceTag>
       <ToolContent>
         
-        <h1>
-          {props.tool.user_name}'s {props.tool.tool_name}
-        </h1>
+        <ToolTitle> 
+          {props.tool.tool_name}
+        </ToolTitle>
         <img src={imageTool()} />
-        <h4>{props.tool.tool_type}</h4>
-        <h4>Tool Description</h4>
-        <p>{props.tool.tool_description}</p>
+        <h4>Owner: {props.tool.user_name}</h4>
+
+        <h4>Type: {props.tool.tool_type}</h4>
+        <h4>Tool Description: {props.tool.tool_description}</h4>
         <Modal
           open={open}
           onClose={handleClose}
