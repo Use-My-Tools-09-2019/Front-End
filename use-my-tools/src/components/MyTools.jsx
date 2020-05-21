@@ -1,132 +1,126 @@
 import React, { useState, useEffect } from "react";
 
-import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
 //styles
 import { FaWindowClose } from "react-icons/fa";
-import Flip from 'react-reveal/Flip';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import * as styled from "./styled-components/myTools"
 
 //redux
-import {useDispatch, useSelector } from "react-redux";
-import {deleteTool, getUserTools } from "../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTool, getUserTools } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
 // import UpdateToolModal from "./UpdateToolModal"
 
-const ToolBox = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 49%;
-    height: auto;
-    justify-content: center;
-    margin: 2%;
-    background: #ecfffd;
-    border: 2px solid #76d275;
-    border-radius: 15px;
-`;
 
-const ContainerDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1%;
-`;
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
 
-const ItemContainer = styled.div`
-  margin: 2%;
-  border-radius: 15px;
-`;
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
 
-const ToolTitle = styled.div`
-  text-align: center;
-  margin-bottom: 2%;
-  margin-top: 2%;
-  width: 100%;
-`;
-
-
-
-const Welcome = styled.h1`
-  color: white;
-  margin-top: 2%;
-`;
-
-
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const MyTools = () => {
   //redux hooks
-  const dispatch = useDispatch()
-  const userTools = useSelector(state => state.tools.userTools)
+  const dispatch = useDispatch();
+  const userTools = useSelector((state) => state.tools.userTools);
 
-  
+  //side effects
   useEffect(() => {
-    dispatch(getUserTools())
+    dispatch(getUserTools());
   }, []);
+
+  //mui modal
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [modalStyle] = useState(getModalStyle);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
-      {/* Splitting the sections for My current tools/adding/edit tools and to view which tools have been rented.  */}
-      <Welcome>Welcome to your tools.</Welcome>
+      <styled.Welcome>Welcome to your tools.</styled.Welcome>
       <AddTool />
-      <ContainerDiv>
-        <ToolBox>
-          <ToolTitle>
+      <styled.ContainerDiv>
+        <styled.ToolBox>
+          <styled.ToolTitle>
             <h2>Current Tools you Own</h2>
             <h2>Add, Update, or Delete your Tools</h2>
-          </ToolTitle>
+          </styled.ToolTitle>
           {/* Mapping over tools for the user, adding new card for each input */}
-          {userTools.map(tool => (
-            <Flip top key={tool.id}>
-            <ItemContainer className="ui cards" >
-              <div className="ui card" >
-                <div className="content">
-                  <div className="header">
-                    <p>Tool Name: {tool.tool_name}</p>
-                  </div>
-                  <div className="meta">
-                    <p>Tool Type: {tool.tool_type}</p>
-                    <p>Rental Cost: ${tool.rental_cost} per day</p>
-                  </div>
-                  <div className="description">
-                    <p>Tool Description: {tool.tool_description}</p>
-                  </div>
-              
-                  {/* FaWindowClose is the icon to remove tools, functionality needed.
-                  {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
+          {userTools.map((tool) => (
+              <styled.ItemContainer className="ui cards">
+                <div className="ui card">
+                  <div className="content">
+                    <div className="header">
+                      <p>Tool Name: {tool.tool_name}</p>
+                    </div>
+                    <div className="meta">
+                      <p>Tool Type: {tool.tool_type}</p>
+                      <p>Rental Cost: ${tool.rental_cost} per day</p>
+                    </div>
+                    <div className="description">
+                      <p>Tool Description: {tool.tool_description}</p>
+                    </div>
 
-                    <header icon="delete" content="Delete Tool" />
-                    <Modal>
-                      <p>Are you sure you want to delete this tool?</p>
-                      <button
-                        onClick={() => {
-                          dispatch(deleteTool(tool.id));
-                        }}
-                        color="green"
-                        inverted
-                      >
-                      Yes
-                      </button>
+                    {/* FaWindowClose is the icon to remove tools, functionality needed.
+                    <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
+
+                    <header icon="delete" content="Delete Tool" 
+                      onClick={handleOpen}
+                    />
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                    >
+                      <div style={modalStyle} className={classes.paper}>
+                        <p>Are you sure you want to delete this tool?</p>
+                        <button
+                          onClick={() => {
+                            dispatch(deleteTool(tool.id));
+                          }}
+                        >
+                          Yes
+                        </button>
+                      </div>
                     </Modal>
-                  {/* <UpdateToolModal tool={tool}/> */}
+                    {/* <UpdateToolModal tool={tool}/> */}
+                  </div>
                 </div>
-              </div>
-            </ItemContainer>
-            </Flip>
+              </styled.ItemContainer>
           ))}
-        </ToolBox>
-        <ToolBox>
-          {/* List of all user rentals */}
-          <ToolTitle>
-            <h2>Current Tools Requested for Rent</h2>
-          </ToolTitle>
-          
-        </ToolBox>
-      </ContainerDiv>
+        </styled.ToolBox>
+      </styled.ContainerDiv>
     </>
   );
 };
