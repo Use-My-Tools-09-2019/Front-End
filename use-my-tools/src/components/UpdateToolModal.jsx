@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Radio } from "semantic-ui-react";
 import { FaTools } from "react-icons/fa";
 
 //hooks
 import { useInput } from "../utils/hooks/useInput";
 
 // redux
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateTool } from "../store/actions";
 
-function UpdateToolModal(props) {
+const UpdateToolModal = (props) => {
   const initialState = {
     rental_cost: props.tool.rental_cost,
     tool_description: props.tool.tool_description,
@@ -21,6 +20,7 @@ function UpdateToolModal(props) {
   };
   const [tool, setTool, handleChanges] = useInput(initialState);
 
+
   const handleCheckboxTrue = (e) => {
     setTool({...tool, available: true})
   };
@@ -31,9 +31,8 @@ function UpdateToolModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.updateTool(tool);
+    dispatch(updateTool(tool));
     handleModalClose()
-
   };
 
   const [modal, setModal] = useState(false);
@@ -45,6 +44,9 @@ function UpdateToolModal(props) {
   const handleModalClose = () => {
     setModal(false);
   };
+
+  //redux hooks 
+  const dispatch = useDispatch()
   
   return (
     <Modal 
@@ -119,4 +121,4 @@ function UpdateToolModal(props) {
   );
 }
 
-export default connect(null, { updateTool })(UpdateToolModal);
+export default UpdateToolModal;

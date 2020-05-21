@@ -4,18 +4,19 @@ import styled from "styled-components";
 import welding from "../images/welding.jpg";
 
 //styles
-import { Button, Header, Modal, Icon } from "semantic-ui-react";
 import { FaWindowClose } from "react-icons/fa";
 import Flip from 'react-reveal/Flip';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
 
 
 //redux
-import { connect } from "react-redux";
-import {updateTool, deleteTool, getUserTools } from "../store/actions";
+import {useDispatch, useSelector } from "react-redux";
+import {deleteTool, getUserTools } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
-import UpdateToolModal from "./UpdateToolModal"
+// import UpdateToolModal from "./UpdateToolModal"
 
 const ToolBox = styled.div`
     display: flex;
@@ -57,14 +58,15 @@ const Welcome = styled.h1`
 
 
 
-const MyTools = props => {
+const MyTools = () => {
+  //redux hooks
+  const dispatch = useDispatch()
+  const userTools = useSelector(state => state.tools.userTools)
 
-  const [requestedTool, setRequestedTool] = useState([]);
   
   useEffect(() => {
-    props.getUserTools()
+    dispatch(getUserTools())
   }, []);
-    const filteredTool = requestedTool.filter(tool => tool.user.username === localStorage.username)
 
   return (
     <>
@@ -78,7 +80,7 @@ const MyTools = props => {
             <h2>Add, Update, or Delete your Tools</h2>
           </ToolTitle>
           {/* Mapping over tools for the user, adding new card for each input */}
-          {props.userTools.map(tool => (
+          {userTools.map(tool => (
             <Flip top key={tool.id}>
             <ItemContainer className="ui cards" >
               <div className="ui card" >
@@ -96,28 +98,21 @@ const MyTools = props => {
               
                   {/* FaWindowClose is the icon to remove tools, functionality needed.
                   {/* <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
-                  <Modal
-                    trigger={<Button>{<FaWindowClose />}</Button>}
-                    basic
-                    size="small"
-                  >
-                    <Header icon="delete" content="Delete Tool" />
-                    <Modal.Content>
+
+                    <header icon="delete" content="Delete Tool" />
+                    <Modal>
                       <p>Are you sure you want to delete this tool?</p>
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Button
+                      <button
                         onClick={() => {
-                          props.deleteTool(tool.id);
+                          dispatch(deleteTool(tool.id));
                         }}
                         color="green"
                         inverted
                       >
-                        <Icon name="checkmark" /> Yes
-                      </Button>
-                    </Modal.Actions>
-                  </Modal>
-                  <UpdateToolModal tool={tool}/>
+                      Yes
+                      </button>
+                    </Modal>
+                  {/* <UpdateToolModal tool={tool}/> */}
                 </div>
               </div>
             </ItemContainer>
@@ -130,36 +125,10 @@ const MyTools = props => {
             <h2>Current Tools Requested for Rent</h2>
           </ToolTitle>
           
-          {filteredTool.map(tool => (
-            <div className="ui card" key={tool.toolid} style={{ height: "15rem"}}>
-              <div className="content" >
-                <div className="header">
-                  <p>Tool Name: {tool.tool_name}</p>
-                  <p>The tool was posted by: {tool.user.username}</p>
-                </div>
-                <div className="meta">
-                  <p>Tool Type: {tool.tool_type}</p>
-                  <p>Rental Cost: ${tool.rental_cost} per day</p>
-                </div>
-                <div className="description">
-                      <p>Tool Description: {tool.tool_description}</p>
-                </div>
-              </div>
-            </div>))}
         </ToolBox>
       </ContainerDiv>
     </>
   );
 };
 
-const mapStateToProps = state => ({
-  userTools: state.tools.userTools,
-
-});
-
-const mapActionsToProps = {
-  updateTool,
-  deleteTool,
-  getUserTools
-};
-export default connect(mapStateToProps,mapActionsToProps)(MyTools);
+export default MyTools;

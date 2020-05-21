@@ -26,7 +26,7 @@ import logImg from "../assets/logo.png";
 export default function AppRouter() {
   return (
     <Router>
-      <styled.TopBar class="top-bar">
+      <styled.TopBar className="top-bar">
         <styled.ButtonDiv>
           <styled.Logo src={logImg} />
           <styled.Title>Use My Tools</styled.Title>
@@ -76,7 +76,7 @@ export default function AppRouter() {
           path="/"
           render={() =>
             localStorage.getItem("token") ? (
-              <Redirect to={`/dashboard/${localStorage.getItem("username")}`} />
+              <Redirect to={`/marketplace/${localStorage.getItem("username")}`} />
             ) : (
               <Redirect to={`/login`} />
             )
