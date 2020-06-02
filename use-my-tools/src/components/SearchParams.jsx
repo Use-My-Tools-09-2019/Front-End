@@ -2,40 +2,39 @@ import React from 'react';
 import { useInput } from '../utils/hooks/useInput'
 
 //redux 
-import{ connect } from 'react-redux'
+import{ useDispatch,useSelector } from 'react-redux'
 import { getTools, searchTools} from '../store/actions'
+
+//styles
+import * as styled from "./styled-components/searchParams"
 
 const initialState = {
     searchParam: 'all'
 }
     
-const DropdownTools = (props) => {
+const SearchParams = () => {
+    const tools = useSelector(state => state.tools.allTools)
+    const dispatch = useDispatch()
+
     const [type, setType, handleChanges] = useInput(initialState)
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('From SearchFrom', type.searchParam)
-        // if(type === 'All'){
-        //     props.getTools()
-        // }else {props.searchTools(type)}
-        type.searchParam === 'All' ? props.getTools() : props.searchTools(type)
-        
-    }
+
     return (
-    <form onSubmit={handleSubmit}>
-        <select 
-        onChange={handleChanges} 
-        // name="tooltype" 
-        // value={type.searchParam}
-        >
-            <option value='All'>All</option>
-            <option value="Hand Tool">Hand Tool</option>
-            <option value="Power Tool">Power Tool</option>
-            <option value="Gardening Tool">Gardening Tool</option>
-        </select>
-        <button type='submit' color='black' className='search-btn'>Search</button>
-    </form>
+        <styled.Container>
+            <styled.Button active>
+                All
+            </styled.Button>
+            <styled.Button>
+                Power Tools
+            </styled.Button>
+            <styled.Button>
+                Hand Tools
+            </styled.Button>
+            <styled.Button>
+                Garden Tools
+            </styled.Button>
+        </styled.Container>
     )
 }
 
 
-export default connect(null, { searchTools, getTools})(DropdownTools);
+export default SearchParams;
