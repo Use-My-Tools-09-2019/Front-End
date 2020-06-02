@@ -30,39 +30,39 @@ export const PriceTag = styled.div`
   }
 `
 export const ToolContent = styled.div`
-
-button {
-    padding: 10px;
-    border-radius: 20px;
-    width: 150px;
-    margin: auto;
-  }
-
-  button:hover {
-    background-color: white;
-    color: black;
-  }
-
   img {
     width: 200px;
     height: 200px;
     margin: auto;
     padding-bottom: 20px;
   }
-
-  .button {
-    margin: auto;
-  }
-
-  form .formButton {
-    color: red;
+  h4 {
+    font-size: 1.2rem
+    margin-top: 5px;
+    word-wrap: break-word;
   }
 `;
+
+export const RequestButton = styled.button`
+width: 10rem;
+height: 3rem;
+margin: 20px 0px;
+color: black;
+background: yellow;
+border: none;
+padding: 5%;
+text-decoration: none;
+font-size: 1.4rem;
+cursor: pointer;
+`
 
 export const ToolTitle = styled.h1`
   font-size: 2rem;
 `
+
+
 export const FormStyle = styled.form`
+  height: 200px;
   button {
     margin-left: 15px;
     border-radius: 30px;

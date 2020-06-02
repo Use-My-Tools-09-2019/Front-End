@@ -95,15 +95,15 @@ function ToolCard(props) {
           aria-describedby="simple-modal-description"
         >
           <div style={modalStyle} className={classes.paper}>
-              <h1>Are you sure you want to request this item.</h1>
               <styled.FormStyle className="request-form">
-              <button type="submit" onClick={handleSubmit}>
-                  Request
-              </button>
+                <h1>Are you sure you want to request this item.</h1>
+                <button type="submit" onClick={handleSubmit}>
+                    Request
+                </button>
               </styled.FormStyle>
           </div>
         </Modal>
-        <button onClick={handleOpen}>Request</button>
+        <styled.RequestButton onClick={handleOpen}>Request</styled.RequestButton>
       </styled.ToolContent>
     </styled.Card>
   );
