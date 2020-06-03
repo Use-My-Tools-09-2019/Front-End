@@ -113,9 +113,9 @@ const AddTool = ({ values, errors, touched }) => {
                   style={{ margin: "1%" }}
                 >
                   <option value="Select">Please select Tool Type</option>
-                  <option value="Hand Tool">Hand Tools</option>
-                  <option value="Power Tool">Power Tools</option>
-                  <option value="Gardening Tool">Gardening Tools</option>
+                  <option value="Hand">Hand Tools</option>
+                  <option value="Power">Power Tools</option>
+                  <option value="Garden">Gardening Tools</option>
                 </Field>
               </p>
             </label>

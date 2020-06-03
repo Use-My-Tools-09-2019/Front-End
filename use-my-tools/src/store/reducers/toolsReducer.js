@@ -33,6 +33,12 @@ import {
 
 const initialState = {
     allTools: [],
+    activeFilter: {
+        all: true,
+        Power: false,
+        Garden: false,
+        Hand: false,
+    },
     userTools: [],
     userRentals: [],
     errMessage: null,
@@ -50,7 +56,8 @@ export default function toolsReducer(state = initialState, action) {
         case GET_TOOLS_SUCCESS:
             return {
                 ...state,
-                allTools: action.payload
+                allTools: action.payload,
+                activeFilter: action.active
             }
         case GET_TOOLS_FAIL:
             return {
