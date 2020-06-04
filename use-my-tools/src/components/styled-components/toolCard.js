@@ -5,8 +5,8 @@ export const Card = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
-max-width: 350px;
 align-items: center;
+min-width: 300px;
 width: 300px;
 border: 1px solid yellow
 border-radius: 10px;
@@ -50,7 +50,6 @@ margin: 20px 0px;
 color: black;
 background: yellow;
 border: none;
-padding: 5%;
 text-decoration: none;
 font-size: 1.4rem;
 cursor: pointer;

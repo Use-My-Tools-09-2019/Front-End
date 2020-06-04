@@ -13,11 +13,11 @@ import { getTools } from '../store/actions'
 import {useDispatch, useSelector} from 'react-redux'
 
 const ToolsPage = styled.div`
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-    margin: auto;
+    margin-top: auto;
     padding: 70px 0px 0px;
     height: 100%;
 `
@@ -26,12 +26,13 @@ function Marketplace () {
   const tools = useSelector(state => state.tools.allTools)
   const dispatch = useDispatch()
 
+
   useEffect(() => {
     dispatch(getTools())
   }, [])
 
   return (
-        <div>
+        <div style={{width: '100%'}}>
           <br/>
             <SearchParams />
             <ToolsPage className="tool">

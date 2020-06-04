@@ -21,6 +21,7 @@ const Button = styled.div`
     background: ${props => props.active ? 'yellow': 'none'};
     border 1px solid yellow;
     color: ${props => props.active ? 'black': 'yellow'};
+    font-size: 1.3rem;
     width: 150px;
     height: 50px;
     &:hover {
