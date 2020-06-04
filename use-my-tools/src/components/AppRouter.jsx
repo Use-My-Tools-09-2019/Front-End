@@ -19,7 +19,7 @@ import MyTools from "./MyTools";
 import Footer from "./Footer";
 
 //styles
-import * as styled from "./styled-components/navStyles";
+import * as styled from "./styled-components/appRouter";
 import logImg from "../assets/logo.png";
 
 
