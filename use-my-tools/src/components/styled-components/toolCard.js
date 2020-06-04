@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as color from "../../styles/color"
 
 
 export const Card = styled.div`
@@ -8,11 +9,11 @@ justify-content: center;
 align-items: center;
 min-width: 300px;
 width: 300px;
-border: 1px solid yellow
+border: 1px solid ${color.primary}
 border-radius: 10px;
 margin: 25px;
 background: #252525;
-color: yellow;
+color: ${color.primary};
 `
 
 export const PriceTag = styled.div`
@@ -24,7 +25,7 @@ export const PriceTag = styled.div`
   p {
     min-width: 75px;
     padding: 10px;
-    background: yellow;
+    background: ${color.primary};
     color: black;
     font-weight: 600;
   }
@@ -48,7 +49,7 @@ width: 10rem;
 height: 3rem;
 margin: 20px 0px;
 color: black;
-background: yellow;
+background: ${color.primary};
 border: none;
 text-decoration: none;
 font-size: 1.4rem;

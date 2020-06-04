@@ -7,6 +7,7 @@ import axios from 'axios'
 
 //styles
 import { LoginContainer } from '../styled-components/form'
+import * as color from '../../styles/color'
 
 import states from './states'
 
@@ -65,7 +66,7 @@ function Register({ touched, errors, status }) {
 				</div>
 				<p>{touched.state && errors.state}</p>
 				<div >
-					<label style={{color: 'yellow'}}>State:  </label>
+					<label style={{color: color.primary}}>State:  </label>
 					<Field
 						placeholder="state"
 						name="state"

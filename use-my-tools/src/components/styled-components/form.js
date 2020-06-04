@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as color from '../../styles/color'
 
 export const LoginContainer = styled.div`
 display: flex;
@@ -11,12 +12,12 @@ margin-top: 50px;
   
   h1{
     font-size: 2.5rem;
-    color: yellow;
+    color: ${color.primary};
   }
 
   h2{
     font-size: 2rem;
-    color: yellow;
+    color: ${color.primary};
   }
 
   p{
@@ -35,7 +36,7 @@ margin-top: 50px;
     width: 10rem;
     height: 3rem;
     color: black;
-    background: yellow;
+    background: ${color.primary};
     border: none;
     text-decoration: none;
     font-size: 1.4rem;

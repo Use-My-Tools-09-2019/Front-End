@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { FaWindowClose, FaTools } from "react-icons/fa";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import * as color from '../styles/color'
 
 import { withFormik, Form, Field } from "formik";
 
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
     backgroundColor: 'black',
     color: 'white',
-    border: "4px solid yellow",
+    border: `4px solid ${color.primary} `,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },

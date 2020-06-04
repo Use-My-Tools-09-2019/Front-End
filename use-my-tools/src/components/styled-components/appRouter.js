@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import * as color from '../../styles/color'
 
 export {
     Button,
@@ -31,7 +31,7 @@ object-fit: contain;
 
 const ButtonDiv = styled.div`
 display: flex;
-color: yellow;
+color: ${color.primary};
 align-items: center;
 
 `;
@@ -42,7 +42,7 @@ a {
     width: 10rem;
     height: 3rem;
     margin: 1%;
-    color: yellow;
+    color: ${color.primary};
     background: #202020;
     border: none;
     padding: 1rem 2rem;
