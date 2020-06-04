@@ -9,34 +9,35 @@ import { connect } from 'react-redux'
 import { loginAC} from '../store/actions'
 
 //styles
+import { LoginContainer } from './styled-components/form'
+
 
 function Login({ touched, errors, status }) {
     return (
-        <>
-        <h1>Login</h1>
-        <Form className="form">
-						<p style={{color: 'red'}}>{touched.user_name && errors.user_name}</p>
-            <div className='ui input'>
-                <Field
-                    placeholder="Enter your username"
-                    name="user_name"
-                    type="user_name"
-                />
-            </div>
-						<p style={{color: 'red'}}>{touched.password && errors.password}</p>
-            <div className='ui input'>
-                <Field
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                />
-            </div>
-            <br />
-            <button color="black" type="sumbmit">Login</button>
-            <br />
-            {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
-      </Form>
-      </>
+        <LoginContainer>
+          <Form className="form">
+              <p style={{color: 'red'}}>{touched.user_name && errors.user_name}</p>
+              <div className='ui input'>
+                  <Field
+                      placeholder="Enter your username"
+                      name="user_name"
+                      type="text"
+                  />
+              </div>
+              <p style={{color: 'red'}}>{touched.password && errors.password}</p>
+              <div className='ui input'>
+                  <Field
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                  />
+              </div>
+              <br />
+              <button color="black" type="sumbmit">Login</button>
+              <br />
+              {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
+        </Form>
+      </LoginContainer>
     )
 }
 
