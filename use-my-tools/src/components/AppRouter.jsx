@@ -16,14 +16,20 @@ import Register from "./register/Register";
 import Marketplace from "./Marketplace";
 import PrivateRoute from "./PrivateRoute";
 import MyTools from "./MyTools";
+import Hamburger from './Hamburger'
+
 import Footer from "./Footer";
 
 //styles
 import * as styled from "./styled-components/appRouter";
 import logImg from "../assets/logo.png";
-
+import { tablet } from "./styled-components/media";
+import { useMediaQuery } from "react-responsive";
 
 export default function AppRouter() {
+  //media query
+  const isTablet = useMediaQuery({ query: `(max-width: ${tablet})` });
+
   return (
     <Router>
       <styled.TopBar className="top-bar">
@@ -31,44 +37,52 @@ export default function AppRouter() {
           <styled.Logo src={logImg} />
           <styled.Title>Use My Tools</styled.Title>
         </styled.ButtonDiv>
-        <styled.ButtonDiv>
-          {!localStorage.getItem("token") ? (
-            <>
-              <styled.Button>
-                <NavLink to="/login">Login</NavLink>
-              </styled.Button>
-              <styled.Button>
-                <NavLink to="/register">Register</NavLink>
-              </styled.Button>
-            </>
-          ) : (
-            <>
-              <styled.Button>
-                <NavLink
-                  to={`/marketplace/${localStorage.getItem("username")}`}
-                >
-                  Marketplace
-                </NavLink>
-              </styled.Button>
-              <styled.Button>
-                <NavLink to={`/my-tools/${localStorage.getItem("username")}`}>
-                  My Tools
-                </NavLink>
-              </styled.Button>
-              <span>
-                <styled.Button
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("username");
-                    window.location.reload();
-                  }}
-                >
-                  <NavLink to="/login">Logout</NavLink>
-                </styled.Button>
-              </span>
-            </>
-          )}
-        </styled.ButtonDiv>
+        {isTablet ? (
+          <Hamburger/>
+        ) : (
+          <>
+            <styled.ButtonDiv>
+              {!localStorage.getItem("token") ? (
+                <>
+                  <styled.Button>
+                    <NavLink to="/login">Login</NavLink>
+                  </styled.Button>
+                  <styled.Button>
+                    <NavLink to="/register">Register</NavLink>
+                  </styled.Button>
+                </>
+              ) : (
+                <>
+                  <styled.Button>
+                    <NavLink
+                      to={`/marketplace/${localStorage.getItem("username")}`}
+                    >
+                      Marketplace
+                    </NavLink>
+                  </styled.Button>
+                  <styled.Button>
+                    <NavLink
+                      to={`/my-tools/${localStorage.getItem("username")}`}
+                    >
+                      My Tools
+                    </NavLink>
+                  </styled.Button>
+                  <span>
+                    <styled.Button
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("username");
+                        window.location.reload();
+                      }}
+                    >
+                      <NavLink to="/login">Logout</NavLink>
+                    </styled.Button>
+                  </span>
+                </>
+              )}
+            </styled.ButtonDiv>
+          </>
+        )}
       </styled.TopBar>
       <Switch>
         <Route
@@ -76,7 +90,9 @@ export default function AppRouter() {
           path="/"
           render={() =>
             localStorage.getItem("token") ? (
-              <Redirect to={`/marketplace/${localStorage.getItem("username")}`} />
+              <Redirect
+                to={`/marketplace/${localStorage.getItem("username")}`}
+              />
             ) : (
               <Redirect to={`/login`} />
             )

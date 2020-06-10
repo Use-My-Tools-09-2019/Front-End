@@ -7,10 +7,11 @@ import ToolCard from './ToolCard';
 
 //styles
 import styled from 'styled-components';
+import { tablet } from './styled-components/media'
 
 //redux
 import { getTools } from '../store/actions'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ToolsPage = styled.div`
     width: 100%;
@@ -20,6 +21,10 @@ const ToolsPage = styled.div`
     margin-top: auto;
     padding: 70px 0px 0px;
     height: 100%;
+
+    @media(max-width: ${tablet}) {
+      justify-content: center
+    }
 `
 
 function Marketplace () {
