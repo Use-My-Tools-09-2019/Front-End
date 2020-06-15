@@ -11,8 +11,8 @@ import {
 
 //components
 import Dashboard from "./Dashboard";
-import Login from "./Login";
-import Register from "./register/Register";
+import Login from "./Auth/Login";
+import Register from "./Auth/register/Register";
 import Marketplace from "./Marketplace";
 import PrivateRoute from "./PrivateRoute";
 import MyTools from "./MyTools";

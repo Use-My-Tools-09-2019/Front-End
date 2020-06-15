@@ -6,15 +6,15 @@ import * as Yup from 'yup'
 
 //redux
 import { connect } from 'react-redux'
-import { loginAC} from '../store/actions'
+import { loginAC} from '../../store/actions'
 
 //styles
-import { LoginContainer } from './styled-components/form'
+import { FormContainer } from '../styled-components/form'
 
 
 function Login({ touched, errors, status }) {
     return (
-        <LoginContainer>
+        <FormContainer>
           <Form className="form">
               <p style={{color: 'red'}}>{touched.user_name && errors.user_name}</p>
               <div className='ui input'>
@@ -37,7 +37,7 @@ function Login({ touched, errors, status }) {
               <br />
               {status && <h3 style={{color: 'red'}}>Please try again, error during login</h3>}
         </Form>
-      </LoginContainer>
+      </FormContainer>
     )
 }
 

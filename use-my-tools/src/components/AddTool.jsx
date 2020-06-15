@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import styled from "styled-components";
 
 //styles
-import { FaWindowClose, FaTools } from "react-icons/fa";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as color from '../styles/color'
+import { Button } from './styled-components/general'
+import * as styled from './styled-components/addTool'
 
+//formik
 import { withFormik, Form, Field } from "formik";
 
 //redux
 import { connect } from "react-redux";
 import { addTool } from "../store/actions";
+import { purple } from "@material-ui/core/colors";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+
 
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
+    background: '#151515'
+    
   };
 }
 
@@ -64,10 +64,6 @@ const AddTool = ({ values, errors, touched }) => {
       >
         <div style={modalStyle} className={classes.paper}>
           <h1>Add a New Tool</h1>
-          <header style={{ margin: "1%" }}>
-            Please fill out the following information:
-          </header>
-
           {/* Using Formik for the form functionality */}
           <Form>
             <label htmlFor="tool_name">
@@ -159,7 +155,7 @@ const AddTool = ({ values, errors, touched }) => {
                 </p>
               )}
             </label>
-            <button
+            <Button
               type="submit"
               class="ui approve button"
               onClick={() => {
@@ -168,7 +164,7 @@ const AddTool = ({ values, errors, touched }) => {
               style={{ margin: "1%" }}
             >
               Add Tool
-            </button>
+            </Button>
           </Form>
         </div>
       </Modal>

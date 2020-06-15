@@ -13,6 +13,7 @@ import { requestTool } from "../store/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as styled from "./styled-components/toolCard"
+import { Button } from './styled-components/general'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -103,7 +104,7 @@ function ToolCard(props) {
               </styled.FormStyle>
           </div>
         </Modal>
-        <styled.RequestButton onClick={handleOpen}>Request</styled.RequestButton>
+        <Button onClick={handleOpen}>Request</Button>
       </styled.ToolContent>
     </styled.Card>
   );

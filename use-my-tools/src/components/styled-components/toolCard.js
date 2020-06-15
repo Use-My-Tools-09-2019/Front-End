@@ -3,6 +3,7 @@ import * as color from "../../styles/color"
 
 
 export const Card = styled.div`
+outline: none;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -43,18 +44,6 @@ export const ToolContent = styled.div`
     word-wrap: break-word;
   }
 `;
-
-export const RequestButton = styled.button`
-width: 10rem;
-height: 3rem;
-margin: 20px 0px;
-color: black;
-background: ${color.primary};
-border: none;
-text-decoration: none;
-font-size: 1.4rem;
-cursor: pointer;
-`
 
 export const ToolTitle = styled.h1`
   font-size: 2rem;

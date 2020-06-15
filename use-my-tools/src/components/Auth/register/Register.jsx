@@ -6,14 +6,14 @@ import * as Yup from 'yup'
 import axios from 'axios'
 
 //styles
-import { LoginContainer } from '../styled-components/form'
-import * as color from '../../styles/color'
+import { FormContainer } from '../../styled-components/form'
+import * as color from '../../../styles/color'
 
 import states from './states'
 
 function Register({ touched, errors, status }) {
 	return (
-		<LoginContainer>
+		<FormContainer>
 			<Form className="form">
 				<p>{touched.email && errors.email}</p>
 				<div className='ui input'>
@@ -94,7 +94,7 @@ function Register({ touched, errors, status }) {
 				<br />
 				{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 			</Form>
-		</LoginContainer>
+		</FormContainer>
 	)
 }
 

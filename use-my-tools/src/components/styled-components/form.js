@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import * as color from '../../styles/color'
 
-export const LoginContainer = styled.div`
+export const FormContainer = styled.div`
 display: flex;
 justify-content: center;
 margin-top: 50px;

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 // styles
 import * as styled from "./styled-components/appRouter";
+import * as color from '../styles/color'
 
 
 //mui
@@ -15,7 +16,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 const StyledMenu = withStyles({
   paper: {
-    border: "1px solid #d3d4d5",
+    border: "1px solid #101010",
+    background: color.nav
   },
 })((props) => (
   <Menu
@@ -34,7 +36,9 @@ const StyledMenu = withStyles({
 ));
 
 const StyledMenuItem = withStyles((theme) => ({
-  root: {},
+  root: {
+    border: `0.5px solid ${color.primary}`
+  },
 }))(MenuItem);
 
 export default function Hamburger() {

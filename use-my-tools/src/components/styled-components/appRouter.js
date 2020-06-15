@@ -17,7 +17,7 @@ align-items: center;
 padding: auto 50px;
 width: 100%;
 height: 100px;
-background: #202020;
+background: ${color.nav};
 `;
 
 const Title = styled.h1`
