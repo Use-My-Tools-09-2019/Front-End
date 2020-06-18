@@ -14,7 +14,6 @@ import { withFormik, Form, Field } from "formik";
 //redux
 import { connect } from "react-redux";
 import { addTool } from "../store/actions";
-import { purple } from "@material-ui/core/colors";
 
 
 function getModalStyle() {
@@ -67,6 +66,18 @@ const AddTool = ({ values, errors, touched }) => {
           {/* Using Formik for the form functionality */}
           <Form>
             <label htmlFor="tool_name">
+              <p style={{ fontSize: "1.2rem" }}>
+                Image:
+                <Field
+                  type="file"
+                  name="tool_img"
+                  placeholder="Tool Image"
+                  style={{ margin: "1%" }}
+                />
+              </p>
+            </label>
+            <label htmlFor="tool_name">
+
               <p style={{ fontSize: "1.2rem" }}>
                 Tool Name:
                 <Field
@@ -157,10 +168,6 @@ const AddTool = ({ values, errors, touched }) => {
             </label>
             <Button
               type="submit"
-              class="ui approve button"
-              onClick={() => {
-                handleModalClose();
-              }}
               style={{ margin: "1%" }}
             >
               Add Tool
