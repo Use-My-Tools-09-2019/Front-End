@@ -13,7 +13,7 @@ width: 300px;
 border: 1px solid ${color.primary}
 border-radius: 10px;
 margin: 25px;
-background: #252525;
+background: ${color.cardBackground};
 color: ${color.primary};
 `
 

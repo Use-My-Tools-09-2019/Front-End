@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
 //imgs
-import powertools from "../assets/powertools.jpg";
-import handtools from "../assets/handtools.jpg";
-import gardeningtools from "../assets/gardentools.jpg";
+import powertools from "../../assets/powertools.jpg";
+import handtools from "../../assets/handtools.jpg";
+import gardeningtools from "../../assets/gardentools.jpg";
 
 //redux
 import { connect } from "react-redux";
-import { requestTool } from "../store/actions";
+import { requestTool } from "../../store/actions";
 
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import * as styled from "./styled-components/toolCard"
-import { Button } from './styled-components/general'
+import * as styled from "../styled-components/toolCard"
+import { Button } from '../styled-components/general'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;

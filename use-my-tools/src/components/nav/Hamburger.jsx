@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // styles
-import * as styled from "./styled-components/appRouter";
-import * as color from '../styles/color'
+import * as styled from "../styled-components/appRouter";
+import * as color from '../../styles/color'
 
 
 //mui
@@ -37,7 +37,7 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
-    border: `0.5px solid ${color.primary}`
+    borderBottom: `0.5px solid ${color.primary}`
   },
 }))(MenuItem);
 

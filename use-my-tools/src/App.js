@@ -4,7 +4,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom'
 
 //components
-import AppRouter from './components/AppRouter'
+import AppRouter from './components/nav/AppRouter'
 
 //styles
 import './styles/App.scss';

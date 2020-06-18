@@ -1,12 +1,12 @@
 import React from "react";
-import { useInput } from "../utils/hooks/useInput";
+import { useInput } from "../../utils/hooks/useInput";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getTools } from "../store/actions";
+import { getTools } from "../../store/actions";
 
 //styles
-import * as styled from "./styled-components/searchParams";
+import * as styled from "../styled-components/searchParams";
 import { useState } from "react";
 
 

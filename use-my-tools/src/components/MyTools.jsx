@@ -7,6 +7,7 @@ import { FaWindowClose } from "react-icons/fa";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as styled from "./styled-components/myTools"
+import * as color from '../styles/color'
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +15,7 @@ import { deleteTool, getUserTools } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
+import Loader from "react-loader-spinner";
 // import UpdateToolModal from "./UpdateToolModal"
 
 
@@ -46,6 +48,8 @@ const MyTools = () => {
   //redux hooks
   const dispatch = useDispatch();
   const userTools = useSelector((state) => state.tools.userTools);
+  const status = useSelector((state) => state.tools.status);
+
 
   //side effects
   useEffect(() => {
@@ -65,34 +69,28 @@ const MyTools = () => {
     setOpen(false);
   };
 
+  if (status){
+    return(
+      <div>
+        <br/>
+        <Loader
+          type="Oval"
+          color={color.spinner}
+          height={100}
+          width={100}
+        />
+      </div>
+    )
+  }
+
   return (
     <>
-      <styled.Welcome>Welcome to your tools.</styled.Welcome>
+      <br/>
       <AddTool />
       <styled.ContainerDiv>
-        <styled.ToolBox>
-          <styled.ToolTitle>
-            <h2>Current Tools you Own</h2>
-            <h2>Add, Update, or Delete your Tools</h2>
-          </styled.ToolTitle>
           {/* Mapping over tools for the user, adding new card for each input */}
           {userTools.map((tool) => (
-              <styled.ItemContainer className="ui cards">
-                <div className="ui card">
-                  <div className="content">
-                    <div className="header">
-                      <p>Tool Name: {tool.tool_name}</p>
-                    </div>
-                    <div className="meta">
-                      <p>Tool Type: {tool.tool_type}</p>
-                      <p>Rental Cost: ${tool.rental_cost} per day</p>
-                    </div>
-                    <div className="description">
-                      <p>Tool Description: {tool.tool_description}</p>
-                    </div>
-
-                    {/* FaWindowClose is the icon to remove tools, functionality needed.
-                    <button onClick={() => {props.deleteTool(tool.toolid)}}><FaWindowClose /></button> */}
+                  <div>
 
                     <header icon="delete" content="Delete Tool" 
                       onClick={handleOpen}
@@ -114,12 +112,8 @@ const MyTools = () => {
                         </button>
                       </div>
                     </Modal>
-                    {/* <UpdateToolModal tool={tool}/> */}
                   </div>
-                </div>
-              </styled.ItemContainer>
           ))}
-        </styled.ToolBox>
       </styled.ContainerDiv>
     </>
   );

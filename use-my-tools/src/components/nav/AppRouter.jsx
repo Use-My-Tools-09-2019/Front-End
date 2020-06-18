@@ -10,20 +10,19 @@ import {
 } from "react-router-dom";
 
 //components
-import Dashboard from "./Dashboard";
-import Login from "./Auth/Login";
-import Register from "./Auth/register/Register";
-import Marketplace from "./Marketplace";
-import PrivateRoute from "./PrivateRoute";
-import MyTools from "./MyTools";
+import Login from "../Auth/Login";
+import Register from "../Auth/register/Register";
+import Marketplace from "../marketplace/Marketplace";
+import PrivateRoute from "../PrivateRoute";
+import MyTools from "../MyTools";
 import Hamburger from './Hamburger'
 
-import Footer from "./Footer";
+import Footer from "../Footer";
 
 //styles
-import * as styled from "./styled-components/appRouter";
-import logImg from "../assets/logo.png";
-import { tablet } from "./styled-components/media";
+import * as styled from "../styled-components/appRouter";
+import logImg from "../../assets/logo.png";
+import { tablet } from "../styled-components/media";
 import { useMediaQuery } from "react-responsive";
 
 export default function AppRouter() {
