@@ -1,10 +1,7 @@
 import {
     LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL
+    LOGIN_FAILURE
 } from '../actions'
 
  

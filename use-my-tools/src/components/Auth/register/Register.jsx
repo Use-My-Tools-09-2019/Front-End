@@ -6,13 +6,14 @@ import * as Yup from 'yup'
 import axios from 'axios'
 
 //styles
+import { FormContainer } from '../../styled-components/form'
+import * as color from '../../../styles/color'
 
 import states from './states'
 
 function Register({ touched, errors, status }) {
 	return (
-		<>
-			<h1>Register</h1>
+		<FormContainer>
 			<Form className="form">
 				<p>{touched.email && errors.email}</p>
 				<div className='ui input'>
@@ -27,7 +28,7 @@ function Register({ touched, errors, status }) {
 					<Field
 						placeholder="Enter your username"
 						name="username"
-						type="username"
+						type="text"
 					/>
 				</div>
 				<p>{touched.password && errors.password}</p>
@@ -65,11 +66,15 @@ function Register({ touched, errors, status }) {
 				</div>
 				<p>{touched.state && errors.state}</p>
 				<div >
-					<label>State:  </label>
+					<label style={{color: color.primary}}>State:  </label>
 					<Field
 						placeholder="state"
 						name="state"
 						component="select"
+						style={{
+							height: '30px',
+							margin: '20px'
+						}}
 					>
 						{states.map(state => {
 							return <option value={state[0]}>{state[1]}</option>
@@ -89,7 +94,7 @@ function Register({ touched, errors, status }) {
 				<br />
 				{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 			</Form>
-		</>
+		</FormContainer>
 	)
 }
 

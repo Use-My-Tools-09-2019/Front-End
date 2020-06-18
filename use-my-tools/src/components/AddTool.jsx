@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import styled from "styled-components";
 
 //styles
-import { FaWindowClose, FaTools } from "react-icons/fa";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+import * as color from '../styles/color'
+import { Button } from './styled-components/general'
+import * as styled from './styled-components/addTool'
 
+//formik
 import { withFormik, Form, Field } from "formik";
 
 //redux
 import { connect } from "react-redux";
 import { addTool } from "../store/actions";
+import { purple } from "@material-ui/core/colors";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+
 
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
+    background: '#151515'
+    
   };
 }
 
@@ -34,16 +33,20 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    backgroundColor: 'black',
+    color: 'white',
+    border: `4px solid ${color.primary} `,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
 const AddTool = ({ values, errors, touched }) => {
-  const [modal, setModal] = useState(false);
+  //modal
+  const [modalStyle] = useState(getModalStyle);
+  const classes = useStyles();
 
+  const [modal, setModal] = useState(false);
   const handleModalOpen = () => {
     setModal(true);
   };
@@ -53,123 +56,119 @@ const AddTool = ({ values, errors, touched }) => {
   };
   return (
     <>
-    <Modal
-      open={modal}
-      onClose={handleModalClose}
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
-    >
-      <h1>Add a New Tool</h1>
-      <header style={{ margin: "1%" }}>
-        Please fill out the following information:
-      </header>
+      <Modal
+        open={modal}
+        onClose={handleModalClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <h1>Add a New Tool</h1>
+          {/* Using Formik for the form functionality */}
+          <Form>
+            <label htmlFor="tool_name">
+              <p style={{ fontSize: "1.2rem" }}>
+                Tool Name:
+                <Field
+                  type="text"
+                  name="tool_name"
+                  placeholder="Tool Name"
+                  style={{ margin: "1%" }}
+                />
+              </p>
+            </label>
+            {touched.tool_name && errors.tool_name && (
+              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                {errors.tool_name}
+              </p>
+            )}
 
-      {/* Using Formik for the form functionality */}
-      <Form>
-        <label htmlFor="tool_name">
-          <p style={{ fontSize: "1.2rem" }}>
-            Tool Name:
-            <Field
-              type="text"
-              name="tool_name"
-              placeholder="Tool Name"
-              style={{ margin: "1%" }}
-            />
-          </p>
-        </label>
-        {touched.tool_name && errors.tool_name && (
-          <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {errors.tool_name}
-          </p>
-        )}
+            <label htmlFor="tool_description">
+              <p style={{ fontSize: "1.2rem" }}>
+                Tool Description:
+                <Field
+                  type="text"
+                  name="tool_description"
+                  placeholder="Tool Description"
+                  style={{ margin: "1%" }}
+                />
+              </p>
+            </label>
+            {touched.tool_description && errors.tool_description && (
+              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                {errors.tool_description}
+              </p>
+            )}
 
-        <label htmlFor="tool_description">
-          <p style={{ fontSize: "1.2rem" }}>
-            Tool Description:
-            <Field
-              type="text"
-              name="tool_description"
-              placeholder="Tool Description"
-              style={{ margin: "1%" }}
-            />
-          </p>
-        </label>
-        {touched.tool_description && errors.tool_description && (
-          <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {errors.tool_description}
-          </p>
-        )}
+            <label htmlFor="tool_type">
+              <p style={{ fontSize: "1.2rem" }}>
+                Tool Type:
+                <Field
+                  component="select"
+                  name="tool_type"
+                  placeholder="Tool Type"
+                  style={{ margin: "1%" }}
+                >
+                  <option value="Select">Please select Tool Type</option>
+                  <option value="Hand">Hand Tools</option>
+                  <option value="Power">Power Tools</option>
+                  <option value="Garden">Gardening Tools</option>
+                </Field>
+              </p>
+            </label>
+            {touched.tool_type && errors.tool_type && (
+              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                {errors.tool_type}
+              </p>
+            )}
 
-        <label htmlFor="tool_type">
-          <p style={{ fontSize: "1.2rem" }}>
-            Tool Type:
-            <Field
-              component="select"
-              name="tool_type"
-              placeholder="Tool Type"
+            <label htmlFor="rental_cost">
+              <p style={{ fontSize: "1.2rem" }}>
+                Rental Cost:
+                <Field
+                  type="number"
+                  name="rental_cost"
+                  placeholder="Rental Cost"
+                  style={{ margin: "1%" }}
+                />
+              </p>
+            </label>
+            {touched.rental_cost && errors.rental_cost && (
+              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                {errors.rental_cost}
+              </p>
+            )}
+
+            <label className="checkbox">
+              <p style={{ fontSize: "1.3rem" }}>
+                Do you want this tool available for rental immediately.
+                <Field
+                  type="checkbox"
+                  name="available"
+                  checked={values.available}
+                  style={{ margin: "1%", height: "1.3rem", width: "1.3rem" }}
+                />
+              </p>
+              {touched.available && errors.available && (
+                <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                  {errors.available}
+                </p>
+              )}
+            </label>
+            <Button
+              type="submit"
+              class="ui approve button"
+              onClick={() => {
+                handleModalClose();
+              }}
               style={{ margin: "1%" }}
             >
-              <option value="Select">Please select Tool Type</option>
-              <option value="Hand Tool">Hand Tools</option>
-              <option value="Power Tool">Power Tools</option>
-              <option value="Gardening Tool">Gardening Tools</option>
-            </Field>
-          </p>
-        </label>
-        {touched.tool_type && errors.tool_type && (
-          <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {errors.tool_type}
-          </p>
-        )}
-
-        <label htmlFor="rental_cost">
-          <p style={{ fontSize: "1.2rem" }}>
-            Rental Cost:
-            <Field
-              type="number"
-              name="rental_cost"
-              placeholder="Rental Cost"
-              style={{ margin: "1%" }}
-            />
-          </p>
-        </label>
-        {touched.rental_cost && errors.rental_cost && (
-          <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {errors.rental_cost}
-          </p>
-        )}
-
-        <label className="checkbox">
-          <p style={{ fontSize: "1.3rem" }}>
-            Do you want this tool available for rental immediately.
-            <Field
-              type="checkbox"
-              name="available"
-              checked={values.available}
-              style={{ margin: "1%", height: "1.3rem", width: "1.3rem" }}
-            />
-          </p>
-          {touched.available && errors.available && (
-            <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-              {errors.available}
-            </p>
-          )}
-        </label>
-        <button
-          type="submit"
-          class="ui approve button"
-          onClick={() => {
-            handleModalClose();
-          }}
-          style={{ margin: "1%" }}
-        >
-          Add Tool
-        </button>
-      </Form>
-    </Modal>
-    <button
-      onClick={handleModalOpen}
-    >Add Tool</button>
+              Add Tool
+            </Button>
+          </Form>
+        </div>
+      </Modal>
+      <button onClick={handleModalOpen}>Add Tool</button>
     </>
   );
 };

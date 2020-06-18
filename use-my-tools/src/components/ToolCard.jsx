@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
 //imgs
 import powertools from "../assets/powertools.jpg";
@@ -13,6 +12,8 @@ import { requestTool } from "../store/actions";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import * as styled from "./styled-components/toolCard"
+import { Button } from './styled-components/general'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -40,74 +41,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Card = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-max-width: 350px;
-align-items: center;
-width: 300px;
-border: 1px solid yellow
-border-radius: 10px;
-margin: 25px;
-background: #252525;
-color: yellow;
-`
-
-const PriceTag = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: start;
-  padding-left: 30px;
-  margin-bottom: 30px;
-  p {
-    min-width: 75px;
-    padding: 10px;
-    background: yellow;
-    color: black;
-    font-weight: 600;
-  }
-`
-const ToolContent = styled.div`
-
-button {
-    padding: 10px;
-    border-radius: 20px;
-    width: 150px;
-    margin: auto;
-  }
-
-  button:hover {
-    background-color: white;
-    color: black;
-  }
-
-  img {
-    width: 200px;
-    height: 200px;
-    margin: auto;
-    padding-bottom: 20px;
-  }
-
-  .button {
-    margin: auto;
-  }
-
-  form .formButton {
-    color: red;
-  }
-`;
-
-const ToolTitle = styled.h1`
-  font-size: 2rem;
-`
-const FormStyle = styled.form`
-  button {
-    margin-left: 15px;
-    border-radius: 30px;
-  }
-`;
-
 function ToolCard(props) {
   const imageTool = () => {
     if (props.tool.tool_type === "Hand Tool") {
@@ -130,6 +63,7 @@ function ToolCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
   // request tool
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -141,15 +75,15 @@ function ToolCard(props) {
   };
 
   return (
-    <Card>
-        <PriceTag>
+    <styled.Card>
+        <styled.PriceTag>
           <p>${props.tool.rental_cost}</p>
-        </PriceTag>
-      <ToolContent>
+        </styled.PriceTag>
+      <styled.ToolContent>
         
-        <ToolTitle> 
+        <styled.ToolTitle> 
           {props.tool.tool_name}
-        </ToolTitle>
+        </styled.ToolTitle>
         <img src={imageTool()} />
         <h4>Owner: {props.tool.user_name}</h4>
 
@@ -162,17 +96,17 @@ function ToolCard(props) {
           aria-describedby="simple-modal-description"
         >
           <div style={modalStyle} className={classes.paper}>
-              <h1>Are you sure you want to request this item.</h1>
-              <FormStyle className="request-form">
-              <button type="submit" onClick={handleSubmit}>
-                  Request
-              </button>
-              </FormStyle>
+              <styled.FormStyle className="request-form">
+                <h1>Are you sure you want to request this item.</h1>
+                <button type="submit" onClick={handleSubmit}>
+                    Request
+                </button>
+              </styled.FormStyle>
           </div>
         </Modal>
-        <button onClick={handleOpen}>Request</button>
-      </ToolContent>
-    </Card>
+        <Button onClick={handleOpen}>Request</Button>
+      </styled.ToolContent>
+    </styled.Card>
   );
 }
 

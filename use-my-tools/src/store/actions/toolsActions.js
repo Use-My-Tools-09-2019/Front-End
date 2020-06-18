@@ -28,12 +28,30 @@ export const REQUEST_TOOL_START = 'REQUEST_TOOL_START'
 export const REQUEST_TOOL_SUCCESS = 'REQUEST_TOOL_SUCCESS'
 export const REQUEST_TOOL_FAIL = 'REQUEST_TOOL_FAIL'
 
-export const  getTools = () => dispatch => {
+export const  getTools = (filter = 'all') => dispatch => {
+    //setup initial state for filter buttons
+    let initialActive = {
+        "all": false,
+        "Power": false,
+        "Garden": false,
+        "Hand": false,
+    }
+    //set whatever the filter is to be true 
+    initialActive[filter] = true
+
     dispatch({type: GET_TOOLS_START})
     axiosWithAuth()
     .get('/api/tools')
     .then(res => {
-        dispatch({type: GET_TOOLS_SUCCESS, payload: res.data})
+        if(filter === 'all'){
+            dispatch({type: GET_TOOLS_SUCCESS, payload: res.data, active: initialActive})
+        }
+        else{
+            const filteredArray = res.data.filter(tool =>{
+                return tool.tool_type === filter
+            })
+            dispatch({type: GET_TOOLS_SUCCESS, payload: filteredArray, active: initialActive})
+        }
     })
     .catch(err => {
         console.log(err)

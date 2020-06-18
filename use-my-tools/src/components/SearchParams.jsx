@@ -1,41 +1,27 @@
-import React from 'react';
-import { useInput } from '../utils/hooks/useInput'
+import React from "react";
+import { useInput } from "../utils/hooks/useInput";
 
-//redux 
-import{ connect } from 'react-redux'
-import { getTools, searchTools} from '../store/actions'
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { getTools } from "../store/actions";
 
-const initialState = {
-    searchParam: 'all'
-}
-    
-const DropdownTools = (props) => {
-    const [type, setType, handleChanges] = useInput(initialState)
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('From SearchFrom', type.searchParam)
-        // if(type === 'All'){
-        //     props.getTools()
-        // }else {props.searchTools(type)}
-        type.searchParam === 'All' ? props.getTools() : props.searchTools(type)
-        
-    }
-    return (
-    <form onSubmit={handleSubmit}>
-        <select 
-        onChange={handleChanges} 
-        // name="tooltype" 
-        // value={type.searchParam}
-        >
-            <option value='All'>All</option>
-            <option value="Hand Tool">Hand Tool</option>
-            <option value="Power Tool">Power Tool</option>
-            <option value="Gardening Tool">Gardening Tool</option>
-        </select>
-        <button type='submit' color='black' className='search-btn'>Search</button>
-    </form>
-    )
-}
+//styles
+import * as styled from "./styled-components/searchParams";
+import { useState } from "react";
 
 
-export default connect(null, { searchTools, getTools})(DropdownTools);
+const SearchParams = () => {
+  const dispatch = useDispatch()
+  const active = useSelector(state => state.tools.activeFilter)
+
+  return (
+    <styled.Container>
+        <styled.Button active={active.all} onClick={() => {dispatch(getTools())}}>All</styled.Button>
+        <styled.Button active={active.Power} onClick={() => {dispatch(getTools('Power'))}}>Power Tools</styled.Button>
+        <styled.Button active={active.Garden} onClick={() => {dispatch(getTools('Garden'))}}>Hand Tools</styled.Button>
+        <styled.Button active={active.Hand} onClick={() => {dispatch(getTools('Hand'))}}>Garden Tools</styled.Button>
+    </styled.Container>
+  );
+};
+
+export default SearchParams;
