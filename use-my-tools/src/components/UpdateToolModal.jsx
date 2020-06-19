@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaTools } from "react-icons/fa";
 
 //hooks
 import { useInput } from "../utils/hooks/useInput";
@@ -8,32 +7,37 @@ import { useInput } from "../utils/hooks/useInput";
 import { useDispatch } from "react-redux";
 import { updateTool } from "../store/actions";
 
+//styles
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import * as color from "../styles/color";
+import Radio from "@material-ui/core/Radio";
+import { Button } from './styled-components/myTools'
+
+function getModalStyle() {
+  return {
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
+    background: "#151515",
+  };
+}
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: "black",
+    color: "white",
+    border: `4px solid ${color.primary} `,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 const UpdateToolModal = (props) => {
-  const initialState = {
-    rental_cost: props.tool.rental_cost,
-    tool_description: props.tool.tool_description,
-    tool_name: props.tool.tool_name,
-    tool_type: props.tool.tool_type,
-    id: props.tool.id,
-    available: props.tool.available,
-    owner_id: props.tool.owner_id,
-  };
-  const [tool, setTool, handleChanges] = useInput(initialState);
-
-
-  const handleCheckboxTrue = (e) => {
-    setTool({...tool, available: true})
-  };
-
-  const handleCheckboxFalse = (e) => {
-    setTool({...tool, available: false})
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateTool(tool));
-    handleModalClose()
-  };
+  //modal
+  const [modalStyle] = useState(getModalStyle);
+  const classes = useStyles();
 
   const [modal, setModal] = useState(false);
 
@@ -45,38 +49,60 @@ const UpdateToolModal = (props) => {
     setModal(false);
   };
 
-  //redux hooks 
-  const dispatch = useDispatch()
-  
+  const initialState = {
+    rental_cost: props.tool.rental_cost,
+    tool_description: props.tool.tool_description,
+    tool_name: props.tool.tool_name,
+    tool_type: props.tool.tool_type,
+    id: props.tool.id,
+    available: props.tool.available,
+    owner_id: props.tool.owner_id,
+  };
+  const [tool, setTool, handleChanges] = useInput(initialState);
+
+  const handleCheckboxTrue = (e) => {
+    setTool({ ...tool, available: true });
+  };
+
+  const handleCheckboxFalse = (e) => {
+    setTool({ ...tool, available: false });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateTool(tool));
+    handleModalClose();
+  };
+
+  //redux hooks
+  const dispatch = useDispatch();
+
   return (
-    <Modal 
-        trigger={<Button onClick={handleModalOpen}>{<FaTools />}</Button>}
+    <>
+      <Modal
         open={modal}
         onClose={handleModalClose}
-    >
-      <Modal.Header>Update Tool</Modal.Header>
-      <Modal.Content>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group widths="equal">
-            <Form.Input
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <h1>Update Tool</h1>
+          <form onSubmit={handleSubmit}>
+            <input
               label="Tool Name"
               name="tool_name"
-              control="input"
               value={tool.tool_name}
               onChange={handleChanges}
             />
-            <Form.Input
+            <input
               label="Tool Description"
               name="tool_description"
-              control="input"
               value={tool.tool_description}
               onChange={handleChanges}
             />
-          </Form.Group>
-          <Form.Group widths="equal">
-            <Form.Input
+            <select
               label="Tool Type"
-              control="select"
+              type="select"
               onChange={handleChanges}
               name="tool_type"
               value={tool.tool_type}
@@ -85,40 +111,34 @@ const UpdateToolModal = (props) => {
               <option value="Hand Tool">Hand Tool</option>
               <option value="Power Tool">Power Tool</option>
               <option value="Gardening Tool">Gardening Tool</option>
-            </Form.Input>
-          </Form.Group>
-          <Form.Group>
-            <Form.Input
+            </select>
+            <input
               label="Rental Cost $"
-              control="input"
               type="number"
               name="rental_cost"
               value={tool.rental_cost}
               onChange={handleChanges}
             />
-          </Form.Group>
-          <Form.Group>
-          <label>Available for rent</label>
-            <Form.Field
-              control={Radio}
+            <label>Available for rent</label>
+            <Radio
               label="Yes"
               checked={tool.available}
               onClick={handleCheckboxTrue}
             />
-            <Form.Field
-              control={Radio}
+            <Radio
               label="No"
               checked={!tool.available}
               onClick={handleCheckboxFalse}
             />
-          </Form.Group>
-          <Button
-            type='submit'
-          >Update Tool</Button>
-        </Form>
-      </Modal.Content>
-    </Modal>
+            <button type="submit">Update Tool</button>
+          </form>
+        </div>
+      </Modal>
+      <Button onClick={handleModalOpen}>
+        <ion-icon name="open-outline"></ion-icon>
+      </Button>
+    </>
   );
-}
+};
 
 export default UpdateToolModal;
