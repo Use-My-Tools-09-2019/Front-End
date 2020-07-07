@@ -8,7 +8,7 @@ import * as color from "../styles/color";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTools } from "../store/actions";
+import { getUserTools, uploadImage } from "../store/actions";
 
 // components
 import AddTool from "./AddTool";
@@ -33,6 +33,12 @@ const MyTools = () => {
     setModal(false);
   };
 
+  //image state
+  const [picture, setPicture] = useState([])
+
+  const onDrop = (picture) => {
+    setPicture(picture)
+  }
 
   //side effects
   useEffect(() => {
@@ -72,19 +78,36 @@ const MyTools = () => {
               {tool.img_url === null ? (
                 <>
                   <ImageUploader
+                    singleImage={true}
                     withIcon={true}
                     buttonText="Choose image"
-                    onChange={null}
+                    onChange={onDrop}
                     imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                    maxFileSize={5242880}
                     fileContainerStyle={{
                       background: color.cardBackground,
+                      width: '200px',
+                      height: '200px',
                     }}
                   />
+                  {
+                    picture.length > 0 
+                    ?
+                    <>
+                      <button onClick={() => {
+                        dispatch(uploadImage(picture[0], tool))
+                      }}>upload</button>
+                      <p>File Name: {picture[0].name}</p>
+                    </>
+                    :
+                    <span></span>
+                  }
                   <styled.ImgHr />
                 </>
               ) : (
-                <img src={tool.img_url} />
+                <>
+                  <img src={tool.img_url} />
+                  <styled.ImgHr />
+                </>
               )}
               <h4>Type: {tool.tool_type}</h4>
               <h4>Tool Description: {tool.tool_description}</h4>
