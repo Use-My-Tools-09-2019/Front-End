@@ -43,7 +43,13 @@ import {
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
-    requestTool
+    requestTool,
+
+    UPLOAD_IMAGE_START,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL,
+    uploadImage
+
 } from './toolsActions'
 
 
@@ -92,5 +98,10 @@ export  {
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
-    requestTool
+    requestTool,
+
+    UPLOAD_IMAGE_START,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL,
+    uploadImage
 }

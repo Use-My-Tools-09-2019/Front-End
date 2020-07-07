@@ -1,10 +1,32 @@
 import styled from "styled-components";
 import * as color from '../../styles/color'
+import { tablet } from "./media";
 
-export const ContainerDiv = styled.div`
+export const ToolsPage = styled.div`
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-top: auto;
+  padding: 70px 0px 0px;
+  height: 100%;
+
+  @media (max-width: ${tablet}) {
+    justify-content: center;
+  }
+`;
+export const ContainerDiv = styled.div`
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: start;
+margin-top: auto;
+padding: 70px 0px 0px;
+height: 100%;
+
+@media (max-width: ${tablet}) {
   justify-content: center;
-  margin: 1%;
+}
 `;
 
 export const ItemContainer = styled.div`
@@ -33,6 +55,7 @@ export const ImgHr = styled.hr`
 `
 
 export const ButtonDiv = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   

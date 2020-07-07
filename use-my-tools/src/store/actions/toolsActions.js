@@ -28,6 +28,11 @@ export const REQUEST_TOOL_START = 'REQUEST_TOOL_START'
 export const REQUEST_TOOL_SUCCESS = 'REQUEST_TOOL_SUCCESS'
 export const REQUEST_TOOL_FAIL = 'REQUEST_TOOL_FAIL'
 
+export const UPLOAD_IMAGE_START = 'UPLOAD_IMAGE_START'
+export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS'
+export const UPLOAD_IMAGE_FAIL = 'UPLOAD_IMAGE_FAIL'
+
+
 export const  getTools = (filter = 'all') => dispatch => {
     //setup initial state for filter buttons
     let initialActive = {
@@ -152,4 +157,19 @@ export const  requestTool = (requestedTool) => dispatch => {
     //     console.log('From requestTool action',err)
     //     dispatch({type: REQUEST_TOOL_FAIL, payload: err})
     // })
+}
+
+export const  uploadImage = (image, tool) => dispatch => {
+    let data = new FormData();
+    data.append('image', image, image.name);
+    dispatch({type: UPLOAD_IMAGE_START})
+    axiosWithAuth()
+    .put(`api/uploadImage/${tool.id}`, data)
+    .then(res => {
+        dispatch({type: UPLOAD_IMAGE_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: UPDATE_TOOL_FAIL, payload: err})
+    })
 }
