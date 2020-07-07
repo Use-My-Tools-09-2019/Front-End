@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 
-//imgs
-import powertools from "../../assets/powertools.jpg";
-import handtools from "../../assets/handtools.jpg";
-import gardeningtools from "../../assets/gardentools.jpg";
-
 //redux
 import { connect } from "react-redux";
 import { requestTool } from "../../store/actions";
@@ -15,18 +10,12 @@ import Modal from "@material-ui/core/Modal";
 import * as styled from "../styled-components/toolCard"
 import { Button } from '../styled-components/general'
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
-  
+
   function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-  
     return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
+      top: `50%`,
+      left: `50%`,
+      transform: `translate(-50%, -50%)`,
     };
   }
 
@@ -42,16 +31,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function ToolCard(props) {
-  const imageTool = () => {
-    if (props.tool.tool_type === "Hand Tool") {
-      return handtools;
-    } else if (props.tool.tool_type === "Power Tool") {
-      return powertools;
-    } else {
-      return gardeningtools;
-    }
-  };
-
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
@@ -84,7 +63,7 @@ function ToolCard(props) {
         <styled.ToolTitle> 
           {props.tool.tool_name}
         </styled.ToolTitle>
-        <img src={imageTool()} />
+        <img src={props.tool.img_url} />
         <h4>Owner: {props.tool.user_name}</h4>
 
         <h4>Type: {props.tool.tool_type}</h4>

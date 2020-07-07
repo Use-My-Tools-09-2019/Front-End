@@ -32,6 +32,8 @@ export const PriceTag = styled.div`
   }
 `
 export const ToolContent = styled.div`
+  height: 100%;
+  width: 100%;
   img {
     width: 200px;
     height: 200px;

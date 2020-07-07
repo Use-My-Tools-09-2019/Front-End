@@ -1,22 +1,32 @@
 import styled from "styled-components";
+import * as color from '../../styles/color'
+import { tablet } from "./media";
 
-export const ToolBox = styled.div`
+export const ToolsPage = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  width: 49%;
-  height: auto;
-  justify-content: center;
-  margin: 2%;
-  background: #ecfffd;
-  border: 2px solid #76d275;
-  border-radius: 15px;
-`;
+  justify-content: start;
+  margin-top: auto;
+  padding: 70px 0px 0px;
+  height: 100%;
 
+  @media (max-width: ${tablet}) {
+    justify-content: center;
+  }
+`;
 export const ContainerDiv = styled.div`
-  display: flex;
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: start;
+margin-top: auto;
+padding: 70px 0px 0px;
+height: 100%;
+
+@media (max-width: ${tablet}) {
   justify-content: center;
-  margin: 1%;
+}
 `;
 
 export const ItemContainer = styled.div`
@@ -35,3 +45,31 @@ export const Welcome = styled.h1`
   color: white;
   margin-top: 2%;
 `;
+
+export const ImgHr = styled.hr`
+  width: 100%;
+  margin-bottom: 10px;
+  height: 1px;
+  background-color: ${color.primary}
+  border: none;
+`
+
+export const ButtonDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+`
+
+export const Button = styled.button`
+width: 50px;
+height: 50px;
+color: black;
+background: ${color.primary};
+border: 1px solid ${color.primary};
+border-radius: 6px
+text-decoration: none;
+font-size: 1.4rem;
+cursor: pointer;
+outline: none;
+`

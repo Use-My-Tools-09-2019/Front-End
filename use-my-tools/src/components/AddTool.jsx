@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as color from '../styles/color'
 import { Button } from './styled-components/general'
-import * as styled from './styled-components/addTool'
 
 //formik
 import { withFormik, Form, Field } from "formik";
@@ -15,16 +14,13 @@ import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { addTool } from "../store/actions";
 
-
 function getModalStyle() {
-
 
   return {
     top: `50%`,
     left: `50%`,
     transform: `translate(-50%, -50%)`,
     background: '#151515'
-    
   };
 }
 
@@ -40,19 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddTool = ({ values, errors, touched }) => {
+const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, modal }) => {
+
   //modal
   const [modalStyle] = useState(getModalStyle);
   const classes = useStyles();
 
-  const [modal, setModal] = useState(false);
-  const handleModalOpen = () => {
-    setModal(true);
-  };
-
-  const handleModalClose = () => {
-    setModal(false);
-  };
   return (
     <>
       <Modal
@@ -66,18 +55,6 @@ const AddTool = ({ values, errors, touched }) => {
           {/* Using Formik for the form functionality */}
           <Form>
             <label htmlFor="tool_name">
-              <p style={{ fontSize: "1.2rem" }}>
-                Image:
-                <Field
-                  type="file"
-                  name="tool_img"
-                  placeholder="Tool Image"
-                  style={{ margin: "1%" }}
-                />
-              </p>
-            </label>
-            <label htmlFor="tool_name">
-
               <p style={{ fontSize: "1.2rem" }}>
                 Tool Name:
                 <Field
@@ -121,9 +98,9 @@ const AddTool = ({ values, errors, touched }) => {
                   style={{ margin: "1%" }}
                 >
                   <option value="Select">Please select Tool Type</option>
-                  <option value="Hand">Hand Tools</option>
-                  <option value="Power">Power Tools</option>
-                  <option value="Garden">Gardening Tools</option>
+                  <option value="Hand Tool">Hand Tools</option>
+                  <option value="Power Tool">Power Tools</option>
+                  <option value="Garden Tool">Gardening Tools</option>
                 </Field>
               </p>
             </label>
@@ -182,6 +159,7 @@ const AddTool = ({ values, errors, touched }) => {
 
 const FormikUserForm = withFormik({
   mapPropsToValues({
+    tool_img,
     tool_name,
     tool_description,
     tool_type,
@@ -189,6 +167,7 @@ const FormikUserForm = withFormik({
     available,
   }) {
     return {
+      tool_img: tool_img || "",
       tool_name: tool_name || "",
       tool_description: tool_description || "",
       tool_type: tool_type || "",
@@ -210,7 +189,9 @@ const FormikUserForm = withFormik({
   }),
 
   handleSubmit(values, props) {
+    console.log('props', props)
     const newTool = {
+      tool_img: values.tool_img,
       tool_name: values.tool_name,
       tool_description: values.tool_description,
       tool_type: values.tool_type,
@@ -219,6 +200,8 @@ const FormikUserForm = withFormik({
     };
     props.props.addTool(newTool);
     props.resetForm("");
+    props.props.handleModalClose()
+
   },
 })(AddTool);
 

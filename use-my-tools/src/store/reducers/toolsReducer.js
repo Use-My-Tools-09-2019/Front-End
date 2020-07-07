@@ -20,14 +20,13 @@ import {
     DELETE_TOOL_SUCCESS,
     DELETE_TOOL_FAIL,
 
-    SEARCH_TOOLS_START,
-    SEARCH_TOOLS_SUCCESS,
-    SEARCH_TOOLS_FAIL,
-
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
-
+    
+    UPLOAD_IMAGE_START,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL
 } from '../actions'
 
 
@@ -40,9 +39,11 @@ const initialState = {
         Hand: false,
     },
     userTools: [],
-    userRentals: [],
+    userRequests: [],
     errMessage: null,
-    status: false
+    toolsStatus: false,
+    userToolsStatus: false,
+    uploadImageStatus: false,
 }
 
 export default function toolsReducer(state = initialState, action) {
@@ -51,70 +52,67 @@ export default function toolsReducer(state = initialState, action) {
         case GET_TOOLS_START:
             return {
                 ...state,
-                status: true
+                toolsStatus: true
             }
         case GET_TOOLS_SUCCESS:
             return {
                 ...state,
                 allTools: action.payload,
-                activeFilter: action.active
+                activeFilter: action.active,
+                toolsStatus: false
             }
         case GET_TOOLS_FAIL:
             return {
                 ...state,
-                errMessage: action.payload
+                errMessage: action.payload,
+                toolsStatus: false
+
             }
 
         //get users tools
         case GET_USERTOOLS_START:
                 return {
                     ...state,
-                    status: true
+                    userToolsStatus: true
         }
         case GET_USERTOOLS_SUCCESS:
             return {
                 ...state,
                 userTools:  action.payload,
-                status: false
+                userToolsStatus: false
             }
         case GET_USERTOOLS_FAIL:
             return {
                 ...state,
                 errMessage: action.payload,
-                status: false
+                userToolsStatus: false
             }
 
         //add a tool    
         case ADD_TOOL_START:
                 return {
                     ...state,
-                    
-                    status: true
                 }
         case ADD_TOOL_SUCCESS:
             return {
                 ...state,
                 userTools: [...state.userTools, action.payload],
-                status: false
             }
             
         case ADD_TOOL_FAIL:
                 return {
                     ...state,
-                    status: true
                 }
 
         //update tool        
         case UPDATE_TOOL_START:
             return {
                 ...state,
-                status: true
             }
 
         case UPDATE_TOOL_SUCCESS:
             return {
                 ...state,
-                status: false,
                 userTools: state.userTools.map(tool => {
                         if(tool.id === action.payload.id){
                             return action.payload
@@ -134,7 +132,6 @@ export default function toolsReducer(state = initialState, action) {
         case DELETE_TOOL_START:
             return {
                 ...state,
-                status: true
             }
         case DELETE_TOOL_SUCCESS:
             return {
@@ -146,22 +143,8 @@ export default function toolsReducer(state = initialState, action) {
                 ...state,
                 errMessage: action.payload
             }
-            case SEARCH_TOOLS_START:
-                return {
-                    ...state,
-                    status: true
-                }
-            case SEARCH_TOOLS_SUCCESS:
-                return {
-                    ...state,
-                    status: false,
-                    allTools: action.payload
-                }
-            case SEARCH_TOOLS_FAIL:
-                return {
-                    ...state,
-                    errMessage: action.payload
-                }
+            
+            //requests
             case REQUEST_TOOL_START:
                 return {
                     ...state
@@ -173,6 +156,31 @@ export default function toolsReducer(state = initialState, action) {
             case REQUEST_TOOL_FAIL:
                 return {
                     ...state
+                }
+
+            //upload image
+            case UPLOAD_IMAGE_START:
+                return {
+                    ...state,
+                    uploadImageStatus: true
+                }
+            case UPLOAD_IMAGE_SUCCESS:
+                return {
+                    ...state,
+                    uploadImageStatus: false,
+                    userTools: state.userTools.map(tool => {
+                            if(tool.id === action.payload.id){
+                                return action.payload
+                                
+                            } 
+                            return tool
+                            })
+                }
+            case UPLOAD_IMAGE_FAIL:
+                return {
+                    ...state,
+                    uploadImageStatus: false,
+                    errMessage: action.payload
                 }
 
         default: return state

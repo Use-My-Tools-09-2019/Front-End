@@ -31,7 +31,7 @@ const ToolsPage = styled.div`
 function Marketplace() {
   //state
   const tools = useSelector((state) => state.tools.allTools);
-  const status = useSelector((state) => state.tools.status);
+  const status = useSelector((state) => state.tools.toolsStatus);
 
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ function Marketplace() {
     dispatch(getTools());
   }, []);
 
-  if (!status){
+  if (status){
     return(
       <div>
         <br/>
