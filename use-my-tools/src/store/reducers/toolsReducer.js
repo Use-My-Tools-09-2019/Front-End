@@ -39,7 +39,7 @@ const initialState = {
         Hand: false,
     },
     userTools: [],
-    userRequests: [],
+    requests: [],
     errMessage: null,
     toolsStatus: false,
     userToolsStatus: false,

@@ -14,7 +14,7 @@ import Login from "../Auth/Login";
 import Register from "../Auth/register/Register";
 import Marketplace from "../marketplace/Marketplace";
 import PrivateRoute from "../PrivateRoute";
-import MyTools from "../MyTools";
+import MyTools from "../myTools/MyTools";
 import Hamburger from './Hamburger'
 
 import Footer from "../Footer";

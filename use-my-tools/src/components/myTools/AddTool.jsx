@@ -4,15 +4,15 @@ import * as Yup from "yup";
 //styles
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import * as color from '../styles/color'
-import { Button } from './styled-components/general'
+import * as color from '../../styles/color'
+import { Button } from '../styled-components/general'
 
 //formik
 import { withFormik, Form, Field } from "formik";
 
 //redux
 import { connect } from "react-redux";
-import { addTool } from "../store/actions";
+import { addTool } from "../../store/actions";
 
 function getModalStyle() {
 

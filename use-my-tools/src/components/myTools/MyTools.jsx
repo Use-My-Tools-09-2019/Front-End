@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 //styles
-import * as styled from "./styled-components/myTools";
-import * as cardStyles from "./styled-components/toolCard";
-
-import * as color from "../styles/color";
+import * as styled from "../styled-components/myTools";
+import * as cardStyles from "../styled-components/toolCard";
+import * as color from "../../styles/color";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTools, uploadImage } from "../store/actions";
+import { getUserTools, uploadImage } from "../../store/actions";
 
 // components
 import AddTool from "./AddTool";
+import Requests from "./Requests";
 import Loader from "react-loader-spinner";
 import ImageUploader from "react-images-upload";
 import UpdateToolModal from "./UpdateToolModal";
 import DeleteTool from "./DeleteTool";
+
 
 const MyTools = () => {
   //redux hooks
@@ -63,6 +64,7 @@ const MyTools = () => {
         handleModalOpen={handleModalOpen}
         modal={modal}
       />
+      <Requests/>
       <styled.ContainerDiv>
         {/* Mapping over tools for the user, adding new card for each input */}
         {userTools.map((tool) => (
@@ -105,7 +107,23 @@ const MyTools = () => {
                 </>
               ) : (
                 <>
-                  <img src={tool.img_url} />
+                  <div style={{position: 'relative'}}>
+                    <img src={tool.img_url} style={{position: 'relative'}}/>
+                    <button 
+                    style={{
+                      position: "absolute", 
+                      top: '160px', left: '55px', 
+                      background: 'Transparent', 
+                      outline: 'none',
+                      cursor: 'pointer',
+                      textDecoration: 'none',
+                      color: 'rgb(0,0,0,0.6)',
+                      border: 'none',
+                      fontSize: '2rem'
+                    }}>
+                     <ion-icon name="pencil-outline"></ion-icon>
+                    </button>
+                  </div>
                   <styled.ImgHr />
                 </>
               )}

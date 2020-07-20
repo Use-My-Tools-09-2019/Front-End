@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
 //hooks
-import { useInput } from "../utils/hooks/useInput";
+import { useInput } from "../../utils/hooks/useInput";
 
 // redux
 import { useDispatch } from "react-redux";
-import { updateTool } from "../store/actions";
+import { updateTool } from "../../store/actions";
 
 //styles
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import * as color from "../styles/color";
+import * as color from "../../styles/color";
 import Radio from "@material-ui/core/Radio";
-import { Button } from './styled-components/myTools'
+import { Button } from '../styled-components/myTools'
 
 function getModalStyle() {
   return {

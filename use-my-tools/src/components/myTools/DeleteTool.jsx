@@ -5,11 +5,11 @@ import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 
 //redux
-import { deleteTool } from "../store/actions";
+import { deleteTool } from "../../store/actions";
 import { useDispatch } from "react-redux";
 
 //styles
-import { Button } from './styled-components/myTools'
+import { Button } from "../styled-components/myTools";
 
 function getModalStyle() {
   return {
@@ -49,7 +49,7 @@ export default function DeleteTool({ tool }) {
   return (
     <div>
       <Button onClick={handleOpen}>
-      <ion-icon name="trash-outline"></ion-icon>
+        <ion-icon name="trash-outline"></ion-icon>
       </Button>
       <Modal
         open={open}
