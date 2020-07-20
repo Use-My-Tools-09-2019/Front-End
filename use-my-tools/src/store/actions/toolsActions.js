@@ -164,7 +164,7 @@ export const  uploadImage = (image, tool) => dispatch => {
     data.append('image', image, image.name);
     dispatch({type: UPLOAD_IMAGE_START})
     axiosWithAuth()
-    .put(`api/uploadImage/${tool.id}`, data)
+    .put(`api/tools/uploadImage/${tool.id}`, data)
     .then(res => {
         dispatch({type: UPLOAD_IMAGE_SUCCESS, payload: res.data})
     })
