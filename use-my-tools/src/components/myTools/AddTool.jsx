@@ -152,7 +152,7 @@ const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, m
           </Form>
         </div>
       </Modal>
-      <button onClick={handleModalOpen}>Add Tool</button>
+      <Button onClick={handleModalOpen}>Add Tool</Button>
     </>
   );
 };

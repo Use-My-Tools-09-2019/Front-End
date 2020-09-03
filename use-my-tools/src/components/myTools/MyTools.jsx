@@ -17,7 +17,6 @@ import ImageUploader from "react-images-upload";
 import UpdateToolModal from "./UpdateToolModal";
 import DeleteTool from "./DeleteTool";
 
-
 const MyTools = () => {
   //redux hooks
   const userTools = useSelector((state) => state.tools.userTools);
@@ -35,18 +34,18 @@ const MyTools = () => {
   };
 
   //image state
-  const [picture, setPicture] = useState([])
+  const [picture, setPicture] = useState([]);
 
   const onDrop = (picture) => {
-    setPicture(picture)
-  }
+    setPicture(picture);
+  };
 
   //side effects
   useEffect(() => {
     dispatch(getUserTools());
   }, []);
 
-  //spinner logic
+  /////* spinner logic *////
   if (status) {
     return (
       <div>
@@ -59,18 +58,13 @@ const MyTools = () => {
   return (
     <>
       <br />
-      <AddTool
-        handleModalClose={handleModalClose}
-        handleModalOpen={handleModalOpen}
-        modal={modal}
-      />
-      <Requests/>
+      <Requests />
       <styled.ContainerDiv>
         {/* Mapping over tools for the user, adding new card for each input */}
+
         {userTools.map((tool) => (
           <cardStyles.Card>
             <cardStyles.ToolContent>
-
               <styled.ButtonDiv>
                 <DeleteTool tool={tool} />
                 <UpdateToolModal tool={tool} />
@@ -87,41 +81,45 @@ const MyTools = () => {
                     imgExtension={[".jpg", ".gif", ".png", ".gif"]}
                     fileContainerStyle={{
                       background: color.cardBackground,
-                      width: '200px',
-                      height: '200px',
+                      width: "200px",
+                      height: "200px",
                     }}
                   />
-                  {
-                    picture.length > 0 
-                    ?
+                  {picture.length > 0 ? (
                     <>
-                      <button onClick={() => {
-                        dispatch(uploadImage(picture[0], tool))
-                      }}>upload</button>
+                      <button
+                        onClick={() => {
+                          dispatch(uploadImage(picture[0], tool));
+                        }}
+                      >
+                        upload
+                      </button>
                       <p>File Name: {picture[0].name}</p>
                     </>
-                    :
+                  ) : (
                     <span></span>
-                  }
+                  )}
                   <styled.ImgHr />
                 </>
               ) : (
                 <>
-                  <div style={{position: 'relative'}}>
-                    <img src={tool.img_url} style={{position: 'relative'}}/>
-                    <button 
-                    style={{
-                      position: "absolute", 
-                      top: '160px', left: '55px', 
-                      background: 'Transparent', 
-                      outline: 'none',
-                      cursor: 'pointer',
-                      textDecoration: 'none',
-                      color: 'rgb(0,0,0,0.6)',
-                      border: 'none',
-                      fontSize: '2rem'
-                    }}>
-                     <ion-icon name="pencil-outline"></ion-icon>
+                  <div style={{ position: "relative" }}>
+                    <img src={tool.img_url} style={{ position: "relative" }} />
+                    <button
+                      style={{
+                        position: "absolute",
+                        top: "160px",
+                        left: "55px",
+                        background: "Transparent",
+                        outline: "none",
+                        cursor: "pointer",
+                        textDecoration: "none",
+                        color: "rgb(0,0,0,0.6)",
+                        border: "none",
+                        fontSize: "2rem",
+                      }}
+                    >
+                      <ion-icon name="pencil-outline"></ion-icon>
                     </button>
                   </div>
                   <styled.ImgHr />
@@ -133,6 +131,13 @@ const MyTools = () => {
             </cardStyles.ToolContent>
           </cardStyles.Card>
         ))}
+        <cardStyles.Card>
+          <AddTool
+            handleModalClose={handleModalClose}
+            handleModalOpen={handleModalOpen}
+            modal={modal}
+          />
+        </cardStyles.Card>
       </styled.ContainerDiv>
     </>
   );
