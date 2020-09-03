@@ -28,6 +28,10 @@ export const REQUEST_TOOL_START = 'REQUEST_TOOL_START'
 export const REQUEST_TOOL_SUCCESS = 'REQUEST_TOOL_SUCCESS'
 export const REQUEST_TOOL_FAIL = 'REQUEST_TOOL_FAIL'
 
+export const GET_REQUESTS_START = 'GET_REQUESTS_START'
+export const GET_REQUESTS_SUCCESS = 'GET_  REQUESTS_SUCCESS'
+export const GET_REQUESTS_FAIL = 'GET_ REQUESTS_FAIL'
+
 export const UPLOAD_IMAGE_START = 'UPLOAD_IMAGE_START'
 export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS'
 export const UPLOAD_IMAGE_FAIL = 'UPLOAD_IMAGE_FAIL'
@@ -127,19 +131,6 @@ export const deleteTool = (toolid) => dispatch => {
     })
 }
 
-export const  searchTools = (searchParam) => dispatch => {
-    dispatch({type: SEARCH_TOOLS_START})
-    console.log(searchParam.searchParam)
-    axiosWithAuth()
-    .get(`/tools/typelike/${searchParam.searchParam}`)
-    .then(res => {
-        dispatch({type: SEARCH_TOOLS_SUCCESS, payload: res.data})
-    })
-    .catch(err => {
-        console.log('From searchTools action',err)
-        dispatch({type: SEARCH_TOOLS_FAIL, payload: err})
-    })
-}
 export const  requestTool = (requestedTool) => dispatch => {
     // const rentalRequest = {
     //     "rentaldate": requestedTool.rentaldate,
@@ -157,6 +148,22 @@ export const  requestTool = (requestedTool) => dispatch => {
     //     console.log('From requestTool action',err)
     //     dispatch({type: REQUEST_TOOL_FAIL, payload: err})
     // })
+}
+
+export const  getRequests = () => dispatch => {
+    dispatch({type: GET_REQUESTS_START})
+    axiosWithAuth()
+    .get('api/tools/requests')
+    .then(res => {
+        console.log('from getRequests', res.data)
+        dispatch({type: GET_REQUESTS_SUCCESS, payload: res.data})
+    })
+
+    .catch(err => {
+        console.log(err)
+        dispatch({type: GET_REQUESTS_FAIL, payload: err})
+    })
+
 }
 
 export const  uploadImage = (image, tool) => dispatch => {

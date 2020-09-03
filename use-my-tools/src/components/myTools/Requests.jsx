@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getRequests } from "../../store/actions";
 
 //styles
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,8 +31,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Requests() {
+  
   //redux
   const requests = useSelector((state) => state.tools.requests);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRequests())
+  }, [])
 
   //modal state
   const [modal, setModal] = useState(false);
