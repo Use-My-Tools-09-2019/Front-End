@@ -16,6 +16,7 @@ import Loader from "react-loader-spinner";
 import ImageUploader from "react-images-upload";
 import UpdateToolModal from "./UpdateToolModal";
 import DeleteTool from "./DeleteTool";
+import EditImage from "./EditImage";
 
 const MyTools = () => {
   //redux hooks
@@ -105,22 +106,7 @@ const MyTools = () => {
                 <>
                   <div style={{ position: "relative" }}>
                     <img src={tool.img_url} style={{ position: "relative" }} />
-                    <button
-                      style={{
-                        position: "absolute",
-                        top: "160px",
-                        left: "55px",
-                        background: "Transparent",
-                        outline: "none",
-                        cursor: "pointer",
-                        textDecoration: "none",
-                        color: "rgb(0,0,0,0.6)",
-                        border: "none",
-                        fontSize: "2rem",
-                      }}
-                    >
-                      <ion-icon name="pencil-outline"></ion-icon>
-                    </button>
+                    <EditImage />
                   </div>
                   <styled.ImgHr />
                 </>

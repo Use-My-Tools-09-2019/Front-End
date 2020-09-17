@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as color from "../../styles/color";
 
+
+
 function getModalStyle() {
   return {
     top: `50%`,
@@ -31,17 +33,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Requests() {
-  
   //redux
   const requests = useSelector((state) => state.tools.requests);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRequests())
-  }, [])
+    dispatch(getRequests());
+  }, []);
 
   //modal state
   const [modal, setModal] = useState(false);
+  //modal
+  const [modalStyle] = useState(getModalStyle);
+  const classes = useStyles();
 
   const handleModalOpen = () => {
     setModal(true);
@@ -53,15 +57,26 @@ export default function Requests() {
 
   return (
     <div>
-      <button>requests</button>
+      <button onClick={handleModalOpen}>Requests</button>
       <p style={{ color: "red" }}>{requests.length}</p>
       <Modal
         open={modal}
         onClose={handleModalClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+      >
+        <div style={modalStyle} className={classes.paper}>
+          {requests.map(request => (
+            <>
+              <p> 
+                {request.user_name} has requested your {request.tool_name}
+              </p>
+          <p>Request Length: {request.request_length}</p>
+            </>
+          ))}
 
-      ></Modal>
+        </div>
+      </Modal>
     </div>
   );
 }
