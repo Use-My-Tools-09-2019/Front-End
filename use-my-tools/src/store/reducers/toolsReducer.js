@@ -23,6 +23,10 @@ import {
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
+
+    GET_REQUESTS_START,
+    GET_REQUESTS_SUCCESS,
+    GET_REQUESTS_FAIL,
     
     UPLOAD_IMAGE_START,
     UPLOAD_IMAGE_SUCCESS,
@@ -39,9 +43,10 @@ const initialState = {
         Hand: false,
     },
     userTools: [],
-    userRequests: [],
+    requests: [],
     errMessage: null,
     toolsStatus: false,
+    requestsStatus: false,
     userToolsStatus: false,
     uploadImageStatus: false,
 }
@@ -144,44 +149,63 @@ export default function toolsReducer(state = initialState, action) {
                 errMessage: action.payload
             }
             
-            //requests
-            case REQUEST_TOOL_START:
-                return {
-                    ...state
-                }
-            case REQUEST_TOOL_SUCCESS:
-                return {
-                    ...state
-                }
-            case REQUEST_TOOL_FAIL:
-                return {
-                    ...state
-                }
+        //requests
+        case REQUEST_TOOL_START:
+            return {
+                ...state
+            }
+        case REQUEST_TOOL_SUCCESS:
+            return {
+                ...state
+            }
+        case REQUEST_TOOL_FAIL:
+            return {
+                ...state
+            }
 
-            //upload image
-            case UPLOAD_IMAGE_START:
-                return {
-                    ...state,
-                    uploadImageStatus: true
-                }
-            case UPLOAD_IMAGE_SUCCESS:
-                return {
-                    ...state,
-                    uploadImageStatus: false,
-                    userTools: state.userTools.map(tool => {
-                            if(tool.id === action.payload.id){
-                                return action.payload
-                                
-                            } 
-                            return tool
-                            })
-                }
-            case UPLOAD_IMAGE_FAIL:
-                return {
-                    ...state,
-                    uploadImageStatus: false,
-                    errMessage: action.payload
-                }
+        case GET_REQUESTS_START:
+            return {
+                ...state,
+                requestsStatus: true
+
+            }
+        case GET_REQUESTS_SUCCESS:
+            return {
+                ...state,
+                requests: action.payload,
+                requestsStatus: false
+            }
+        case GET_REQUESTS_FAIL:
+            return {
+                ...state,
+                errMessage: action.payload,
+                requestsStatus: false
+            }
+
+        //upload image
+        case UPLOAD_IMAGE_START:
+            return {
+                ...state,
+                uploadImageStatus: true
+            }
+        case UPLOAD_IMAGE_SUCCESS:
+            return {
+                ...state,
+                uploadImageStatus: false,
+                userTools: state.userTools.map(tool => {
+                        if(tool.id === action.payload.id){
+                            return action.payload
+                            
+                        } 
+                        return tool
+                        })
+            }
+        case UPLOAD_IMAGE_FAIL:
+            return {
+                ...state,
+                uploadImageStatus: false,
+                errMessage: action.payload
+            }
 
         default: return state
     }
