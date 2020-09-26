@@ -7,16 +7,17 @@ import * as color from "../../styles/color";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTools, uploadImage } from "../../store/actions";
+import { getUserTools } from "../../store/actions";
 
 // components
 import AddTool from "./AddTool";
 import Requests from "./Requests";
 import Loader from "react-loader-spinner";
-import ImageUploader from "react-images-upload";
 import UpdateToolModal from "./UpdateToolModal";
 import DeleteTool from "./DeleteTool";
+//image
 import EditImage from "./EditImage";
+import UploadImg from "./UploadImg"
 
 const MyTools = () => {
   //redux hooks
@@ -32,13 +33,6 @@ const MyTools = () => {
 
   const handleModalClose = () => {
     setModal(false);
-  };
-
-  //image state
-  const [picture, setPicture] = useState([]);
-
-  const onDrop = (picture) => {
-    setPicture(picture);
   };
 
   //side effects
@@ -74,39 +68,14 @@ const MyTools = () => {
               <cardStyles.ToolTitle>{tool.tool_name}</cardStyles.ToolTitle>
               {tool.img_url === null ? (
                 <>
-                  <ImageUploader
-                    singleImage={true}
-                    withIcon={true}
-                    buttonText="Choose image"
-                    onChange={onDrop}
-                    imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                    fileContainerStyle={{
-                      background: color.cardBackground,
-                      width: "200px",
-                      height: "200px",
-                    }}
-                  />
-                  {picture.length > 0 ? (
-                    <>
-                      <button
-                        onClick={() => {
-                          dispatch(uploadImage(picture[0], tool));
-                        }}
-                      >
-                        upload
-                      </button>
-                      <p>File Name: {picture[0].name}</p>
-                    </>
-                  ) : (
-                    <span></span>
-                  )}
+                  <UploadImg tool={tool}/>
                   <styled.ImgHr />
                 </>
               ) : (
                 <>
                   <div style={{ position: "relative" }}>
                     <img src={tool.img_url} style={{ position: "relative" }} />
-                    <EditImage />
+                    <EditImage tool={tool} />
                   </div>
                   <styled.ImgHr />
                 </>

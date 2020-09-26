@@ -5,6 +5,10 @@ import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as color from '../../styles/color'
+import * as generalStyled from '../styled-components/general'
+import * as addToolStyled from '../styled-components/addTool'
+
+
 import { Button } from '../styled-components/general'
 
 //formik
@@ -36,6 +40,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const  inputStyle = {
+  width: '20rem',
+  height: '2.5rem',
+  fontSize: '1.5rem',
+  marginBottom: "1.2rem",
+
+}
+
+const labelStyle = {
+}
+const pStyle = {
+  color: `${color.primary}`,
+  width: '20rem',
+  fontSize: '1.4rem'
+}
+
+
+const errorStyle = {
+  fontSize: "1.2rem", 
+  fontWeight: "bold",
+  color: 'red',
+}
+
 const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, modal }) => {
 
   //modal
@@ -51,51 +78,57 @@ const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, m
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-          <h1>Add a New Tool</h1>
+          <generalStyled.Xbutton onClick={handleModalClose}>X</generalStyled.Xbutton>
+          <addToolStyled.Title>Add a New Tool</addToolStyled.Title>
           {/* Using Formik for the form functionality */}
           <Form>
-            <label htmlFor="tool_name">
-              <p style={{ fontSize: "1.2rem" }}>
+            <label htmlFor="tool_name" style={labelStyle}>
+              <p style={pStyle}>
                 Tool Name:
+                {touched.tool_name && errors.tool_name && (
+                  <p style={errorStyle}>
+                    {errors.tool_name}
+                  </p>
+                )}
                 <Field
                   type="text"
                   name="tool_name"
                   placeholder="Tool Name"
-                  style={{ margin: "1%" }}
-                />
+                  style={inputStyle}
+                  />
               </p>
             </label>
-            {touched.tool_name && errors.tool_name && (
-              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                {errors.tool_name}
-              </p>
-            )}
 
             <label htmlFor="tool_description">
-              <p style={{ fontSize: "1.2rem" }}>
+              <p style={pStyle}>
                 Tool Description:
+                {touched.tool_description && errors.tool_description && (
+                  <p style={errorStyle}>
+                    {errors.tool_description}
+                  </p>
+                )}
                 <Field
                   type="text"
                   name="tool_description"
                   placeholder="Tool Description"
-                  style={{ margin: "1%" }}
+                  style={inputStyle}
                 />
               </p>
             </label>
-            {touched.tool_description && errors.tool_description && (
-              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                {errors.tool_description}
-              </p>
-            )}
 
             <label htmlFor="tool_type">
-              <p style={{ fontSize: "1.2rem" }}>
+              <p style={pStyle}>
                 Tool Type:
+                {touched.tool_type && errors.tool_type && (
+                  <p style={errorStyle}>
+                    {errors.tool_type}
+                  </p>
+                )}
                 <Field
                   component="select"
                   name="tool_type"
                   placeholder="Tool Type"
-                  style={{ margin: "1%" }}
+                  style={inputStyle}
                 >
                   <option value="Select">Please select Tool Type</option>
                   <option value="Hand Tool">Hand Tools</option>
@@ -104,32 +137,32 @@ const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, m
                 </Field>
               </p>
             </label>
-            {touched.tool_type && errors.tool_type && (
-              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                {errors.tool_type}
-              </p>
-            )}
 
             <label htmlFor="rental_cost">
-              <p style={{ fontSize: "1.2rem" }}>
-                Rental Cost:
+              <p style={pStyle}>
+                Rental Cost: $
+                {touched.rental_cost && errors.rental_cost && (
+                  <p style={errorStyle}>
+                    {errors.rental_cost}
+                  </p>
+                )}
                 <Field
                   type="number"
                   name="rental_cost"
                   placeholder="Rental Cost"
-                  style={{ margin: "1%" }}
+                  style={inputStyle}
                 />
               </p>
             </label>
-            {touched.rental_cost && errors.rental_cost && (
-              <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                {errors.rental_cost}
-              </p>
-            )}
 
             <label className="checkbox">
               <p style={{ fontSize: "1.3rem" }}>
-                Do you want this tool available for rental immediately.
+                Make available for rental immediately.
+                {touched.available && errors.available && (
+                  <p style={errorStyle}>
+                    {errors.available}
+                  </p>
+                )}
                 <Field
                   type="checkbox"
                   name="available"
@@ -137,11 +170,6 @@ const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, m
                   style={{ margin: "1%", height: "1.3rem", width: "1.3rem" }}
                 />
               </p>
-              {touched.available && errors.available && (
-                <p style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                  {errors.available}
-                </p>
-              )}
             </label>
             <Button
               type="submit"
@@ -183,7 +211,7 @@ const FormikUserForm = withFormik({
     ),
     tool_type: Yup.string().required("The tool type is required."),
     rental_cost: Yup.number().required(
-      "The cost of the tool rental is required."
+      "The cost oF rental is required."
     ),
     available: Yup.boolean(),
   }),
