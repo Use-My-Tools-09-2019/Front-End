@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+//redux
+import { useDispatch } from "react-redux";
+import { deleteImage } from "../../store/actions";
+
 //mui
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -38,7 +42,10 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function EditImage() {
+export default function EditImage({ tool }) {
+  //redux
+  const dispatch = useDispatch();
+
   //menu logic
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -77,7 +84,12 @@ export default function EditImage() {
         onClose={handleClose}
       >
         <StyledMenuItem onClick={handleClose}>
-          <styled.Button>
+          <styled.Button 
+            onClick={() => {
+              console.log(tool)
+              dispatch(deleteImage(tool))
+            }}
+          >
             Delete
           </styled.Button>
         </StyledMenuItem>
