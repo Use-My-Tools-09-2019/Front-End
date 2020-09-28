@@ -49,7 +49,12 @@ import {
     UPLOAD_IMAGE_START,
     UPLOAD_IMAGE_SUCCESS,
     UPLOAD_IMAGE_FAIL,
-    uploadImage
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
 
 } from './toolsActions'
 
@@ -104,5 +109,10 @@ export  {
     UPLOAD_IMAGE_START,
     UPLOAD_IMAGE_SUCCESS,
     UPLOAD_IMAGE_FAIL,
-    uploadImage
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
 }
