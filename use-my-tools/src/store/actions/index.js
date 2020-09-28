@@ -1,12 +1,9 @@
 import {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
+    logoutAC
 
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL
 } from './loginActions'
 
 import {
@@ -62,14 +59,10 @@ import {
 
 
 export  {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
-
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL,
+    logoutAC,
 
     ADD_TOOL_START,
     ADD_TOOL_SUCCESS,
