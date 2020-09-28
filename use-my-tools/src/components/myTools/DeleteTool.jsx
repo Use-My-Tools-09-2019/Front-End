@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 
 //styles
 import { Button } from "../styled-components/myTools";
+import * as styled from "../styled-components/general";
+import * as color from "../../styles/color";
+
 
 function getModalStyle() {
   return {
@@ -21,13 +24,20 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
+    fontSize: '2rem',
+    height: 200,
+    width: 320,
+    color: color.primary,
+    backgroundColor: color.cardBackground,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
+
+const pStyle = {
+  marginTop: '50px'
+}
 
 export default function DeleteTool({ tool }) {
   //mui modal
@@ -58,15 +68,18 @@ export default function DeleteTool({ tool }) {
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-          <p>Are you sure you want to delete this tool?</p>
-          <button
+          <styled.Xbutton onClick={handleClose}>X</styled.Xbutton>
+          <p style={pStyle}>Are you sure you want to delete this tool?</p>
+          <styled.Button
+            w={'7rem'}
+            h={'3rem'}
             onClick={() => {
               dispatch(deleteTool(tool.id));
               handleClose();
             }}
           >
             Yes
-          </button>
+          </styled.Button>
         </div>
       </Modal>
     </div>

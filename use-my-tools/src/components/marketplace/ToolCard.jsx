@@ -83,7 +83,12 @@ function ToolCard(props) {
               </styled.FormStyle>
           </div>
         </Modal>
-        <Button onClick={handleOpen}>Request</Button>
+        <Button 
+          onClick={handleOpen}
+          w={'10rem'}
+          h={'3rem'}
+        >
+            Request</Button>
       </styled.ToolContent>
     </styled.Card>
   );

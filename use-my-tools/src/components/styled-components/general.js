@@ -8,8 +8,8 @@ export {
 }
 
 const Button = styled.button`
-width: 10rem;
-height: 3rem;
+width: ${props => props.w};
+height: ${props => props.h};
 margin: 20px 0px;
 color: black;
 background: ${color.primary};

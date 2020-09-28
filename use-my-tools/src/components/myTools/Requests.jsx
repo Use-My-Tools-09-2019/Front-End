@@ -8,6 +8,8 @@ import { getRequests } from "../../store/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import * as color from "../../styles/color";
+import * as styled from "../styled-components/general";
+
 
 
 
@@ -31,6 +33,22 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
+
+const amount = {
+  display: 'flex',
+  position: 'absolute',
+  right: '-7px',
+  top: '-9px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '20px',
+  width: '20px',
+  fontSize: '1rem',
+  borderRadius: '50%',
+  background: "red",
+  color: "white",
+
+}
 
 export default function Requests() {
   //redux
@@ -57,8 +75,19 @@ export default function Requests() {
 
   return (
     <div>
-      <button onClick={handleModalOpen}>Requests</button>
-      <p style={{ color: "red" }}>{requests.length}</p>
+      <styled.Button 
+        onClick={handleModalOpen}
+        style={{
+        position: 'relative',
+        float: 'left',
+        marginLeft: '30px',}}
+        h={'2rem'}
+        w={'7rem'}
+      >
+        {requests.length ? <span style={amount}>{requests.length}</span> : <span></span>}
+        Requests 
+      </styled.Button>
+      
       <Modal
         open={modal}
         onClose={handleModalClose}
