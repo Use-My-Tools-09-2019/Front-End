@@ -36,6 +36,10 @@ export const UPLOAD_IMAGE_START = 'UPLOAD_IMAGE_START'
 export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS'
 export const UPLOAD_IMAGE_FAIL = 'UPLOAD_IMAGE_FAIL'
 
+export const DELETE_IMAGE_START = 'DELETE_IMAGE_START'
+export const DELETE_IMAGE_SUCCESS = 'DELETE_IMAGE_SUCCESS'
+export const DELETE_IMAGE_FAIL = 'DELETE_IMAGE_FAIL'
+
 
 export const  getTools = (filter = 'all') => dispatch => {
     //setup initial state for filter buttons
@@ -105,11 +109,11 @@ export const addTool = (tool) => dispatch => {
 
 export const updateTool = (tool) => dispatch => {
     dispatch({type: UPDATE_TOOL_START})
-    console.log('from updateTool',tool)
     axiosWithAuth()
     .put(`/api/tools/${tool.id}`, tool)
     .then(res => {
         dispatch({type: UPDATE_TOOL_SUCCESS, payload: res.data })
+        console.log('from updateTool',tool)
     })
     .catch(err => {
         console.log(err)
@@ -178,5 +182,18 @@ export const  uploadImage = (image, tool) => dispatch => {
     .catch(err => {
         console.log(err)
         dispatch({type: UPDATE_TOOL_FAIL, payload: err})
+    })
+}
+
+export const  deleteImage = (tool) => dispatch => {
+    dispatch({ type: DELETE_IMAGE_START})
+    axiosWithAuth()
+    .put(`api/tools/deleteImage/${tool.id}`,tool)
+    .then(res => {
+        dispatch({ type: DELETE_IMAGE_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        dispatch({ type: DELETE_IMAGE_FAIL, payload: err})
+        console.log("from DELETE_IMAGE_FAIL"+err)
     })
 }
