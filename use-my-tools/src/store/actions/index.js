@@ -1,12 +1,9 @@
 import {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
+    logoutAC
 
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL
 } from './loginActions'
 
 import {
@@ -35,29 +32,37 @@ import {
     DELETE_TOOL_FAIL,
     deleteTool,
 
-    SEARCH_TOOLS_START,
-    SEARCH_TOOLS_SUCCESS,
-    SEARCH_TOOLS_FAIL,
-    searchTools,
-
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
-    requestTool
+    requestTool,
+
+    GET_REQUESTS_START,
+    GET_REQUESTS_SUCCESS,
+    GET_REQUESTS_FAIL,
+    getRequests,
+
+
+    UPLOAD_IMAGE_START,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL,
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
+
 } from './toolsActions'
 
 
 
 
 export  {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
-
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL,
+    logoutAC,
 
     ADD_TOOL_START,
     ADD_TOOL_SUCCESS,
@@ -84,13 +89,23 @@ export  {
     DELETE_TOOL_FAIL,
     deleteTool,
 
-    SEARCH_TOOLS_START,
-    SEARCH_TOOLS_SUCCESS,
-    SEARCH_TOOLS_FAIL,
-    searchTools,
-
     REQUEST_TOOL_START,
     REQUEST_TOOL_SUCCESS,
     REQUEST_TOOL_FAIL,
-    requestTool
+    requestTool,
+
+    GET_REQUESTS_START,
+    GET_REQUESTS_SUCCESS,
+    GET_REQUESTS_FAIL,
+    getRequests,
+
+    UPLOAD_IMAGE_START,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL,
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
 }

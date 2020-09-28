@@ -1,39 +1,16 @@
-import axios from 'axios'
-import axiosWithAuth from '../../utils/authentication/axiosWithAuth'
 
-export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-
-export const LOGIN_GET_USER_START = 'LOGIN_GET_USER_START'
-export const LOGIN_GET_USER_SUCCESS = 'LOGIN_GET_USER_START'
-export const LOGIN_GET_USER_FAIL = 'LOGIN_GET_USER_START'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
 
 
 
-export const loginAC = (credentials, history) => dispatch => {
-    dispatch({ type: LOGIN_START })
+export const loginAC = (credentials) => dispatch => {
+    dispatch({ type: LOGIN_SUCCESS, payload: credentials })
+}
 
-    axios
-    .post('https://jcrn-use-my-tools.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
-
-        headers: {
-            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(res => {
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload })
-        console.log(res)
-        localStorage.setItem('token', res.data.access_token);
-        localStorage.setItem("username", credentials.username);
-        history.push(`/dashboard/${ credentials.username}`);
-
-    })
-    .catch(err => { 
-        dispatch({ type: LOGIN_FAILURE, payload: err})
-        console.error(err)
-    });
-    
+export const logoutAC = () => dispatch => {
+    dispatch({ type: LOGOUT_SUCCESS })
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
 }

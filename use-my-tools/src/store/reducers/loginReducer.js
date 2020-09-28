@@ -1,40 +1,30 @@
 import {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL
+    LOGOUT_SUCCESS
 } from '../actions'
 
  
 const initalState = { 
-    fetching: false,
+    loggedIn: Boolean(localStorage.getItem('token')),
     authToken: null,
-    userid: ""
+    userid: "",
 }
 
 export default function loginReducer(state = initalState, action) {
     switch(action.type){
-        case LOGIN_START: 
-            return {
-                ...state,
-                fetching: true
-            }
-
         case LOGIN_SUCCESS: 
             return {
                 ...state,
-                fetching: false,
-                authToken: action.payload
+                authToken: action.payload,
+                loggedIn: true
             }
 
-        case LOGIN_FAILURE: 
+        case LOGOUT_SUCCESS: 
             return {
                 ...state,
-                fetching: false
+                authToken: null,
+                loggedIn: false
             }
-        
         default:
             return state
     }

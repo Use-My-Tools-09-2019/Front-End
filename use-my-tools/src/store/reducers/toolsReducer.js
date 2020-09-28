@@ -1,165 +1,225 @@
-
 import {
-    GET_TOOLS_START,
-    GET_TOOLS_SUCCESS,
-    GET_TOOLS_FAIL,
-
-    GET_USERTOOLS_START,
-    GET_USERTOOLS_SUCCESS,
-    GET_USERTOOLS_FAIL,
-
-    ADD_TOOL_START,
-    ADD_TOOL_SUCCESS,
-    ADD_TOOL_FAIL,
-
-    UPDATE_TOOL_START,
-    UPDATE_TOOL_SUCCESS,
-    UPDATE_TOOL_FAIL,
-
-    DELETE_TOOL_START,
-    DELETE_TOOL_SUCCESS,
-    DELETE_TOOL_FAIL,
-
-    SEARCH_TOOLS_START,
-    SEARCH_TOOLS_SUCCESS,
-    SEARCH_TOOLS_FAIL,
-
-    REQUEST_TOOL_START,
-    REQUEST_TOOL_SUCCESS,
-    REQUEST_TOOL_FAIL,
-
-} from '../actions'
-
+  GET_TOOLS_START,
+  GET_TOOLS_SUCCESS,
+  GET_TOOLS_FAIL,
+  GET_USERTOOLS_START,
+  GET_USERTOOLS_SUCCESS,
+  GET_USERTOOLS_FAIL,
+  ADD_TOOL_START,
+  ADD_TOOL_SUCCESS,
+  ADD_TOOL_FAIL,
+  UPDATE_TOOL_START,
+  UPDATE_TOOL_SUCCESS,
+  UPDATE_TOOL_FAIL,
+  DELETE_TOOL_START,
+  DELETE_TOOL_SUCCESS,
+  DELETE_TOOL_FAIL,
+  REQUEST_TOOL_START,
+  REQUEST_TOOL_SUCCESS,
+  REQUEST_TOOL_FAIL,
+  GET_REQUESTS_START,
+  GET_REQUESTS_SUCCESS,
+  GET_REQUESTS_FAIL,
+  UPLOAD_IMAGE_START,
+  UPLOAD_IMAGE_SUCCESS,
+  UPLOAD_IMAGE_FAIL,
+  DELETE_IMAGE_START,
+  DELETE_IMAGE_SUCCESS,
+  DELETE_IMAGE_FAIL,
+} from "../actions";
 
 const initialState = {
-    allTools: [],
-    userTools: [],
-    userRentals: [],
-    errMessage: null,
-    status: false
-}
+  allTools: [],
+  activeFilter: {
+    all: true,
+    Power: false,
+    Garden: false,
+    Hand: false,
+  },
+  userTools: [],
+  requests: [],
+  errMessage: null,
+  toolsStatus: false,
+  requestsStatus: false,
+  userToolsStatus: false,
+  imageStatus: false,
+};
 
 export default function toolsReducer(state = initialState, action) {
-    switch (action.type) {
-        case GET_TOOLS_START:
-            return {
-                ...state,
-                status: true
-            }
-        case GET_TOOLS_SUCCESS:
-            return {
-                ...state,
-                allTools: action.payload
-            }
-        case GET_TOOLS_FAIL:
-            return {
-                ...state,
-                errMessage: action.payload
-            }
-        case GET_USERTOOLS_START:
-                return {
-                    ...state,
-                    status: true
-        }
-        case GET_USERTOOLS_SUCCESS:
-            return {
-                ...state,
-                userTools:  action.payload.filter(tool => tool.user.username === localStorage.username),
-                status: false
-            }
-        case GET_USERTOOLS_FAIL:
-            return {
-                ...state,
-                errMessage: action.payload,
-                status: false
-            }
+  switch (action.type) {
+    //get tools
+    case GET_TOOLS_START:
+      return {
+        ...state,
+        toolsStatus: true,
+      };
+    case GET_TOOLS_SUCCESS:
+      return {
+        ...state,
+        allTools: action.payload,
+        activeFilter: action.active,
+        toolsStatus: false,
+      };
+    case GET_TOOLS_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+        toolsStatus: false,
+      };
 
-        case ADD_TOOL_START:
-                return {
-                    ...state,
-                    
-                    // status: true
-                }
-        case ADD_TOOL_SUCCESS:
-            return {
-                ...state,
-                userTools: [...state.userTools, action.payload],
-                status: false
-            }
-            
-        case ADD_TOOL_FAIL:
-                return {
-                    ...state,
-                    status: true
-                }
+    //get users tools
+    case GET_USERTOOLS_START:
+      return {
+        ...state,
+        userToolsStatus: true,
+      };
+    case GET_USERTOOLS_SUCCESS:
+      return {
+        ...state,
+        userTools: action.payload,
+        userToolsStatus: false,
+      };
+    case GET_USERTOOLS_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+        userToolsStatus: false,
+      };
 
-        case UPDATE_TOOL_START:
-            return {
-                ...state,
-                status: true
-            }
+    //add a tool
+    case ADD_TOOL_START:
+      return {
+        ...state,
+      };
+    case ADD_TOOL_SUCCESS:
+      return {
+        ...state,
+        userTools: [...state.userTools, action.payload],
+      };
 
-        case UPDATE_TOOL_SUCCESS:
-            return {
-                ...state,
-                status: false,
-                userTools: state.userTools.map(tool => {
-                        if(tool.toolid === action.payload.toolid){
-                            return action.payload
-                        } 
-                        return tool
-                        })
-            }
-        case UPDATE_TOOL_FAIL:
-            return {
-                ...state,
-                errMessage: action.payload
-            }
+    case ADD_TOOL_FAIL:
+      return {
+        ...state,
+      };
 
-        case DELETE_TOOL_START:
-            return {
-                ...state,
-                status: true
-            }
-        case DELETE_TOOL_SUCCESS:
-            return {
-                ...state,
-                userTools:  state.userTools.filter(tool => tool.toolid !== action.payload)
-            }
-        case DELETE_TOOL_FAIL:
-            return {
-                ...state,
-                errMessage: action.payload
-            }
-            case SEARCH_TOOLS_START:
-                return {
-                    ...state,
-                    status: true
-                }
-            case SEARCH_TOOLS_SUCCESS:
-                return {
-                    ...state,
-                    status: false,
-                    allTools: action.payload
-                }
-            case SEARCH_TOOLS_FAIL:
-                return {
-                    ...state,
-                    errMessage: action.payload
-                }
-            case REQUEST_TOOL_START:
-                return {
-                    ...state
-                }
-            case REQUEST_TOOL_SUCCESS:
-                return {
-                    ...state
-                }
-            case REQUEST_TOOL_FAIL:
-                return {
-                    ...state
-                }
+    //update tool
+    case UPDATE_TOOL_START:
+      return {
+        ...state,
+      };
 
-        default: return state
-    }
+    case UPDATE_TOOL_SUCCESS:
+      return {
+        ...state,
+        userTools: state.userTools.map((tool) => {
+          if (tool.id === action.payload.id) {
+            return action.payload;
+          }
+          return tool;
+        }),
+      };
+    case UPDATE_TOOL_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+      };
+
+    //delete tool
+    case DELETE_TOOL_START:
+      return {
+        ...state,
+      };
+    case DELETE_TOOL_SUCCESS:
+      return {
+        ...state,
+        userTools: state.userTools.filter((tool) => tool.id !== action.payload),
+      };
+    case DELETE_TOOL_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+      };
+
+    //requests
+    case REQUEST_TOOL_START:
+      return {
+        ...state,
+      };
+    case REQUEST_TOOL_SUCCESS:
+      return {
+        ...state,
+      };
+    case REQUEST_TOOL_FAIL:
+      return {
+        ...state,
+      };
+
+    case GET_REQUESTS_START:
+      return {
+        ...state,
+        requestsStatus: true,
+      };
+    case GET_REQUESTS_SUCCESS:
+      return {
+        ...state,
+        requests: action.payload,
+        requestsStatus: false,
+      };
+    case GET_REQUESTS_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+        requestsStatus: false,
+      };
+
+    //upload image
+    case UPLOAD_IMAGE_START:
+      return {
+        ...state,
+        imageStatus: true,
+      };
+    case UPLOAD_IMAGE_SUCCESS:
+      return {
+        ...state,
+        imageStatus: false,
+        userTools: state.userTools.map((tool) => {
+          if (tool.id === action.payload.id) {
+            return action.payload;
+          }
+          return tool;
+        }),
+      };
+    case UPLOAD_IMAGE_FAIL:
+      return {
+        ...state,
+        imageStatus: false,
+        errMessage: action.payload,
+      };
+    //delete image
+    case DELETE_IMAGE_START:
+      return {
+        ...state,
+        imageStatus: true,
+      };
+    case DELETE_IMAGE_SUCCESS:
+      return {
+        ...state,
+        imageStatus: false,
+        userTools: state.userTools.map((tool) => {
+          if (tool.id === action.payload.id) {
+            return action.payload;
+          }
+          return tool;
+        }),
+      };
+    case DELETE_IMAGE_FAIL:
+      return {
+        ...state,
+        imageStatus: false,
+        errMessage: action.payload,
+      };
+
+    default:
+      return state;
+  }
 }
