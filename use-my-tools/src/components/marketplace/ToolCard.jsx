@@ -63,7 +63,7 @@ function ToolCard(props) {
         <styled.ToolTitle> 
           {props.tool.tool_name}
         </styled.ToolTitle>
-        <img src={props.tool.img_url} />
+        <img src={props.tool.img_url} alt={props.tool.tool_description} />
         <h4>Owner: {props.tool.user_name}</h4>
 
         <h4>Type: {props.tool.tool_type}</h4>

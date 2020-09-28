@@ -1,8 +1,5 @@
 import React from 'react';
 
-//router
-import { Route, Redirect } from 'react-router-dom'
-
 //components
 import AppRouter from './components/nav/AppRouter'
 

@@ -159,7 +159,6 @@ export const  getRequests = () => dispatch => {
     axiosWithAuth()
     .get('api/tools/requests')
     .then(res => {
-        console.log('from getRequests', res.data)
         dispatch({type: GET_REQUESTS_SUCCESS, payload: res.data})
     })
 

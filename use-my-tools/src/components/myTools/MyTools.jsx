@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 //styles
 import * as styled from "../styled-components/myTools";
@@ -36,10 +36,15 @@ const MyTools = () => {
   };
 
   //side effects
-  useEffect(() => {
+  const initFetch = useCallback(() => {
     dispatch(getUserTools());
-  }, []);
+  }, [dispatch]);
 
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
+
+  
   /////* spinner logic *////
   if (status) {
     return (
@@ -58,7 +63,7 @@ const MyTools = () => {
         {/* Mapping over tools for the user, adding new card for each input */}
 
         {userTools.map((tool) => (
-          <cardStyles.Card>
+          <cardStyles.Card key={tool.id}>
             <cardStyles.ToolContent>
               <styled.ButtonDiv>
                 <DeleteTool tool={tool} />
@@ -74,7 +79,7 @@ const MyTools = () => {
               ) : (
                 <>
                   <div style={{ position: "relative" }}>
-                    <img src={tool.img_url} style={{ position: "relative" }} />
+                    <img src={tool.img_url} style={{ position: "relative" }}  alt={tool.tool_description}/>
                     <EditImage tool={tool} />
                   </div>
                   <styled.ImgHr />

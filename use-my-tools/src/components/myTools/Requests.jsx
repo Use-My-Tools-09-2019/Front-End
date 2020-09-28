@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -55,9 +55,14 @@ export default function Requests() {
   const requests = useSelector((state) => state.tools.requests);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const initFetch = useCallback(() => {
     dispatch(getRequests());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
+
 
   //modal state
   const [modal, setModal] = useState(false);
@@ -96,12 +101,12 @@ export default function Requests() {
       >
         <div style={modalStyle} className={classes.paper}>
           {requests.map(request => (
-            <>
+            <div key={request.id}>
               <p> 
                 {request.user_name} has requested your {request.tool_name}
               </p>
           <p>Request Length: {request.request_length}</p>
-            </>
+            </div>
           ))}
 
         </div>

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { deleteImage } from "../../store/actions";
 
 //mui
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";

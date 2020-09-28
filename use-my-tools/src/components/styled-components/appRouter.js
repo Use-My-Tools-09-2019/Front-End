@@ -2,13 +2,6 @@ import styled from 'styled-components';
 import * as color from '../../styles/color'
 import { tablet } from './media'
 
-export {
-    Button,
-    TopBar,
-    Title,
-    ButtonDiv,
-    Logo,
-}
 
 const TopBar = styled.div`
 display: flex;
@@ -61,3 +54,10 @@ a {
     cursor: pointer;
 }
 `;
+export {
+    Button,
+    TopBar,
+    Title,
+    ButtonDiv,
+    Logo,
+}

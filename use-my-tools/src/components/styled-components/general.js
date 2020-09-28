@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import * as color from '../../styles/color'
-import { tablet } from './media'
 
-export {
-    Button,
-    Xbutton
-}
 
 const Button = styled.button`
 width: ${props => props.w};
@@ -32,3 +27,8 @@ cursor: pointer;
 outline: none;
 float: right;
 `
+
+export {
+    Button,
+    Xbutton
+}
