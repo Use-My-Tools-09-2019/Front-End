@@ -1,12 +1,9 @@
 import {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
+    logoutAC
 
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL
 } from './loginActions'
 
 import {
@@ -49,7 +46,12 @@ import {
     UPLOAD_IMAGE_START,
     UPLOAD_IMAGE_SUCCESS,
     UPLOAD_IMAGE_FAIL,
-    uploadImage
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
 
 } from './toolsActions'
 
@@ -57,14 +59,10 @@ import {
 
 
 export  {
-    LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
     loginAC,
-
-    LOGIN_GET_USER_START,
-    LOGIN_GET_USER_SUCCESS,
-    LOGIN_GET_USER_FAIL,
+    logoutAC,
 
     ADD_TOOL_START,
     ADD_TOOL_SUCCESS,
@@ -104,5 +102,10 @@ export  {
     UPLOAD_IMAGE_START,
     UPLOAD_IMAGE_SUCCESS,
     UPLOAD_IMAGE_FAIL,
-    uploadImage
+    uploadImage,
+
+    DELETE_IMAGE_START,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
+    deleteImage
 }

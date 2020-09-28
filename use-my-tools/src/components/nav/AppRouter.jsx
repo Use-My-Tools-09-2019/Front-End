@@ -17,7 +17,9 @@ import PrivateRoute from "../PrivateRoute";
 import MyTools from "../myTools/MyTools";
 import Hamburger from './Hamburger'
 
-import Footer from "../Footer";
+//redux
+import { logoutAC } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 //styles
 import * as styled from "../styled-components/appRouter";
@@ -28,6 +30,11 @@ import { useMediaQuery } from "react-responsive";
 export default function AppRouter() {
   //media query
   const isTablet = useMediaQuery({ query: `(max-width: ${tablet})` });
+  //state
+  const status = useSelector((state) => state.login.loggedIn);
+  
+
+  const dispatch = useDispatch();
 
   return (
     <Router>
@@ -41,7 +48,7 @@ export default function AppRouter() {
         ) : (
           <>
             <styled.ButtonDiv>
-              {!localStorage.getItem("token") ? (
+              {!status ? (
                 <>
                   <styled.Button>
                     <NavLink to="/login">Login</NavLink>
@@ -69,9 +76,7 @@ export default function AppRouter() {
                   <span>
                     <styled.Button
                       onClick={() => {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("username");
-                        window.location.reload();
+                      dispatch(logoutAC())
                       }}
                     >
                       <NavLink to="/login">Logout</NavLink>

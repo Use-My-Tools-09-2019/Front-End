@@ -8,9 +8,6 @@ import * as color from '../../styles/color'
 import * as generalStyled from '../styled-components/general'
 import * as addToolStyled from '../styled-components/addTool'
 
-
-import { Button } from '../styled-components/general'
-
 //formik
 import { withFormik, Form, Field } from "formik";
 
@@ -45,7 +42,6 @@ const  inputStyle = {
   height: '2.5rem',
   fontSize: '1.5rem',
   marginBottom: "1.2rem",
-
 }
 
 const labelStyle = {
@@ -171,16 +167,22 @@ const AddTool = ({ values, errors, touched, handleModalClose, handleModalOpen, m
                 />
               </p>
             </label>
-            <Button
+            <generalStyled.Button
               type="submit"
               style={{ margin: "1%" }}
+              w={'10rem'}
+              h={'3rem'}
             >
               Add Tool
-            </Button>
+            </generalStyled.Button>
           </Form>
         </div>
       </Modal>
-      <Button onClick={handleModalOpen}>Add Tool</Button>
+      <generalStyled.Button 
+        onClick={handleModalOpen}
+        w={'10rem'}
+        h={'3rem'}
+      >Add Tool</generalStyled.Button>
     </>
   );
 };

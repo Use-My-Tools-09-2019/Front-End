@@ -4,95 +4,142 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup'
 
 import axios from 'axios'
+import states from './states'
 
 //styles
 import { FormContainer } from '../../styled-components/form'
 import * as color from '../../../styles/color'
+import * as styled from '../../styled-components/general'
 
-import states from './states'
+const formStyle = {
+	width: '100%',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	flexDirection: 'column'
+}
 
+const segmentWrapper = {
+	width: '50%',
+	display: 'flex',
+	justifyContent: 'space-evenly',
+	flexWrap: 'wrap'
+	
+}
+
+const formSegment = {
+	width: '320px%'
+}
+
+const  inputStyle = {
+	width: '20rem',
+	height: '2.5rem',
+	fontSize: '1.5rem',
+	marginBottom: "1.2rem",
+  }
+
+  const  pStyle = {
+	fontSize: '1.3rem',
+	color: 'red',
+  }
 function Register({ touched, errors, status }) {
 	return (
 		<FormContainer>
-			<Form className="form">
-				<p>{touched.email && errors.email}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="Enter your email"
-						name="email"
-						type="email"
-					/>
+			<Form style={formStyle}>
+				<div style={segmentWrapper}>
+					<div style={formSegment}>
+						<p
+							style={pStyle}
+						>{touched.email && errors.email}</p>
+							<Field
+								placeholder="Enter your email"
+								name="email"
+								type="email"
+								style={inputStyle}
+							/>
+						<p
+							style={pStyle}
+						>{touched.username && errors.username}</p>
+							<Field
+								placeholder="Enter your username"
+								name="username"
+								type="text"
+								style={inputStyle}
+							/>
+						<p
+							style={pStyle}
+						>{touched.password && errors.password}</p>
+							<Field
+								placeholder="Password"
+								name="password"
+								type="password"
+								style={inputStyle}
+							/>
+
+					</div>
+					<div style={formSegment}>
+						<p
+							style={pStyle}
+						>{touched.street && errors.street}</p>
+							<Field
+								placeholder="street"
+								name="street"
+								type="text"
+								style={inputStyle}
+							/>
+						<p
+							style={pStyle}
+						>{touched.apartment && errors.apartment}</p>
+							<Field
+								placeholder="apartment"
+								name="apartment"
+								type="text"
+								style={inputStyle}
+							/>
+						<p
+							style={pStyle}
+						>{touched.city && errors.city}</p>
+							<Field
+								placeholder="city"
+								name="city"
+								type="text"
+								style={inputStyle}
+							/>
+						<p
+							style={pStyle}
+						>{touched.state && errors.state}</p>
+							<Field
+								placeholder="state"
+								name="state"
+								component="select"
+								style={inputStyle}
+							>
+								{states.map(state => {
+									return <option value={state[0]}>{state[1]}</option>
+								})}
+							</Field>
+						<p
+							style={pStyle}
+						>{touched.zip && errors.zip}</p>
+							<Field
+								placeholder="zipcode"
+								name="zip"
+								type="text"
+								style={inputStyle}
+								/>
+					</div>
 				</div>
-				<p>{touched.username && errors.username}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="Enter your username"
-						name="username"
-						type="text"
-					/>
-				</div>
-				<p>{touched.password && errors.password}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="Password"
-						name="password"
-						type="password"
-					/>
-				</div>
-				<h2>Address</h2>
-				<p>{touched.street && errors.street}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="street"
-						name="street"
-						type="text"
-					/>
-				</div>
-				<p>{touched.apartment && errors.apartment}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="apartment"
-						name="apartment"
-						type="text"
-					/>
-				</div>
-				<p>{touched.city && errors.city}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="city"
-						name="city"
-						type="text"
-					/>
-				</div>
-				<p>{touched.state && errors.state}</p>
-				<div >
-					<label style={{color: color.primary}}>State:  </label>
-					<Field
-						placeholder="state"
-						name="state"
-						component="select"
-						style={{
-							height: '30px',
-							margin: '20px'
-						}}
+				<div>
+					<br />
+					<styled.Button 
+						type='submit'
+						w={'10rem'}
+						h={'3rem'}
 					>
-						{states.map(state => {
-							return <option value={state[0]}>{state[1]}</option>
-						})}
-					</Field>
+						Register
+					</styled.Button>
+					{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 				</div>
-				<p>{touched.zip && errors.zip}</p>
-				<div className='ui input'>
-					<Field
-						placeholder="zipcode"
-						name="zip"
-						type="text"
-					/>
-				</div>
-				<br />
-				<button color="black" type='submit'>Register</button>
-				<br />
-				{status && <h3 style={{ color: 'red' }}>Please try again, error during signup</h3>}
 			</Form>
 		</FormContainer>
 	)
@@ -113,14 +160,14 @@ const FormikRegister = withFormik({
 		};
 	},
 	validationSchema: Yup.object().shape({
-		email: Yup.string().required("Email is a required field"),
-		username: Yup.string().required("Username is a required field"),
-		password: Yup.string().min(6).required("Password is a required field"),
-		street: Yup.string().required("Street is a required field"),
+		email: Yup.string().email().required("Email required "),
+		username: Yup.string().min(6,'Minumum 6 characters').required("Username required"),
+		password: Yup.string().min(6,'Minumum 6 characters').required("Password required"),
+		street: Yup.string().required("Street required"),
 		apartment: Yup.string(),
-		city: Yup.string().required("City is a required field"),
+		city: Yup.string().required("City required "),
 		state: Yup.string(),
-		zip: Yup.string().required("Zip is a required field"),
+		zip: Yup.string().matches(/^[0-9]{5}$/, 'Must be 5 digit Zip')
 	}),
 
 	handleSubmit(values, props) {
