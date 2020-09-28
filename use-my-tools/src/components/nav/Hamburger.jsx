@@ -7,6 +7,9 @@ import { NavLink } from "react-router-dom";
 import * as styled from "../styled-components/appRouter";
 import * as color from '../../styles/color'
 
+//redux
+import { logoutAC } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 //mui
 import Button from "@material-ui/core/Button";
@@ -42,6 +45,11 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function Hamburger() {
+  //state
+  const status = useSelector((state) => state.login.loggedIn);
+  const dispatch = useDispatch();
+
+
   //menu logic
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -72,7 +80,7 @@ export default function Hamburger() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {!localStorage.getItem("token") ? (
+        {!status ? (
           <>
             <StyledMenuItem onClick={handleClose}>
               <styled.Button>
@@ -109,9 +117,7 @@ export default function Hamburger() {
             <StyledMenuItem onClick={handleClose}>
               <styled.Button
                 onClick={() => {
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("username");
-                  window.location.reload();
+                  dispatch(logoutAC())
                 }}
               >
                 <NavLink to="/login">Logout</NavLink>
