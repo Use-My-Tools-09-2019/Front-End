@@ -1,6 +1,29 @@
 import styled from 'styled-components'
 import * as color from '../../styles/color'
 
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  color: ${color.primary};
+`;
+export const Input = styled.input`
+  width: 20rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+`;
+
+export const Select = styled.select`
+  width: 20rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+`;
+
+export const Label = styled.label`
+  font-size: 1.4rem;
+`
+
 export const FormContainer = styled.div`
 display: flex;
 justify-content: center;
