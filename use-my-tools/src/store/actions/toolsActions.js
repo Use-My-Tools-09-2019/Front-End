@@ -135,23 +135,17 @@ export const deleteTool = (toolid) => dispatch => {
     })
 }
 
-export const  requestTool = (requestedTool) => dispatch => {
-    // const rentalRequest = {
-    //     "rentaldate": requestedTool.rentaldate,
-    //     "toolid": requestedTool.toolid,
-    // }
-    // dispatch({type: REQUEST_TOOL_START})
+export const  requestTool = (request) => dispatch => {
+    dispatch({type: REQUEST_TOOL_START})
 
-    // axiosWithAuth()
-    // .post(`rentals/rental/add`, rentalRequest)
-    // .then(res => {
-    //     console.log('From requestTool action',res)
-    //     dispatch({type: REQUEST_TOOL_SUCCESS, payload: res.data})
-    // })
-    // .catch(err => {
-    //     console.log('From requestTool action',err)
-    //     dispatch({type: REQUEST_TOOL_FAIL, payload: err})
-    // })
+    axiosWithAuth()
+    .post(`api/tools/requests`, request)
+    .then(res => {
+        dispatch({type: REQUEST_TOOL_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: REQUEST_TOOL_FAIL, payload: err})
+    })
 }
 
 export const  getRequests = () => dispatch => {
