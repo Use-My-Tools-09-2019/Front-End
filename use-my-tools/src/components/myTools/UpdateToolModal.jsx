@@ -7,13 +7,15 @@ import { useInput } from "../../utils/hooks/useInput";
 import { useDispatch } from "react-redux";
 import { updateTool } from "../../store/actions";
 
-//styles
+//mui
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Radio from "@material-ui/core/Radio";
+//styles
+import { Form, Input, Label, Select} from "../styled-components/form"
 import * as styled from "../styled-components/general";
 import { Title } from "../styled-components/addTool";
 import * as color from "../../styles/color";
-import Radio from "@material-ui/core/Radio";
 import { Button } from "../styled-components/myTools";
 
 function getModalStyle() {
@@ -35,25 +37,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
-
-const formStyle = {
-  display: "flex",
-  flexDirection: "column",
-  color: color.primary,
-};
-const inputStyle = {
-  width: "20rem",
-  height: "2.5rem",
-  fontSize: "1.5rem",
-  marginBottom: "1.2rem",
-};
-const radioStyle = {
-  color: color.spinner,
-};
-
-const labelStyle = {
-  fontSize: '1.4rem'
-}
 
 const UpdateToolModal = (props) => {
   //modal
@@ -109,33 +92,24 @@ const UpdateToolModal = (props) => {
         <div style={modalStyle} className={classes.paper}>
           <styled.Xbutton onClick={handleModalClose}>X</styled.Xbutton>
           <Title>Update Tool</Title>
-          <form onSubmit={handleSubmit} style={formStyle}>
-            <label
-              style={labelStyle}
-            >
-              Tool Name</label>
-            <input
-              style={inputStyle}
+          <Form onSubmit={handleSubmit}>
+            <Label>Tool Name</Label>
+            <Input
               label="Tool Name"
               name="tool_name"
               value={tool.tool_name}
               onChange={handleChanges}
             />
-            <label
-              style={labelStyle}
-            >
-              Tool Description</label>
-            <input
-              style={inputStyle}
+            <Label>Tool Description</Label>
+            <Input
               label="Tool Description"
               name="tool_description"
               value={tool.tool_description}
               onChange={handleChanges}
             />
-            <select
+            <Select
               label="Tool Type"
               type="select"
-              style={inputStyle}
               onChange={handleChanges}
               name="tool_type"
               value={tool.tool_type}
@@ -144,13 +118,9 @@ const UpdateToolModal = (props) => {
               <option value="Hand Tool">Hand Tool</option>
               <option value="Power Tool">Power Tool</option>
               <option value="Gardening Tool">Gardening Tool</option>
-            </select>
-            <label
-              style={labelStyle}
-            >
-              Rental Cost</label>
-            <input
-              style={inputStyle}
+            </Select>
+            <Label>Rental Cost</Label>
+            <Input
               label="Rental Cost $"
               type="number"
               name="rental_cost"
@@ -158,20 +128,17 @@ const UpdateToolModal = (props) => {
               onChange={handleChanges}
             />
             <div>
-              <label
-                style={labelStyle}
-              >
-                Available for rent: </label>
+              <Label>Available for rent: </Label>
               <span>Yes</span>
               <Radio
-                style={radioStyle}
+                style={{color: color.spinner}}
                 label="Yes"
                 checked={tool.available}
                 onClick={handleCheckboxTrue}
               />
               <span>No</span>
               <Radio
-                style={radioStyle}
+                style={{color: color.spinner}}
                 label="No"
                 checked={!tool.available}
                 onClick={handleCheckboxFalse}
@@ -180,7 +147,7 @@ const UpdateToolModal = (props) => {
             <styled.Button type="submit" w={"9rem"} h={"3rem"}>
               Update Tool
             </styled.Button>
-          </form>
+          </Form>
         </div>
       </Modal>
       <Button onClick={handleModalOpen}>

@@ -8,7 +8,6 @@ import states from './states'
 
 //styles
 import { FormContainer } from '../../styled-components/form'
-import * as color from '../../../styles/color'
 import * as styled from '../../styled-components/general'
 
 const formStyle = {

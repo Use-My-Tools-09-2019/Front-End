@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import * as color from "../../styles/color"
 
-export{
-    Container,
-    Button
-}
+
 
 const Container = styled.div`
     display: flex;
@@ -29,3 +26,7 @@ const Button = styled.div`
         background: ${props => props.active ? '': '#252525'};
     }
 `
+export{
+    Container,
+    Button
+}

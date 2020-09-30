@@ -35,6 +35,8 @@ export default function UploadImg({ tool }) {
         <>
           <p>File Name: {picture[0].name}</p>
           <styled.Button
+            w={'10rem'}
+            h={'3rem'}
             onClick={() => {
               dispatch(uploadImage(picture[0], tool));
             }}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 
 //components
 import SearchParams from "./SearchParams";
@@ -35,9 +35,13 @@ function Marketplace() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const initFetch = useCallback(() => {
     dispatch(getTools());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
 
   if (status){
     return(
