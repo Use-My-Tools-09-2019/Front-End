@@ -6,8 +6,8 @@ const Button = styled.button`
 width: ${props => props.w};
 height: ${props => props.h};
 margin: 20px 0px;
-color: black;
-background: ${color.primary};
+color: ${props => props.active ? '#ababab' : 'black'};
+background: ${props => props.active ? '#eeeeee' : color.primary};
 border: none;
 text-decoration: none;
 font-size: 1.4rem;
