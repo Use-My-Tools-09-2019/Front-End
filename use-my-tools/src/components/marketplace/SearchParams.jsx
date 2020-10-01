@@ -15,9 +15,9 @@ const SearchParams = () => {
   return (
     <styled.Container>
         <styled.Button active={active.all} onClick={() => {dispatch(getTools())}}>All</styled.Button>
-        <styled.Button active={active.Power} onClick={() => {dispatch(getTools('Power'))}}>Power Tools</styled.Button>
-        <styled.Button active={active.Garden} onClick={() => {dispatch(getTools('Garden'))}}>Garden Tools</styled.Button>
-        <styled.Button active={active.Hand} onClick={() => {dispatch(getTools('Hand'))}}>Hand Tools</styled.Button>
+        <styled.Button active={active.Power} onClick={() => {dispatch(getTools('Power Tool'))}}>Power Tools</styled.Button>
+        <styled.Button active={active.Garden} onClick={() => {dispatch(getTools('Garden Tool'))}}>Garden Tools</styled.Button>
+        <styled.Button active={active.Hand} onClick={() => {dispatch(getTools('Hand Tool'))}}>Hand Tools</styled.Button>
     </styled.Container>
   );
 };
