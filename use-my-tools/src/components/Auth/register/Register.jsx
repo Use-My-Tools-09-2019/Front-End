@@ -172,7 +172,7 @@ const FormikRegister = withFormik({
 	handleSubmit(values, props) {
 		console.log(values)
 		console.log(props)
-		const url = "http://localhost:8888/api/user/register"
+		const url = "https://project-use-my-tools.herokuapp.com/api/user/register"
 		axios
 		  .post(url, values)
 		  .then(res => {
