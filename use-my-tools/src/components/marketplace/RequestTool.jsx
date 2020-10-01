@@ -43,7 +43,7 @@ export default function RequestTool({ toolID, usersTool }) {
   //state
   const initialState = {
     tool_id: toolID,
-    requestLength: 0
+    request_length: 1
   }
   const [request, setRequest, handleChanges] = useInput(initialState);
 
@@ -83,6 +83,7 @@ export default function RequestTool({ toolID, usersTool }) {
                 <div style={{display: 'flex', alignItems: 'center'}}> 
                   <Input
                     type='number'
+                    min={1}
                     style={{margin: 0, marginRight: '10px'}}
                     label="Request Length"
                     name="request_length"

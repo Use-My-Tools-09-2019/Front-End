@@ -58,10 +58,10 @@ function Register({ touched, errors, status }) {
 							/>
 						<p
 							style={pStyle}
-						>{touched.username && errors.username}</p>
+						>{touched.user_name && errors.user_name}</p>
 							<Field
 								placeholder="Enter your username"
-								name="username"
+								name="user_name"
 								type="text"
 								style={inputStyle}
 							/>
@@ -145,10 +145,10 @@ function Register({ touched, errors, status }) {
 }
 
 const FormikRegister = withFormik({
-	mapPropsToValues({ email, username, password, street, apartment, city, state, zip }) {
+	mapPropsToValues({ email, user_name, password, street, apartment, city, state, zip }) {
 		return {
 			email: email || "",
-			user_name: username || "",
+			user_name: user_name || "",
 			password: password || "",
 			street: street || "",
 			apartment: apartment || "",
@@ -160,7 +160,7 @@ const FormikRegister = withFormik({
 	},
 	validationSchema: Yup.object().shape({
 		email: Yup.string().email().required("Email required "),
-		username: Yup.string().min(6,'Minumum 6 characters').required("Username required"),
+		user_name: Yup.string().min(6,'Minumum 6 characters').required("Username required"),
 		password: Yup.string().min(6,'Minumum 6 characters').required("Password required"),
 		street: Yup.string().required("Street required"),
 		apartment: Yup.string(),
@@ -181,7 +181,7 @@ const FormikRegister = withFormik({
 		  })
 		  .catch(error => {
 		    console.log(error)
-		    props.setStatus(error.res.data.message)
+		    props.setStatus(error)
 			})
 			props.props.history.push('/login')
 	}

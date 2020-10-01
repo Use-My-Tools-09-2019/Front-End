@@ -66,7 +66,7 @@ const FormikRegister = withFormik({
 
     handleSubmit(values, props) {
       axios
-      .post('http://localhost:8888/api/user/login', values)
+      .post(`https://project-use-my-tools.herokuapp.com/api/user/login`, values)
       .then(res => {
           props.props.loginAC(values)
           console.log(res)
