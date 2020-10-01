@@ -45,9 +45,9 @@ export const  getTools = (filter = 'all') => dispatch => {
     //setup initial state for filter buttons
     let initialActive = {
         "all": false,
-        "Power": false,
-        "Garden": false,
-        "Hand": false,
+        "Power Tool": false,
+        "Garden Tool": false,
+        "Hand Tool": false,
     }
     //set whatever the filter is to be true 
     initialActive[filter] = true
@@ -137,13 +137,14 @@ export const deleteTool = (toolid) => dispatch => {
 
 export const  requestTool = (request) => dispatch => {
     dispatch({type: REQUEST_TOOL_START})
-
+    console.log(request)
     axiosWithAuth()
     .post(`api/tools/requests`, request)
     .then(res => {
         dispatch({type: REQUEST_TOOL_SUCCESS, payload: res.data})
     })
     .catch(err => {
+        console.log(err)
         dispatch({type: REQUEST_TOOL_FAIL, payload: err})
     })
 }

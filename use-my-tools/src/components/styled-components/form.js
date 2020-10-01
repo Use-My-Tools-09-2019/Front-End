@@ -53,6 +53,7 @@ margin-top: 50px;
     padding: 10px 22px;
     margin-bottom: 10px;
     box-sizing: border-box; 
+    font-size: 1.5rem;
   }
 
   button{
