@@ -45,9 +45,9 @@ export const  getTools = (filter = 'all') => dispatch => {
     //setup initial state for filter buttons
     let initialActive = {
         "all": false,
-        "Power": false,
-        "Garden": false,
-        "Hand": false,
+        "Power Tool": false,
+        "Garden Tool": false,
+        "Hand Tool": false,
     }
     //set whatever the filter is to be true 
     initialActive[filter] = true
