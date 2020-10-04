@@ -22,7 +22,8 @@ import UploadImg from "./UploadImg"
 const MyTools = () => {
   //redux hooks
   const userTools = useSelector((state) => state.tools.userTools);
-  const status = useSelector((state) => state.tools.status);
+  const status = useSelector((state) => state.tools.userToolsStatus);
+  console.log(status)
   const dispatch = useDispatch();
 
   //add tool modal
