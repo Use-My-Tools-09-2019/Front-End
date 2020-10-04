@@ -31,6 +31,7 @@ import {
   UPLOAD_IMAGE_SUCCESS,
   UPLOAD_IMAGE_FAIL,
   
+  DELETE_IMAGE_START,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAIL,
 } from "../actions";
@@ -202,7 +203,9 @@ export default function toolsReducer(state = initialState, action) {
         imageStatus: false,
         errMessage: action.payload,
       };
+
     //delete image
+
     case DELETE_IMAGE_START:
       return {
         ...state,
