@@ -51,7 +51,7 @@ function Marketplace() {
         <br/>
         <Loader
           type="Oval"
-          color={color.primary}
+          color={color.spinner}
           height={100}
           width={100}
         />
