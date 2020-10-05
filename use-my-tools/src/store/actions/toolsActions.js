@@ -32,6 +32,10 @@ export const GET_REQUESTS_START = 'GET_REQUESTS_START'
 export const GET_REQUESTS_SUCCESS = 'GET_  REQUESTS_SUCCESS'
 export const GET_REQUESTS_FAIL = 'GET_ REQUESTS_FAIL'
 
+export const DELETE_REQUEST_START = 'DELETE_REQUESTS_START'
+export const DELETE_REQUEST_SUCCESS = 'DELETE_  REQUESTS_SUCCESS'
+export const DELETE_REQUEST_FAIL = 'DELETE_ REQUESTS_FAIL'
+
 export const UPLOAD_IMAGE_START = 'UPLOAD_IMAGE_START'
 export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS'
 export const UPLOAD_IMAGE_FAIL = 'UPLOAD_IMAGE_FAIL'
@@ -160,6 +164,22 @@ export const  getRequests = () => dispatch => {
     .catch(err => {
         console.log(err)
         dispatch({type: GET_REQUESTS_FAIL, payload: err})
+    })
+
+}
+
+export const  deleteRequest = (id) => dispatch => {
+    dispatch({type: DELETE_REQUEST_START})
+    axiosWithAuth()
+    .delete(`api/tools/requests/${id}`)
+    .then((res) => {
+        console.log(res)
+        dispatch({type: DELETE_REQUEST_SUCCESS, payload: id})
+    })
+
+    .catch(err => {
+        console.log(err)
+        dispatch({type: DELETE_REQUEST_FAIL, payload: err})
     })
 
 }

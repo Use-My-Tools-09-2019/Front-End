@@ -11,10 +11,11 @@ import { getUserTools } from "../../store/actions";
 
 // components
 import AddTool from "./AddTool";
-import Requests from "./Requests";
+import RequestsModal from "./RequestsModal";
 import Loader from "react-loader-spinner";
 import UpdateToolModal from "./UpdateToolModal";
 import DeleteTool from "./DeleteTool";
+
 //image
 import EditImage from "./EditImage";
 import UploadImg from "./UploadImg"
@@ -59,7 +60,7 @@ const MyTools = () => {
   return (
     <>
       <br />
-      <Requests />
+      <RequestsModal />
       <styled.ContainerDiv>
         {/* Mapping over tools for the user, adding new card for each input */}
 

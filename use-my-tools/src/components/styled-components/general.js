@@ -11,7 +11,7 @@ background: ${props => props.active ? '#eeeeee' : color.primary};
 border: none;
 text-decoration: none;
 font-size: 1.4rem;
-cursor: pointer;
+cursor: ${props => props.active ? 'not-allowed': 'pointer'};
 outline: none;
 `
 

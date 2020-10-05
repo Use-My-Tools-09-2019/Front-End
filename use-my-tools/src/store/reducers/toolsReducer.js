@@ -20,6 +20,9 @@ import {
   GET_REQUESTS_START,
   GET_REQUESTS_SUCCESS,
   GET_REQUESTS_FAIL,
+  DELETE_REQUEST_START,
+  DELETE_REQUEST_SUCCESS,
+  DELETE_REQUEST_FAIL,
   UPLOAD_IMAGE_START,
   UPLOAD_IMAGE_SUCCESS,
   UPLOAD_IMAGE_FAIL,
@@ -172,6 +175,24 @@ export default function toolsReducer(state = initialState, action) {
         requestsStatus: false,
       };
 
+    case DELETE_REQUEST_START:
+      return {
+        ...state,
+        requestsStatus: true,
+      };
+    case DELETE_REQUEST_SUCCESS:
+      return {
+        ...state,
+        requests: state.userTools.filter((tool) => tool.id !== action.payload),
+        requestsStatus: false,
+      };
+    case DELETE_REQUEST_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+        requestsStatus: false,
+      };
+
     //upload image
     case UPLOAD_IMAGE_START:
       return {
@@ -195,7 +216,9 @@ export default function toolsReducer(state = initialState, action) {
         imageStatus: false,
         errMessage: action.payload,
       };
+
     //delete image
+
     case DELETE_IMAGE_START:
       return {
         ...state,
