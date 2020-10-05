@@ -2,35 +2,30 @@ import {
   GET_TOOLS_START,
   GET_TOOLS_SUCCESS,
   GET_TOOLS_FAIL,
-
   GET_USERTOOLS_START,
   GET_USERTOOLS_SUCCESS,
   GET_USERTOOLS_FAIL,
-
   ADD_TOOL_START,
   ADD_TOOL_SUCCESS,
   ADD_TOOL_FAIL,
-
   UPDATE_TOOL_START,
   UPDATE_TOOL_SUCCESS,
   UPDATE_TOOL_FAIL,
-
   DELETE_TOOL_START,
   DELETE_TOOL_SUCCESS,
   DELETE_TOOL_FAIL,
-
   REQUEST_TOOL_START,
   REQUEST_TOOL_SUCCESS,
   REQUEST_TOOL_FAIL,
-
   GET_REQUESTS_START,
   GET_REQUESTS_SUCCESS,
   GET_REQUESTS_FAIL,
-
+  DELETE_REQUEST_START,
+  DELETE_REQUEST_SUCCESS,
+  DELETE_REQUEST_FAIL,
   UPLOAD_IMAGE_START,
   UPLOAD_IMAGE_SUCCESS,
   UPLOAD_IMAGE_FAIL,
-  
   DELETE_IMAGE_START,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAIL,
@@ -174,6 +169,24 @@ export default function toolsReducer(state = initialState, action) {
         requestsStatus: false,
       };
     case GET_REQUESTS_FAIL:
+      return {
+        ...state,
+        errMessage: action.payload,
+        requestsStatus: false,
+      };
+
+    case DELETE_REQUEST_START:
+      return {
+        ...state,
+        requestsStatus: true,
+      };
+    case DELETE_REQUEST_SUCCESS:
+      return {
+        ...state,
+        requests: state.userTools.filter((tool) => tool.id !== action.payload),
+        requestsStatus: false,
+      };
+    case DELETE_REQUEST_FAIL:
       return {
         ...state,
         errMessage: action.payload,
