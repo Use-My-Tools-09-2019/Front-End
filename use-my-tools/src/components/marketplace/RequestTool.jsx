@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { useInput } from "../../utils/hooks/useInput";
 
 //styles
-import * as styled from "../styled-components/toolCard";
 import * as color from "../../styles/color";
 import { Form, Input, Label } from "../styled-components/form";
 import { Button, Xbutton } from "../styled-components/general";
