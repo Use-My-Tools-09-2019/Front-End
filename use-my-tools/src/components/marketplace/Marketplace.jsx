@@ -58,14 +58,13 @@ function Marketplace() {
       </div>
     )
   }
-
   return (
     <div style={{ width: "100%" }}>
       <br />
       <SearchParams />
       <ToolsPage className="tool">
         {tools.map((tool) => (
-          <ToolCard tool={tool} key={tool.toolid} />
+          <ToolCard tool={tool} key={tool.id} />
         ))}
       </ToolsPage>
     </div>
