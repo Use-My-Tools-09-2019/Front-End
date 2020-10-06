@@ -11,20 +11,20 @@ padding: auto 50px;
 width: 100%;
 height: 100px;
 background: ${color.nav};
-`;
+`
 
 const Title = styled.h1`
-font-size: 2.5rem
-margin-left: 10px
+font-size: 2.5rem;
+margin-left: 10px;
 -webkit-transition: opacity 3s ease-in-out;
 -moz-transition: opacity 3s ease-in-out;
 -ms-transition: opacity 3s ease-in-out;
 -o-transition: opacity 3s ease-in-out;
 
 @media (max-width: ${tablet}){
-    display: none
+    display: none;
 }
-`;
+`
 
 const Logo = styled.img`
 height: 80px;
@@ -36,7 +36,7 @@ display: flex;
 color: ${color.primary};
 align-items: center;
 
-`;
+`
 
 const Button = styled.div`
 
@@ -53,7 +53,7 @@ a {
     font-size: 1.4rem;
     cursor: pointer;
 }
-`;
+`
 export {
     Button,
     TopBar,

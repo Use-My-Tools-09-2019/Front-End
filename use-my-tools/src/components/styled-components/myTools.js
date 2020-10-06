@@ -50,7 +50,7 @@ export const ImgHr = styled.hr`
   width: 100%;
   margin-bottom: 10px;
   height: 1px;
-  background-color: ${color.primary}
+  background-color: ${color.primary};
   border: none;
 `
 

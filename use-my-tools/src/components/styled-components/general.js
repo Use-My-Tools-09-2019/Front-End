@@ -19,7 +19,7 @@ const Xbutton = styled.button`
 width: 2rem;
 height: 2rem;
 color: ${color.primary};
-background: ${color.background}
+background: ${color.background};
 border: none;
 text-decoration: none;
 font-size: 1.4rem;

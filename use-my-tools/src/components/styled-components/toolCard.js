@@ -10,7 +10,7 @@ justify-content: center;
 align-items: center;
 min-width: 300px;
 width: 300px;
-border: 1px solid ${color.primary}
+border: 1px solid ${color.primary};
 border-radius: 10px;
 margin: 25px;
 background: ${color.cardBackground};
