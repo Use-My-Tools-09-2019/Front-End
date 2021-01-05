@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "formik": "^2.1.7",
     "mdbreact": "^4.27.0",
     "node-sass": "^4.14.1",
