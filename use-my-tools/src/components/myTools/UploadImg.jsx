@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import ImageUploader from "react-images-upload";
 
 //styles
-import * as color from "../../styles/color"
-import * as styled from "../styled-components/general"
+import * as color from "../../styles/color";
+import * as styled from "../styled-components/general";
 
 //redux
 import { useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ export default function UploadImg({ tool }) {
         withIcon={true}
         buttonText="Choose image"
         onChange={onDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
         fileContainerStyle={{
           background: color.cardBackground,
           width: "200px",
@@ -35,8 +35,8 @@ export default function UploadImg({ tool }) {
         <>
           <p>File Name: {picture[0].name}</p>
           <styled.Button
-            w={'10rem'}
-            h={'3rem'}
+            w={"10rem"}
+            h={"3rem"}
             onClick={() => {
               dispatch(uploadImage(picture[0], tool));
             }}
