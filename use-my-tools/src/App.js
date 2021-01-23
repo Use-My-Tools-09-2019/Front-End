@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 //components
-import AppRouter from './components/nav/AppRouter'
+import AppRouter from "./components/nav/AppRouter";
 
 //styles
-import './styles/App.scss';
+import "./styles/App.css";
 
 function App() {
   return (
     <div className="App">
-      <AppRouter/>
+      <AppRouter />
     </div>
   );
 }

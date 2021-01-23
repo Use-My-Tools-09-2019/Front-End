@@ -18,12 +18,12 @@ import DeleteTool from "./DeleteTool";
 
 //image
 import EditImage from "./EditImage";
-import UploadImg from "./UploadImg"
+import UploadImg from "./UploadImg";
 
 const MyTools = () => {
   //redux hooks
-  const userTools = useSelector((state) => state.tools.userTools);
-  const status = useSelector((state) => state.tools.userToolsStatus);
+  const userTools = useSelector((state) => state.myTools.userTools);
+  const status = useSelector((state) => state.myTools.userToolsStatus);
   const dispatch = useDispatch();
 
   //add tool modal
@@ -45,7 +45,6 @@ const MyTools = () => {
     initFetch();
   }, [initFetch]);
 
-  
   /////* spinner logic *////
   if (status) {
     return (
@@ -74,13 +73,17 @@ const MyTools = () => {
               <cardStyles.ToolTitle>{tool.tool_name}</cardStyles.ToolTitle>
               {tool.img_url === null ? (
                 <>
-                  <UploadImg tool={tool}/>
+                  <UploadImg tool={tool} />
                   <styled.ImgHr />
                 </>
               ) : (
                 <>
                   <div style={{ position: "relative" }}>
-                    <img src={tool.img_url} style={{ position: "relative" }}  alt={tool.tool_description}/>
+                    <img
+                      src={tool.img_url}
+                      style={{ position: "relative" }}
+                      alt={tool.tool_description}
+                    />
                     <EditImage tool={tool} />
                   </div>
                   <styled.ImgHr />

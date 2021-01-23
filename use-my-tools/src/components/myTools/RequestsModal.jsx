@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 //components
-import Requests from "./Requests"
+import Requests from "./Requests";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +25,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: '400px',
+    width: "400px",
     backgroundColor: "black",
     color: "white",
     border: `4px solid ${color.primary} `,
@@ -51,7 +51,7 @@ const amount = {
 
 export default function RequestsModal() {
   //redux
-  const requests = useSelector((state) => state.tools.requests);
+  const requests = useSelector((state) => state.myTools.requests);
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
@@ -103,7 +103,7 @@ export default function RequestsModal() {
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-          <Requests requests={requests} handleModalClose={handleModalClose}/>
+          <Requests requests={requests} handleModalClose={handleModalClose} />
         </div>
       </Modal>
     </div>

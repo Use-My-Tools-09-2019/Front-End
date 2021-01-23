@@ -8,7 +8,7 @@ import Loader from "react-loader-spinner";
 //styles
 import styled from "styled-components";
 import { tablet } from "../styled-components/media";
-import * as color from "../../styles/color"
+import * as color from "../../styles/color";
 
 //redux
 import { getTools } from "../../store/actions";
@@ -30,8 +30,8 @@ const ToolsPage = styled.div`
 
 function Marketplace() {
   //state
-  const tools = useSelector((state) => state.tools.allTools);
-  const status = useSelector((state) => state.tools.toolsStatus);
+  const tools = useSelector((state) => state.market.allTools);
+  const status = useSelector((state) => state.market.toolsStatus);
 
   const dispatch = useDispatch();
 
@@ -43,20 +43,15 @@ function Marketplace() {
     initFetch();
   }, [initFetch]);
 
-  if (status){
-    return(
+  if (status) {
+    return (
       <div>
-        <br/>
+        <br />
         <SearchParams />
-        <br/>
-        <Loader
-          type="Oval"
-          color={color.spinner}
-          height={100}
-          width={100}
-        />
+        <br />
+        <Loader type="Oval" color={color.spinner} height={100} width={100} />
       </div>
-    )
+    );
   }
   return (
     <div style={{ width: "100%" }}>
