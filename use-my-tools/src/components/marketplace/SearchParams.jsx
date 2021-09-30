@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTools } from "../../store/actions";
 
 //styles
