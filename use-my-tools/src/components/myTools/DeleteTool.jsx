@@ -58,7 +58,7 @@ export default function DeleteTool({ tool }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>
+      <Button style={{borderTopLeftRadius: '4px' ,}} onClick={handleOpen}>
         <ion-icon name="trash-outline"></ion-icon>
       </Button>
       <Modal
