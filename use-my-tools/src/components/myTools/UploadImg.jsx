@@ -24,7 +24,7 @@ export default function UploadImg({ tool }) {
         withIcon={true}
         buttonText="Choose image"
         onChange={onDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
+        imgExtension={[".jpg", ".gif", ".png", ".gif", ".jpeg"]}
         fileContainerStyle={{
           background: color.cardBackground,
           width: "200px",

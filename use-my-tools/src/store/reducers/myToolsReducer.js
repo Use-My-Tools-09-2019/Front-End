@@ -1,7 +1,4 @@
 import {
-  GET_TOOLS_START,
-  GET_TOOLS_SUCCESS,
-  GET_TOOLS_FAIL,
   GET_USERTOOLS_START,
   GET_USERTOOLS_SUCCESS,
   GET_USERTOOLS_FAIL,
@@ -32,37 +29,16 @@ import {
 } from "../actions";
 
 const initialState = {
-  allTools: [],
   userTools: [],
   requests: [],
   errMessage: null,
-  toolsStatus: false,
   requestsStatus: false,
   userToolsStatus: false,
   imageStatus: false,
 };
 
-export default function toolsReducer(state = initialState, action) {
+export default function myToolsReducer(state = initialState, action) {
   switch (action.type) {
-    //get tools
-    case GET_TOOLS_START:
-      return {
-        ...state,
-        toolsStatus: true,
-      };
-    case GET_TOOLS_SUCCESS:
-      return {
-        ...state,
-        allTools: action.payload,
-        toolsStatus: false,
-      };
-    case GET_TOOLS_FAIL:
-      return {
-        ...state,
-        errMessage: action.payload,
-        toolsStatus: false,
-      };
-
     //get users tools
     case GET_USERTOOLS_START:
       return {

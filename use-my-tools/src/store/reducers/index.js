@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 
 import loginReducer from "./loginReducer";
-import toolsReducer from "./toolsReducer";
+import myToolsReducer from "./myToolsReducer";
+import marketReducer from "./marketReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  tools: toolsReducer,
+  myTools: myToolsReducer,
+  market: marketReducer,
 });
 
 export default rootReducer;

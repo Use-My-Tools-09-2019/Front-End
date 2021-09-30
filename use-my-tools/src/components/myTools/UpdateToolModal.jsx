@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Radio from "@material-ui/core/Radio";
 //styles
-import { Form, Input, Label, Select} from "../styled-components/form"
+import { Form, Input, Label, Select } from "../styled-components/form";
 import * as styled from "../styled-components/general";
 import { Title } from "../styled-components/addTool";
 import * as color from "../../styles/color";
@@ -131,14 +131,14 @@ const UpdateToolModal = (props) => {
               <Label>Available for rent: </Label>
               <span>Yes</span>
               <Radio
-                style={{color: color.spinner}}
+                style={{ color: color.spinner }}
                 label="Yes"
                 checked={tool.available}
                 onClick={handleCheckboxTrue}
               />
               <span>No</span>
               <Radio
-                style={{color: color.spinner}}
+                style={{ color: color.spinner }}
                 label="No"
                 checked={!tool.available}
                 onClick={handleCheckboxFalse}
@@ -150,7 +150,7 @@ const UpdateToolModal = (props) => {
           </Form>
         </div>
       </Modal>
-      <Button onClick={handleModalOpen}>
+      <Button style={{ borderTopRightRadius: "4px" }} onClick={handleModalOpen}>
         <ion-icon name="open-outline"></ion-icon>
       </Button>
     </>

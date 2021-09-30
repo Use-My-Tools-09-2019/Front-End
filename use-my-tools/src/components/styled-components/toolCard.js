@@ -10,7 +10,7 @@ justify-content: center;
 align-items: center;
 min-width: 300px;
 width: 300px;
-border: 1px solid ${color.primary};
+border: 3px solid ${color.primary};
 border-radius: 10px;
 margin: 25px;
 background: ${color.cardBackground};
@@ -35,10 +35,12 @@ export const ToolContent = styled.div`
   height: 100%;
   width: 100%;
   img {
+    object-fit: contain;
     width: 200px;
     height: 200px;
     margin: auto;
     padding-bottom: 20px;
+    background-color: #cccccc;
   }
   h4 {
     font-size: 1.2rem
