@@ -1,21 +1,20 @@
 import styled from "styled-components";
-import * as color from "../../styles/color"
-
+import * as color from "../../styles/color";
 
 export const Card = styled.div`
-outline: none;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-min-width: 300px;
-width: 300px;
-border: 3px solid ${color.primary};
-border-radius: 10px;
-margin: 25px;
-background: ${color.cardBackground};
-color: ${color.primary};
-`
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  width: 300px;
+  border: 3px solid ${color.primary};
+  border-radius: 10px;
+  margin: 25px;
+  background: ${color.cardBackground};
+  color: ${color.primary};
+`;
 
 export const PriceTag = styled.div`
   width: 100%;
@@ -30,7 +29,7 @@ export const PriceTag = styled.div`
     color: black;
     font-weight: 600;
   }
-`
+`;
 export const ToolContent = styled.div`
   height: 100%;
   width: 100%;
@@ -40,7 +39,6 @@ export const ToolContent = styled.div`
     height: 200px;
     margin: auto;
     padding-bottom: 20px;
-    background-color: #cccccc;
   }
   h4 {
     font-size: 1.2rem
@@ -51,8 +49,7 @@ export const ToolContent = styled.div`
 
 export const ToolTitle = styled.h1`
   font-size: 2rem;
-`
-
+`;
 
 export const FormStyle = styled.form`
   height: 200px;
